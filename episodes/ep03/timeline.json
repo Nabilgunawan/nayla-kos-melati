@@ -1,0 +1,671 @@
+{
+ "total": 141.4,
+ "clips": [
+  {
+   "id": "N1",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    0.21,
+    4.63
+   ],
+   "dst": 0.4,
+   "dur": 4.42,
+   "text": "Setelah malam itu, nggak ada satu pun dari kami yang bisa tidur.",
+   "emo": "lelah"
+  },
+  {
+   "id": "N2",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    5.25,
+    11.94
+   ],
+   "dst": 5.22,
+   "dur": 6.69,
+   "text": "Paginya, Ibu Kos manggil kami bertiga ke rumahnya. Katanya... ada yang harus dia ceritain.",
+   "emo": "cemas"
+  },
+  {
+   "id": "I1",
+   "spk": "ibukos",
+   "file": "audio/ibukos.mp3",
+   "src": [
+    0.15,
+    7.02
+   ],
+   "dst": 13.31,
+   "dur": 6.87,
+   "text": "Ibu minta maaf. Kemarin Ibu bohong. Ibu takut kalian pindah semua.",
+   "emo": "sedih"
+  },
+  {
+   "id": "I2",
+   "spk": "ibukos",
+   "file": "audio/ibukos.mp3",
+   "src": [
+    7.64,
+    13.57
+   ],
+   "dst": 20.58,
+   "dur": 5.93,
+   "text": "Tujuh tahun lalu, kamar empat ditempati seorang perempuan. Namanya Melati.",
+   "emo": "sedih"
+  },
+  {
+   "id": "N3",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    12.42,
+    14.63
+   ],
+   "dst": 26.81,
+   "dur": 2.21,
+   "text": "Melati? Kayak nama kos ini?",
+   "emo": "kaget"
+  },
+  {
+   "id": "I3",
+   "spk": "ibukos",
+   "file": "audio/ibukos.mp3",
+   "src": [
+    14.19,
+    20.72
+   ],
+   "dst": 29.42,
+   "dur": 6.53,
+   "text": "Dia suka bunga melati. Suka jemur baju tengah malam. Dan lampu tidurnya... warna hijau.",
+   "emo": "sedih"
+  },
+  {
+   "id": "I4",
+   "spk": "ibukos",
+   "file": "audio/ibukos.mp3",
+   "src": [
+    21.4,
+    27.72
+   ],
+   "dst": 36.45,
+   "dur": 6.32,
+   "text": "Suatu malam, dia hilang. Yang tersisa cuma baju putihnya... masih tergantung di jemuran.",
+   "emo": "sedih"
+  },
+  {
+   "id": "A1",
+   "spk": "adel",
+   "file": "audio/adel.mp3",
+   "src": [
+    0.0,
+    3.3
+   ],
+   "dst": 43.57,
+   "dur": 3.3,
+   "text": "Bu, perempuan di foto ini... siapa?",
+   "emo": "penasaran"
+  },
+  {
+   "id": "I5",
+   "spk": "ibukos",
+   "file": "audio/ibukos.mp3",
+   "src": [
+    28.33,
+    31.96
+   ],
+   "dst": 47.17,
+   "dur": 3.63,
+   "text": "Itu Melati. Foto terakhirnya, di depan kamarnya.",
+   "emo": "sedih"
+  },
+  {
+   "id": "N4",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    15.19,
+    18.88
+   ],
+   "dst": 52.4,
+   "dur": 3.69,
+   "text": "Lampu di jendela itu... udah hijau dari tujuh tahun lalu.",
+   "emo": "takut"
+  },
+  {
+   "id": "I6",
+   "spk": "ibukos",
+   "file": "audio/ibukos.mp3",
+   "src": [
+    32.53,
+    37.21
+   ],
+   "dst": 56.39,
+   "dur": 4.68,
+   "text": "Kalau mau tahu lebih banyak, tanya Pak RT. Dulu dia yang memimpin pencarian.",
+   "emo": "tenang"
+  },
+  {
+   "id": "N5",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    19.54,
+    22.22
+   ],
+   "dst": 62.07,
+   "dur": 2.68,
+   "text": "Malamnya, kami nemuin Pak RT di pos ronda.",
+   "emo": "tegas"
+  },
+  {
+   "id": "R1",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    0.0,
+    4.54
+   ],
+   "dst": 67.75,
+   "dur": 4.54,
+   "text": "Tiga hari kami cari Melati. Sekampung ikut. Nggak ketemu.",
+   "emo": "serius"
+  },
+  {
+   "id": "R2",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    5.25,
+    16.58
+   ],
+   "dst": 72.69,
+   "dur": 11.33,
+   "text": "Malam ketiga, warga dengar suara ketawa dari kamar empat. Pintunya terkunci dari dalam. Kami dobrak... kosong. Cuma lampu hijau yang nyala sendiri.",
+   "emo": "serius"
+  },
+  {
+   "id": "P1",
+   "spk": "pakronda",
+   "file": "audio/pakronda.mp3",
+   "src": [
+    0.0,
+    7.0
+   ],
+   "dst": 84.62,
+   "dur": 7.0,
+   "text": "Sejak malam itu, tiap jam tiga pagi ada baju putih di jemuran. Padahal nggak ada yang jemur.",
+   "emo": "takut"
+  },
+  {
+   "id": "N6",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    22.69,
+    26.98
+   ],
+   "dst": 92.02,
+   "dur": 4.29,
+   "text": "Terkunci dari dalam? Terus dia keluarnya lewat mana, Pak?",
+   "emo": "bingung"
+  },
+  {
+   "id": "R3",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    17.37,
+    21.56
+   ],
+   "dst": 96.71,
+   "dur": 4.19,
+   "text": "Nggak ada yang tahu, Nak. Tapi Melati bukan yang pertama.",
+   "emo": "serius"
+  },
+  {
+   "id": "R4",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    22.22,
+    28.31
+   ],
+   "dst": 101.9,
+   "dur": 6.09,
+   "text": "Ratna, dua ribu dua belas. Sinta, dua ribu lima. Semuanya penghuni kamar empat.",
+   "emo": "serius"
+  },
+  {
+   "id": "N7",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    27.48,
+    30.95
+   ],
+   "dst": 108.39,
+   "dur": 3.47,
+   "text": "Ratna... Sinta... Melati... semuanya penghuni kamar empat?",
+   "emo": "takut"
+  },
+  {
+   "id": "D1",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    0.0,
+    5.64
+   ],
+   "dst": 112.36,
+   "dur": 5.64,
+   "text": "Dua ribu lima... dua ribu dua belas... dua ribu sembilan belas... tiap tujuh tahun.",
+   "emo": "takut"
+  },
+  {
+   "id": "D2",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    6.13,
+    7.71
+   ],
+   "dst": 118.3,
+   "dur": 1.58,
+   "text": "Berarti... tahun ini?",
+   "emo": "takut"
+  },
+  {
+   "id": "A2",
+   "spk": "adel",
+   "file": "audio/adel.mp3",
+   "src": [
+    3.67,
+    6.67
+   ],
+   "dst": 122.48,
+   "dur": 3.0,
+   "text": "Tinta di halaman ini... masih basah.",
+   "emo": "takut"
+  },
+  {
+   "id": "N8",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    31.43,
+    32.85
+   ],
+   "dst": 127.68,
+   "dur": 1.42,
+   "text": "Itu... nama aku.",
+   "emo": "beku"
+  },
+  {
+   "id": "R5",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    28.92,
+    30.75
+   ],
+   "dst": 129.9,
+   "dur": 1.83,
+   "text": "Ini... bukan tulisan saya.",
+   "emo": "takut"
+  },
+  {
+   "id": "N9",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    33.46,
+    35.34
+   ],
+   "dst": 135.93,
+   "dur": 1.88,
+   "text": "Aku tinggal di kamar tiga... kan?",
+   "emo": "beku"
+  },
+  {
+   "id": "K1",
+   "spk": "kunti",
+   "file": "audio/kunti.mp3",
+   "src": [
+    4.98,
+    5.58
+   ],
+   "dst": 139.21,
+   "dur": 0.6,
+   "text": "",
+   "emo": ""
+  }
+ ],
+ "shots": [
+  {
+   "n": 1,
+   "start": 0,
+   "end": 6.72,
+   "set": "kamar_pagi",
+   "cam": "s1",
+   "act": "s1"
+  },
+  {
+   "n": 2,
+   "start": 6.72,
+   "end": 12.31,
+   "set": "luar_pagi",
+   "cam": "s2",
+   "act": "s2"
+  },
+  {
+   "n": 3,
+   "start": 12.31,
+   "end": 15.51,
+   "set": "ruangtamu",
+   "cam": "s3",
+   "act": "s3"
+  },
+  {
+   "n": 4,
+   "start": 15.51,
+   "end": 20.48,
+   "set": "ruangtamu",
+   "cam": "s4",
+   "act": "s4"
+  },
+  {
+   "n": 5,
+   "start": 20.48,
+   "end": 26.71,
+   "set": "ruangtamu",
+   "cam": "s5",
+   "act": "s5"
+  },
+  {
+   "n": 6,
+   "start": 26.71,
+   "end": 29.32,
+   "set": "ruangtamu",
+   "cam": "s6",
+   "act": "s6"
+  },
+  {
+   "n": 7,
+   "start": 29.32,
+   "end": 39.05,
+   "set": "flash_malam",
+   "cam": "s7",
+   "act": "s7"
+  },
+  {
+   "n": 8,
+   "start": 39.05,
+   "end": 43.17,
+   "set": "flash_malam",
+   "cam": "s8",
+   "act": "s8"
+  },
+  {
+   "n": 9,
+   "start": 43.17,
+   "end": 47.07,
+   "set": "ruangtamu",
+   "cam": "s9",
+   "act": "s9"
+  },
+  {
+   "n": 10,
+   "start": 47.07,
+   "end": 51.6,
+   "set": "ruangtamu",
+   "cam": "s10",
+   "act": "s10"
+  },
+  {
+   "n": 11,
+   "start": 51.6,
+   "end": 56.29,
+   "set": "ruangtamu",
+   "cam": "s11",
+   "act": "s11"
+  },
+  {
+   "n": 12,
+   "start": 56.29,
+   "end": 61.67,
+   "set": "ruangtamu",
+   "cam": "s12",
+   "act": "s12"
+  },
+  {
+   "n": 13,
+   "start": 61.67,
+   "end": 65.15,
+   "set": "luar_malam",
+   "cam": "s13",
+   "act": "s13"
+  },
+  {
+   "n": 14,
+   "start": 65.15,
+   "end": 67.65,
+   "set": "posronda",
+   "cam": "s14",
+   "act": "s14"
+  },
+  {
+   "n": 15,
+   "start": 67.65,
+   "end": 75.99,
+   "set": "posronda",
+   "cam": "s15",
+   "act": "s15"
+  },
+  {
+   "n": 16,
+   "start": 75.99,
+   "end": 84.42,
+   "set": "flash_k4",
+   "cam": "s16",
+   "act": "s16"
+  },
+  {
+   "n": 17,
+   "start": 84.42,
+   "end": 91.92,
+   "set": "posronda",
+   "cam": "s17",
+   "act": "s17"
+  },
+  {
+   "n": 18,
+   "start": 91.92,
+   "end": 96.61,
+   "set": "posronda",
+   "cam": "s18",
+   "act": "s18"
+  },
+  {
+   "n": 19,
+   "start": 96.61,
+   "end": 101.7,
+   "set": "posronda",
+   "cam": "s19",
+   "act": "s19"
+  },
+  {
+   "n": 20,
+   "start": 101.7,
+   "end": 108.29,
+   "set": "posronda",
+   "cam": "s20",
+   "act": "s20"
+  },
+  {
+   "n": 21,
+   "start": 108.29,
+   "end": 112.26,
+   "set": "posronda",
+   "cam": "s21",
+   "act": "s21"
+  },
+  {
+   "n": 22,
+   "start": 112.26,
+   "end": 120.08,
+   "set": "posronda",
+   "cam": "s22",
+   "act": "s22"
+  },
+  {
+   "n": 23,
+   "start": 120.08,
+   "end": 122.28,
+   "set": "posronda",
+   "cam": "s23",
+   "act": "s23"
+  },
+  {
+   "n": 24,
+   "start": 122.28,
+   "end": 125.58,
+   "set": "posronda",
+   "cam": "s24",
+   "act": "s24"
+  },
+  {
+   "n": 25,
+   "start": 125.58,
+   "end": 127.58,
+   "set": "posronda",
+   "cam": "s25",
+   "act": "s25"
+  },
+  {
+   "n": 26,
+   "start": 127.58,
+   "end": 129.7,
+   "set": "posronda",
+   "cam": "s26",
+   "act": "s26"
+  },
+  {
+   "n": 27,
+   "start": 129.7,
+   "end": 132.23,
+   "set": "posronda",
+   "cam": "s27",
+   "act": "s27"
+  },
+  {
+   "n": 28,
+   "start": 132.23,
+   "end": 135.73,
+   "set": "luar_malam",
+   "cam": "s28",
+   "act": "s28"
+  },
+  {
+   "n": 29,
+   "start": 135.73,
+   "end": 138.61,
+   "set": "luar_malam",
+   "cam": "s29",
+   "act": "s29"
+  },
+  {
+   "n": 30,
+   "start": 138.61,
+   "end": 141.4,
+   "set": "luar_malam",
+   "cam": "s30",
+   "act": "s30"
+  }
+ ],
+ "sfx": [
+  [
+   0.2,
+   "ayam",
+   -8,
+   null
+  ],
+  [
+   12.31,
+   "jam",
+   -24,
+   49.36
+  ],
+  [
+   29.32,
+   "angin",
+   -22,
+   13.850000000000001
+  ],
+  [
+   65.45,
+   "catur",
+   -12,
+   1.2
+  ],
+  [
+   75.99,
+   "banting",
+   -6,
+   null
+  ],
+  [
+   76.58999999999999,
+   "kunti_k1",
+   -20,
+   null
+  ],
+  [
+   84.82000000000001,
+   "kentongan",
+   -20,
+   4.0
+  ],
+  [
+   101.9,
+   "halaman",
+   -10,
+   null
+  ],
+  [
+   120.28,
+   "halaman",
+   -6,
+   null
+  ],
+  [
+   125.58,
+   "hum",
+   -26,
+   3.5
+  ],
+  [
+   127.73,
+   "jumpscare_kecil",
+   -8,
+   null
+  ],
+  [
+   134.03,
+   "klotak",
+   -8,
+   null
+  ],
+  [
+   135.73,
+   "neon",
+   -30,
+   3
+  ],
+  [
+   138.91000000000003,
+   "k:glitch_002",
+   -12,
+   null
+  ]
+ ]
+}
