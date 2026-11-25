@@ -1,0 +1,879 @@
+{
+ "total": 120.0,
+ "clips": [
+  {
+   "id": "u1",
+   "src": [
+    0.0,
+    1.26
+   ],
+   "dst": 0.25,
+   "dur": 1.26,
+   "text": "Eh... udah ngerekam?",
+   "emo": "kaget"
+  },
+  {
+   "id": "u2",
+   "src": [
+    1.53,
+    2.23
+   ],
+   "dst": 1.78,
+   "dur": 0.7,
+   "text": "Bentar, bentar!",
+   "emo": "panik"
+  },
+  {
+   "id": "u3",
+   "src": [
+    2.57,
+    3.55
+   ],
+   "dst": 4.12,
+   "dur": 0.98,
+   "text": "Halo semuanya!",
+   "emo": "ceria"
+  },
+  {
+   "id": "u4",
+   "src": [
+    3.81,
+    5.04
+   ],
+   "dst": 5.36,
+   "dur": 1.23,
+   "text": "Kenalin, aku Nayla.",
+   "emo": "ceria"
+  },
+  {
+   "id": "u5",
+   "src": [
+    5.42,
+    10.65
+   ],
+   "dst": 6.97,
+   "dur": 5.23,
+   "text": "Umur dua puluh tahun, mahasiswi Hubungan Internasional, dan sekarang aku ngekos di dekat kampus.",
+   "emo": "ceria"
+  },
+  {
+   "id": "u6",
+   "src": [
+    11.04,
+    12.98
+   ],
+   "dst": 13.79,
+   "dur": 1.94,
+   "text": "Nah, ini dia istana aku.",
+   "emo": "bangga"
+  },
+  {
+   "id": "u7",
+   "src": [
+    13.24,
+    14.44
+   ],
+   "dst": 15.99,
+   "dur": 1.2,
+   "text": "Tiga kali tiga meter.",
+   "emo": "jahil"
+  },
+  {
+   "id": "u8",
+   "src": [
+    14.77,
+    18.94
+   ],
+   "dst": 17.52,
+   "dur": 4.17,
+   "text": "Ada kasur, meja belajar, kipas angin yang bunyinya kayak helikopter...",
+   "emo": "jahil"
+  },
+  {
+   "id": "u9",
+   "src": [
+    19.14,
+    19.78
+   ],
+   "dst": 23.29,
+   "dur": 0.64,
+   "text": "dan ini.",
+   "emo": "lembut"
+  },
+  {
+   "id": "u10",
+   "src": [
+    20.14,
+    20.82
+   ],
+   "dst": 24.29,
+   "dur": 0.68,
+   "text": "Rice cooker.",
+   "emo": "lembut"
+  },
+  {
+   "id": "u11",
+   "src": [
+    21.15,
+    22.55
+   ],
+   "dst": 25.5,
+   "dur": 1.4,
+   "text": "Sahabat sejati anak kos.",
+   "emo": "lembut"
+  },
+  {
+   "id": "u12",
+   "src": [
+    23.02,
+    24.53
+   ],
+   "dst": 32.37,
+   "dur": 1.51,
+   "text": "Nah, ini kampus aku.",
+   "emo": "ceria"
+  },
+  {
+   "id": "u13",
+   "src": [
+    24.93,
+    28.87
+   ],
+   "dst": 34.28,
+   "dur": 3.94,
+   "text": "Setiap kali aku bilang kuliah di HI, pertanyaannya pasti sama.",
+   "emo": "pasrah"
+  },
+  {
+   "id": "u14",
+   "src": [
+    29.28,
+    30.3
+   ],
+   "dst": 39.03,
+   "dur": 1.02,
+   "text": "\"HI itu apa?",
+   "emo": "bingung"
+  },
+  {
+   "id": "u15",
+   "src": [
+    30.59,
+    31.52
+   ],
+   "dst": 40.34,
+   "dur": 0.93,
+   "text": "Hotel Indonesia?\"",
+   "emo": "bingung"
+  },
+  {
+   "id": "u16",
+   "src": [
+    31.89,
+    32.64
+   ],
+   "dst": 42.94,
+   "dur": 0.75,
+   "text": "Bukan, Om.",
+   "emo": "deadpan"
+  },
+  {
+   "id": "u17",
+   "src": [
+    32.93,
+    34.35
+   ],
+   "dst": 43.98,
+   "dur": 1.42,
+   "text": "Hubungan Internasional.",
+   "emo": "deadpan"
+  },
+  {
+   "id": "u18",
+   "src": [
+    34.72,
+    35.69
+   ],
+   "dst": 46.77,
+   "dur": 0.97,
+   "text": "Terus lanjut lagi.",
+   "emo": "pasrah"
+  },
+  {
+   "id": "u19",
+   "src": [
+    36.03,
+    37.48
+   ],
+   "dst": 48.08,
+   "dur": 1.45,
+   "text": "\"Nanti kerjanya jadi apa?\"",
+   "emo": "bingung"
+  },
+  {
+   "id": "u20",
+   "src": [
+    37.78,
+    39.36
+   ],
+   "dst": 49.83,
+   "dur": 1.58,
+   "text": "Diplomat, Tante.",
+   "emo": "bangga"
+  },
+  {
+   "id": "u21",
+   "src": [
+    39.51,
+    40.77
+   ],
+   "dst": 52.16,
+   "dur": 1.26,
+   "text": "Aamiin dulu aja.",
+   "emo": "tawa"
+  },
+  {
+   "id": "u22",
+   "src": [
+    41.18,
+    45.86
+   ],
+   "dst": 54.13,
+   "dur": 4.68,
+   "text": "Sehari-hari aku belajar kenapa negara-negara bisa akur, dan kenapa bisa ribut.",
+   "emo": "merenung"
+  },
+  {
+   "id": "u23",
+   "src": [
+    46.13,
+    48.3
+   ],
+   "dst": 59.08,
+   "dur": 2.17,
+   "text": "Padahal grup chat kelas aja kadang ribut.",
+   "emo": "kesal"
+  },
+  {
+   "id": "u24",
+   "src": [
+    48.61,
+    50.19
+   ],
+   "dst": 67.16,
+   "dur": 1.58,
+   "text": "Tapi belajarnya nggak cuma di kelas.",
+   "emo": "jahil"
+  },
+  {
+   "id": "u25",
+   "src": [
+    50.62,
+    52.14
+   ],
+   "dst": 69.17,
+   "dur": 1.52,
+   "text": "Kota ini juga guru aku.",
+   "emo": "lembut"
+  },
+  {
+   "id": "u26",
+   "src": [
+    52.36,
+    58.38
+   ],
+   "dst": 70.91,
+   "dur": 6.02,
+   "text": "Dari obrolan sama abang ojol, harga cilok yang naik pelan-pelan, sampai orang-orang yang buru-buru tiap pagi.",
+   "emo": "jahil"
+  },
+  {
+   "id": "u27",
+   "src": [
+    58.66,
+    60.58
+   ],
+   "dst": 78.81,
+   "dur": 1.92,
+   "text": "Buat aku, semua itu cerita.",
+   "emo": "lembut"
+  },
+  {
+   "id": "u28",
+   "src": [
+    60.91,
+    62.12
+   ],
+   "dst": 81.06,
+   "dur": 1.21,
+   "text": "Dunia itu besar banget...",
+   "emo": "merenung"
+  },
+  {
+   "id": "u29",
+   "src": [
+    62.6,
+    65.82
+   ],
+   "dst": 83.35,
+   "dur": 3.22,
+   "text": "tapi ceritanya sering dimulai dari hal kecil di sekitar kita.",
+   "emo": "lembut"
+  },
+  {
+   "id": "u30",
+   "src": [
+    66.15,
+    67.74
+   ],
+   "dst": 93.5,
+   "dur": 1.59,
+   "text": "Makanya aku bikin akun ini.",
+   "emo": "ceria"
+  },
+  {
+   "id": "u31",
+   "src": [
+    67.95,
+    73.98
+   ],
+   "dst": 95.3,
+   "dur": 6.03,
+   "text": "Di sini aku bakal cerita kehidupan anak kos, drama kuliah, dan barang-barang kecil yang bikin hidup aku lebih gampang.",
+   "emo": "ceria"
+  },
+  {
+   "id": "u32",
+   "src": [
+    74.31,
+    76.24
+   ],
+   "dst": 102.86,
+   "dur": 1.93,
+   "text": "Kadang lucu, kadang curhat...",
+   "emo": "jahil"
+  },
+  {
+   "id": "u33",
+   "src": [
+    76.39,
+    79.0
+   ],
+   "dst": 104.94,
+   "dur": 2.61,
+   "text": "kadang aku cuma ngobrol sama kipas angin.",
+   "emo": "canggung"
+  },
+  {
+   "id": "u34",
+   "src": [
+    79.32,
+    82.55
+   ],
+   "dst": 110.07,
+   "dur": 3.23,
+   "text": "Jadi, kalau kalian mau nemenin perjalanan aku, follow ya!",
+   "emo": "ceria"
+  },
+  {
+   "id": "u35",
+   "src": [
+    82.85,
+    83.37
+   ],
+   "dst": 114.6,
+   "dur": 0.52,
+   "text": "Eh...",
+   "emo": "kaget"
+  },
+  {
+   "id": "u36",
+   "src": [
+    83.69,
+    84.41
+   ],
+   "dst": 115.64,
+   "dur": 0.72,
+   "text": "nasi aku!",
+   "emo": "panik"
+  }
+ ],
+ "shots": [
+  {
+   "n": 1,
+   "start": 0,
+   "end": 1.68,
+   "set": "kos_pagi",
+   "cam": "ecu_hand",
+   "act": "too_close"
+  },
+  {
+   "n": 2,
+   "start": 1.68,
+   "end": 3.92,
+   "set": "kos_pagi",
+   "cam": "ms_pullback",
+   "act": "step_back"
+  },
+  {
+   "n": 3,
+   "start": 3.92,
+   "end": 6.97,
+   "set": "kos_pagi",
+   "cam": "ms_eye",
+   "act": "wave"
+  },
+  {
+   "n": 4,
+   "start": 6.97,
+   "end": 12.69,
+   "set": "kos_pagi",
+   "cam": "mcu_push",
+   "act": "talk"
+  },
+  {
+   "n": 5,
+   "start": 12.69,
+   "end": 15.99,
+   "set": "kos_pagi",
+   "cam": "wide_high",
+   "act": "present"
+  },
+  {
+   "n": 6,
+   "start": 15.99,
+   "end": 17.52,
+   "set": "kos_pagi",
+   "cam": "wide_pan",
+   "act": "arms_open"
+  },
+  {
+   "n": 7,
+   "start": 17.52,
+   "end": 19.72,
+   "set": "kos_pagi",
+   "cam": "ins_desk",
+   "act": "walk_desk"
+  },
+  {
+   "n": 8,
+   "start": 19.72,
+   "end": 23.09,
+   "set": "kos_pagi",
+   "cam": "ins_fan",
+   "act": "fan_gag"
+  },
+  {
+   "n": 9,
+   "start": 23.09,
+   "end": 28.1,
+   "set": "kos_pagi",
+   "cam": "cu_rice",
+   "act": "hug_rice"
+  },
+  {
+   "n": 10,
+   "start": 28.1,
+   "end": 31.97,
+   "set": "kampus",
+   "cam": "est_low",
+   "act": "walk_in"
+  },
+  {
+   "n": 11,
+   "start": 31.97,
+   "end": 34.28,
+   "set": "kampus",
+   "cam": "track_side",
+   "act": "walk"
+  },
+  {
+   "n": 12,
+   "start": 34.28,
+   "end": 38.93,
+   "set": "kampus",
+   "cam": "ms_k",
+   "act": "talk"
+  },
+  {
+   "n": 13,
+   "start": 38.93,
+   "end": 42.79,
+   "set": "kampus",
+   "cam": "cu_zoom",
+   "act": "silly"
+  },
+  {
+   "n": 14,
+   "start": 42.79,
+   "end": 46.67,
+   "set": "kampus",
+   "cam": "cu_static",
+   "act": "deadpan"
+  },
+  {
+   "n": 15,
+   "start": 46.67,
+   "end": 49.73,
+   "set": "kampus",
+   "cam": "ms_k2",
+   "act": "talk_shrug"
+  },
+  {
+   "n": 16,
+   "start": 49.73,
+   "end": 54.03,
+   "set": "kampus",
+   "cam": "low_hero",
+   "act": "hero"
+  },
+  {
+   "n": 17,
+   "start": 54.03,
+   "end": 58.98,
+   "set": "kampus",
+   "cam": "mw_bench",
+   "act": "sit_phone"
+  },
+  {
+   "n": 18,
+   "start": 58.98,
+   "end": 63.25,
+   "set": "kampus",
+   "cam": "cu_phone",
+   "act": "phone_buzz"
+  },
+  {
+   "n": 19,
+   "start": 63.25,
+   "end": 66.56,
+   "set": "kota",
+   "cam": "est_tilt",
+   "act": "none"
+  },
+  {
+   "n": 20,
+   "start": 66.56,
+   "end": 69.17,
+   "set": "kota",
+   "cam": "track_front",
+   "act": "walk_city"
+  },
+  {
+   "n": 21,
+   "start": 69.17,
+   "end": 70.91,
+   "set": "kota",
+   "cam": "ms_c",
+   "act": "talk"
+  },
+  {
+   "n": 22,
+   "start": 70.91,
+   "end": 73.31,
+   "set": "kota",
+   "cam": "ins_ojol",
+   "act": "watch_ojol"
+  },
+  {
+   "n": 23,
+   "start": 73.31,
+   "end": 75.31,
+   "set": "kota",
+   "cam": "ins_cilok",
+   "act": "point_cilok"
+  },
+  {
+   "n": 24,
+   "start": 75.31,
+   "end": 78.81,
+   "set": "kota",
+   "cam": "wide_traffic",
+   "act": "stand"
+  },
+  {
+   "n": 25,
+   "start": 78.81,
+   "end": 83.35,
+   "set": "kota",
+   "cam": "cu_gaze",
+   "act": "gaze"
+  },
+  {
+   "n": 26,
+   "start": 83.35,
+   "end": 90.17,
+   "set": "kota",
+   "cam": "crane_sunset",
+   "act": "gaze_far"
+  },
+  {
+   "n": 27,
+   "start": 90.17,
+   "end": 93.3,
+   "set": "kos_malam",
+   "cam": "est_night",
+   "act": "sit_desk_idle"
+  },
+  {
+   "n": 28,
+   "start": 93.3,
+   "end": 95.3,
+   "set": "kos_malam",
+   "cam": "ms_desk",
+   "act": "sit_talk"
+  },
+  {
+   "n": 29,
+   "start": 95.3,
+   "end": 98.9,
+   "set": "kos_malam",
+   "cam": "cu_desk",
+   "act": "sit_talk"
+  },
+  {
+   "n": 30,
+   "start": 98.9,
+   "end": 102.66,
+   "set": "kos_malam",
+   "cam": "ins_items",
+   "act": "sit_talk"
+  },
+  {
+   "n": 31,
+   "start": 102.66,
+   "end": 104.94,
+   "set": "kos_malam",
+   "cam": "ms_desk2",
+   "act": "sit_talk"
+  },
+  {
+   "n": 32,
+   "start": 104.94,
+   "end": 109.87,
+   "set": "kos_malam",
+   "cam": "wide_fan",
+   "act": "talk_fan"
+  },
+  {
+   "n": 33,
+   "start": 109.87,
+   "end": 113.45,
+   "set": "kos_malam",
+   "cam": "mcu_follow",
+   "act": "wave"
+  },
+  {
+   "n": 34,
+   "start": 113.45,
+   "end": 114.5,
+   "set": "kos_malam",
+   "cam": "ins_rice2",
+   "act": "none"
+  },
+  {
+   "n": 35,
+   "start": 114.5,
+   "end": 115.59,
+   "set": "kos_malam",
+   "cam": "cu_shock",
+   "act": "shock"
+  },
+  {
+   "n": 36,
+   "start": 115.59,
+   "end": 120.0,
+   "set": "kos_malam",
+   "cam": "run_ecu",
+   "act": "run_cam"
+  }
+ ],
+ "emo": {
+  "kaget": [
+   2,
+   11
+  ],
+  "panik": [
+   11,
+   11
+  ],
+  "ceria": [
+   0,
+   9
+  ],
+  "bangga": [
+   7,
+   14
+  ],
+  "jahil": [
+   8,
+   14
+  ],
+  "lembut": [
+   12,
+   9
+  ],
+  "pasrah": [
+   6,
+   12
+  ],
+  "bingung": [
+   9,
+   15
+  ],
+  "deadpan": [
+   4,
+   12
+  ],
+  "tawa": [
+   3,
+   10
+  ],
+  "merenung": [
+   10,
+   0
+  ],
+  "kesal": [
+   5,
+   13
+  ],
+  "canggung": [
+   3,
+   15
+  ],
+  "malu": [
+   15,
+   9
+  ]
+ },
+ "sfx": [
+  [
+   0.05,
+   "rec_beep",
+   -6
+  ],
+  [
+   2.38,
+   "whoosh",
+   -8
+  ],
+  [
+   2.68,
+   "steps",
+   -10
+  ],
+  [
+   5.66,
+   "pop",
+   -8
+  ],
+  [
+   15.79,
+   "tada",
+   -10
+  ],
+  [
+   19.82,
+   "fan_loud",
+   -12
+  ],
+  [
+   24.39,
+   "ting_soft",
+   -10
+  ],
+  [
+   28.0,
+   "door",
+   -8
+  ],
+  [
+   28.3,
+   "campus_amb",
+   -20,
+   9
+  ],
+  [
+   31.97,
+   "steps",
+   -12
+  ],
+  [
+   41.32,
+   "scratch",
+   -8
+  ],
+  [
+   51.96,
+   "sparkle",
+   -10
+  ],
+  [
+   61.45,
+   "notif3",
+   -8
+  ],
+  [
+   63.25,
+   "city_amb",
+   -20,
+   34
+  ],
+  [
+   66.56,
+   "steps",
+   -12
+  ],
+  [
+   71.21,
+   "moto",
+   -14
+  ],
+  [
+   73.51,
+   "kaching",
+   -10
+  ],
+  [
+   75.31,
+   "traffic",
+   -16
+  ],
+  [
+   90.17,
+   "crickets",
+   -24,
+   32
+  ],
+  [
+   93.8,
+   "typing",
+   -18
+  ],
+  [
+   105.14,
+   "fan_loud",
+   -16
+  ],
+  [
+   109.87,
+   "pop",
+   -10
+  ],
+  [
+   113.6,
+   "ting",
+   -6
+  ],
+  [
+   114.6,
+   "hit",
+   -6
+  ],
+  [
+   115.94,
+   "whoosh",
+   -6
+  ]
+ ]
+}
