@@ -1,0 +1,781 @@
+{
+ "total": 120.0,
+ "clips": [
+  {
+   "id": "N1",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    0.18,
+    5.31
+   ],
+   "dst": 0.3,
+   "dur": 5.13,
+   "text": "Ssst... jangan berisik. Udah jam dua pagi... dan lampu itu nyala lagi.",
+   "emo": "cemas"
+  },
+  {
+   "id": "N2",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    5.9,
+    7.9
+   ],
+   "dst": 5.93,
+   "dur": 2.0,
+   "text": "Kalian harus tahu ceritanya dari awal.",
+   "emo": "cemas"
+  },
+  {
+   "id": "N3",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    8.35,
+    20.57
+   ],
+   "dst": 8.93,
+   "dur": 12.22,
+   "text": "Jadi, kos aku ini isinya empat kamar, nyambung sama rumah Ibu Kos. Kamar satu, Dimas. Kamar dua, Adel. Kamar tiga, aku. Kamar empat? Kosong dari zaman aku pertama masuk.",
+   "emo": "ceria"
+  },
+  {
+   "id": "N4",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    21.06,
+    24.24
+   ],
+   "dst": 21.65,
+   "dur": 3.18,
+   "text": "Sampai minggu lalu... tiba-tiba ada penghuni baru.",
+   "emo": "penasaran"
+  },
+  {
+   "id": "N5",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    24.61,
+    32.68
+   ],
+   "dst": 26.03,
+   "dur": 8.07,
+   "text": "Anehnya, dia nggak pernah keluar siang hari. Nggak pernah. Keluarnya cuma tengah malam, pas semua orang udah tidur.",
+   "emo": "curiga"
+  },
+  {
+   "id": "N6",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    33.06,
+    36.64
+   ],
+   "dst": 34.7,
+   "dur": 3.58,
+   "text": "Terus tiap malam, lampu kamarnya kedip-kedip... warna hijau.",
+   "emo": "cemas"
+  },
+  {
+   "id": "N7",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    36.97,
+    40.7
+   ],
+   "dst": 38.98,
+   "dur": 3.73,
+   "text": "Oke... mungkin dia kerja shift malam. Atau mungkin dia cuma pemalu banget.",
+   "emo": "mikir"
+  },
+  {
+   "id": "N8",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    41.08,
+    46.38
+   ],
+   "dst": 43.71,
+   "dur": 5.3,
+   "text": "Tapi jam tiga pagi, ada baju putih panjang dijemur. Siapa yang nyuci baju jam segitu?",
+   "emo": "bingung"
+  },
+  {
+   "id": "N9",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    46.71,
+    51.12
+   ],
+   "dst": 49.71,
+   "dur": 4.41,
+   "text": "Kamarnya juga wangi bunga melati. Ya... mungkin parfumnya emang melati.",
+   "emo": "penasaran"
+  },
+  {
+   "id": "K1",
+   "spk": "kunti",
+   "file": "audio/kunti.mp3",
+   "src": [
+    0.0,
+    1.24
+   ],
+   "dst": 54.72,
+   "dur": 1.24,
+   "text": "",
+   "emo": ""
+  },
+  {
+   "id": "N10",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    51.42,
+    57.06
+   ],
+   "dst": 56.36,
+   "dur": 5.64,
+   "text": "Dan tiap malam ada suara ketawa pelan. Mungkin dia lagi nonton video lucu. Mungkin.",
+   "emo": "cemas"
+  },
+  {
+   "id": "N11",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    57.35,
+    59.72
+   ],
+   "dst": 62.7,
+   "dur": 2.37,
+   "text": "Oke. Malam ini aku mau kenalan langsung.",
+   "emo": "tegas"
+  },
+  {
+   "id": "N12",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    60.04,
+    62.65
+   ],
+   "dst": 68.67,
+   "dur": 2.61,
+   "text": "Permisi... aku Nayla, dari kamar tiga. Mau kenalan aja...",
+   "emo": "cemas"
+  },
+  {
+   "id": "N13",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    63.09,
+    64.07
+   ],
+   "dst": 73.58,
+   "dur": 0.98,
+   "text": "Kok... nggak dikunci?",
+   "emo": "takut"
+  },
+  {
+   "id": "K2",
+   "spk": "kunti",
+   "file": "audio/kunti.mp3",
+   "src": [
+    1.75,
+    4.41
+   ],
+   "dst": 75.26,
+   "dur": 2.66,
+   "text": "",
+   "emo": ""
+  },
+  {
+   "id": "N14",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    64.44,
+    65.84
+   ],
+   "dst": 78.12,
+   "dur": 1.4,
+   "text": "Aaaaaaa!",
+   "emo": "takut"
+  },
+  {
+   "id": "N15",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    66.08,
+    71.44
+   ],
+   "dst": 84.72,
+   "dur": 5.36,
+   "text": "Bu! Bu! Penghuni kamar empat itu... dia bukan manusia, Bu!",
+   "emo": "panik"
+  },
+  {
+   "id": "I1",
+   "spk": "ibukos",
+   "file": "audio/ibukos.mp3",
+   "src": [
+    0.0,
+    4.4
+   ],
+   "dst": 90.58,
+   "dur": 4.4,
+   "text": "Penghuni kamar empat? Kamar empat itu nggak pernah Ibu sewain, Nay.",
+   "emo": "tenang"
+  },
+  {
+   "id": "N16",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    71.63,
+    73.02
+   ],
+   "dst": 95.38,
+   "dur": 1.39,
+   "text": "Maksud Ibu... gimana?",
+   "emo": "bingung"
+  },
+  {
+   "id": "I2",
+   "spk": "ibukos",
+   "file": "audio/ibukos.mp3",
+   "src": [
+    4.75,
+    9.87
+   ],
+   "dst": 97.17,
+   "dur": 5.12,
+   "text": "Dari kos ini dibangun, kamar itu kosong. Kuncinya aja udah hilang dari dulu.",
+   "emo": "tenang"
+  },
+  {
+   "id": "A1",
+   "spk": "adel",
+   "file": "audio/adel.mp3",
+   "src": [
+    0.11,
+    4.03
+   ],
+   "dst": 102.79,
+   "dur": 3.92,
+   "text": "Kamar empat? Lho... aku kira itu gudang, Nay.",
+   "emo": "penasaran"
+  },
+  {
+   "id": "D1",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    0.13,
+    5.27
+   ],
+   "dst": 107.11,
+   "dur": 5.14,
+   "text": "Jadi... lampu hijau yang tiap malam itu... bukan kamu yang nyalain, Nay?",
+   "emo": "takut"
+  },
+  {
+   "id": "N17",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    73.32,
+    75.13
+   ],
+   "dst": 115.85,
+   "dur": 1.81,
+   "text": "Terus... yang tadi malam itu... siapa?",
+   "emo": "beku"
+  },
+  {
+   "id": "K3",
+   "spk": "kunti",
+   "file": "audio/kunti.mp3",
+   "src": [
+    4.98,
+    5.58
+   ],
+   "dst": 118.16,
+   "dur": 0.6,
+   "text": "",
+   "emo": ""
+  }
+ ],
+ "shots": [
+  {
+   "n": 1,
+   "start": 0,
+   "end": 5.73,
+   "set": "kamar_malam",
+   "cam": "s1",
+   "act": "phone_ecu"
+  },
+  {
+   "n": 2,
+   "start": 5.73,
+   "end": 8.28,
+   "set": "kamar_malam",
+   "cam": "s2",
+   "act": "window_back"
+  },
+  {
+   "n": 3,
+   "start": 8.28,
+   "end": 10.73,
+   "set": "luar_siang",
+   "cam": "s3",
+   "act": "none"
+  },
+  {
+   "n": 4,
+   "start": 10.73,
+   "end": 17.93,
+   "set": "luar_siang",
+   "cam": "s4",
+   "act": "walk_teras"
+  },
+  {
+   "n": 5,
+   "start": 17.93,
+   "end": 21.55,
+   "set": "luar_siang",
+   "cam": "s5",
+   "act": "none"
+  },
+  {
+   "n": 6,
+   "start": 21.55,
+   "end": 25.13,
+   "set": "luar_siang",
+   "cam": "s6",
+   "act": "talk"
+  },
+  {
+   "n": 7,
+   "start": 25.13,
+   "end": 29.63,
+   "set": "luar_malam",
+   "cam": "s7",
+   "act": "none"
+  },
+  {
+   "n": 8,
+   "start": 29.63,
+   "end": 34.6,
+   "set": "kamar_malam",
+   "cam": "s8",
+   "act": "peek"
+  },
+  {
+   "n": 9,
+   "start": 34.6,
+   "end": 38.88,
+   "set": "luar_malam",
+   "cam": "s9",
+   "act": "none"
+  },
+  {
+   "n": 10,
+   "start": 38.88,
+   "end": 43.51,
+   "set": "kamar_malam",
+   "cam": "s10",
+   "act": "think"
+  },
+  {
+   "n": 11,
+   "start": 43.51,
+   "end": 46.91,
+   "set": "luar_malam",
+   "cam": "s11",
+   "act": "look_jemuran"
+  },
+  {
+   "n": 12,
+   "start": 46.91,
+   "end": 49.61,
+   "set": "luar_malam",
+   "cam": "s12",
+   "act": "bingung"
+  },
+  {
+   "n": 13,
+   "start": 49.61,
+   "end": 54.42,
+   "set": "luar_malam",
+   "cam": "s13",
+   "act": "sniff"
+  },
+  {
+   "n": 14,
+   "start": 54.42,
+   "end": 58.96,
+   "set": "kamar_malam",
+   "cam": "s14",
+   "act": "sit_bed"
+  },
+  {
+   "n": 15,
+   "start": 58.96,
+   "end": 62.6,
+   "set": "kamar_malam",
+   "cam": "s15",
+   "act": "ear_wall"
+  },
+  {
+   "n": 16,
+   "start": 62.6,
+   "end": 65.32,
+   "set": "kamar_malam",
+   "cam": "s16",
+   "act": "talk"
+  },
+  {
+   "n": 17,
+   "start": 65.32,
+   "end": 67.97,
+   "set": "luar_malam",
+   "cam": "s17",
+   "act": "tiptoe"
+  },
+  {
+   "n": 18,
+   "start": 67.97,
+   "end": 71.58,
+   "set": "luar_malam",
+   "cam": "s18",
+   "act": "knock"
+  },
+  {
+   "n": 19,
+   "start": 71.58,
+   "end": 73.38,
+   "set": "kamar4",
+   "cam": "s19",
+   "act": "door_reveal"
+  },
+  {
+   "n": 20,
+   "start": 73.38,
+   "end": 75.16,
+   "set": "kamar4",
+   "cam": "s20",
+   "act": "pov"
+  },
+  {
+   "n": 21,
+   "start": 75.16,
+   "end": 78.07,
+   "set": "kamar4",
+   "cam": "s21",
+   "act": "none"
+  },
+  {
+   "n": 22,
+   "start": 78.07,
+   "end": 79.77,
+   "set": "kamar4",
+   "cam": "s22",
+   "act": "scream"
+  },
+  {
+   "n": 23,
+   "start": 79.77,
+   "end": 81.22,
+   "set": "luar_malam",
+   "cam": "s23",
+   "act": "run"
+  },
+  {
+   "n": 24,
+   "start": 81.22,
+   "end": 83.02,
+   "set": "kamar_malam",
+   "cam": "s24",
+   "act": "lean_door"
+  },
+  {
+   "n": 25,
+   "start": 83.02,
+   "end": 84.52,
+   "set": "luar_pagi",
+   "cam": "s25",
+   "act": "none"
+  },
+  {
+   "n": 26,
+   "start": 84.52,
+   "end": 90.48,
+   "set": "luar_pagi",
+   "cam": "s26",
+   "act": "report"
+  },
+  {
+   "n": 27,
+   "start": 90.48,
+   "end": 95.28,
+   "set": "luar_pagi",
+   "cam": "s27",
+   "act": "ibu_talk"
+  },
+  {
+   "n": 28,
+   "start": 95.28,
+   "end": 97.07,
+   "set": "luar_pagi",
+   "cam": "s27b",
+   "act": "confused"
+  },
+  {
+   "n": 29,
+   "start": 97.07,
+   "end": 102.69,
+   "set": "luar_pagi",
+   "cam": "s27",
+   "act": "ibu_talk"
+  },
+  {
+   "n": 30,
+   "start": 102.69,
+   "end": 107.01,
+   "set": "luar_pagi",
+   "cam": "s28",
+   "act": "friends"
+  },
+  {
+   "n": 31,
+   "start": 107.01,
+   "end": 112.4,
+   "set": "luar_pagi",
+   "cam": "s28d",
+   "act": "dimas_scared"
+  },
+  {
+   "n": 32,
+   "start": 112.4,
+   "end": 113.55,
+   "set": "luar_pagi",
+   "cam": "s29",
+   "act": "freeze"
+  },
+  {
+   "n": 33,
+   "start": 113.55,
+   "end": 114.95,
+   "set": "luar_pagi",
+   "cam": "s30",
+   "act": "none"
+  },
+  {
+   "n": 34,
+   "start": 114.95,
+   "end": 117.36,
+   "set": "kamar_malam",
+   "cam": "s31",
+   "act": "whisper"
+  },
+  {
+   "n": 35,
+   "start": 117.36,
+   "end": 120.0,
+   "set": "kamar_malam",
+   "cam": "s32",
+   "act": "ending"
+  }
+ ],
+ "sfx": [
+  [
+   0.0,
+   "amb:jangkrik",
+   -24,
+   null
+  ],
+  [
+   0.05,
+   "neon",
+   -20,
+   7.5
+  ],
+  [
+   8.23,
+   "k:maximize_006",
+   -12,
+   null
+  ],
+  [
+   8.33,
+   "amb:pagi_synth",
+   -30,
+   null
+  ],
+  [
+   25.08,
+   "k:minimize_005",
+   -12,
+   null
+  ],
+  [
+   25.13,
+   "amb:jangkrik",
+   -24,
+   null
+  ],
+  [
+   25.13,
+   "angin",
+   -26,
+   22
+  ],
+  [
+   34.7,
+   "neon",
+   -16,
+   4.5
+  ],
+  [
+   40.78,
+   "k:question_001",
+   -6,
+   null
+  ],
+  [
+   47.01,
+   "k:error_004",
+   -8,
+   null
+  ],
+  [
+   49.91,
+   "angin",
+   -24,
+   6
+  ],
+  [
+   54.72,
+   "tegang",
+   -26,
+   12
+  ],
+  [
+   64.3,
+   "k:confirmation_002",
+   -10,
+   null
+  ],
+  [
+   65.37,
+   "lari:slow",
+   -30,
+   null
+  ],
+  [
+   68.07,
+   "ketuk",
+   0,
+   null
+  ],
+  [
+   71.68,
+   "derit",
+   -6,
+   null
+  ],
+  [
+   73.68,
+   "neon",
+   -12,
+   3.0
+  ],
+  [
+   75.26,
+   "jumpscare",
+   -2,
+   null
+  ],
+  [
+   75.26,
+   "neon",
+   -10,
+   3.2
+  ],
+  [
+   78.12,
+   "teriak",
+   -18,
+   null
+  ],
+  [
+   79.82,
+   "lari",
+   -6,
+   null
+  ],
+  [
+   81.22,
+   "banting",
+   -4,
+   null
+  ],
+  [
+   81.42,
+   "napas",
+   -12,
+   1.6
+  ],
+  [
+   83.02,
+   "ayam",
+   -6,
+   null
+  ],
+  [
+   83.12,
+   "amb:pagi_synth",
+   -28,
+   null
+  ],
+  [
+   94.78,
+   "hening",
+   0,
+   null
+  ],
+  [
+   112.35,
+   "tegang",
+   -24,
+   4.0
+  ],
+  [
+   114.95,
+   "amb:jangkrik",
+   -26,
+   null
+  ],
+  [
+   114.95,
+   "neon",
+   -18,
+   5.0
+  ],
+  [
+   118.16,
+   "k:glitch_002",
+   -10,
+   null
+  ]
+ ]
+}
