@@ -1,0 +1,920 @@
+{
+ "total": 195.2,
+ "clips": [
+  {
+   "id": "N1",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    0.16,
+    6.39
+   ],
+   "dst": 0.6,
+   "dur": 6.23,
+   "text": "Malam ini, kami semua kumpul di pos ronda. Pak RT janji mau cerita... semuanya.",
+   "emo": "cemas"
+  },
+  {
+   "id": "R1",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    0.0,
+    4.89
+   ],
+   "dst": 7.63,
+   "dur": 4.89,
+   "text": "Melati itu anak baik. Tiap pagi dia nyapa semua orang di gang ini.",
+   "emo": "tenang"
+  },
+  {
+   "id": "R2",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    5.4,
+    10.41
+   ],
+   "dst": 12.92,
+   "dur": 5.01,
+   "text": "Dia kerja di pabrik sepatu di kota. Pulangnya sering bawain gorengan buat yang ronda.",
+   "emo": "tenang"
+  },
+  {
+   "id": "R3",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    10.92,
+    14.56
+   ],
+   "dst": 18.33,
+   "dur": 3.64,
+   "text": "Kalau ada warga yang butuh bantuan, dia yang pertama datang.",
+   "emo": "tenang"
+  },
+  {
+   "id": "W1",
+   "spk": "budarmi",
+   "file": "audio/budarmi.mp3",
+   "src": [
+    0.16,
+    7.44
+   ],
+   "dst": 24.97,
+   "dur": 7.28,
+   "text": "Saya masih inget, beberapa hari sebelum hilang, Melati beli lilin di warung saya. Banyak banget.",
+   "emo": "cemas"
+  },
+  {
+   "id": "R4",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    15.09,
+    22.03
+   ],
+   "dst": 33.25,
+   "dur": 6.94,
+   "text": "Sampai suatu malam... lampu kamarnya kedip-kedip sendiri. Hijau. Nggak berhenti-berhenti.",
+   "emo": "serius"
+  },
+  {
+   "id": "R5",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    22.52,
+    26.08
+   ],
+   "dst": 40.59,
+   "dur": 3.56,
+   "text": "Kami ketuk, nggak ada jawaban. Akhirnya kami dobrak.",
+   "emo": "serius"
+  },
+  {
+   "id": "R6",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    26.6,
+    31.78
+   ],
+   "dst": 45.35,
+   "dur": 5.18,
+   "text": "Kamarnya berantakan. Kasurnya terbalik. Tapi Melati... nggak ada.",
+   "emo": "sedih"
+  },
+  {
+   "id": "R7",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    32.25,
+    38.18
+   ],
+   "dst": 51.53,
+   "dur": 5.93,
+   "text": "Tiga hari tiga malam, sekampung nyari. Sampai ke sawah, ke kebun, ke sungai.",
+   "emo": "serius"
+  },
+  {
+   "id": "R8",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    38.67,
+    44.7
+   ],
+   "dst": 58.06,
+   "dur": 6.03,
+   "text": "Di pinggir sungai, kami nemuin sepatu dan tasnya. Cuma itu. Nggak ada jejak lain.",
+   "emo": "sedih"
+  },
+  {
+   "id": "R9",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    45.16,
+    50.11
+   ],
+   "dst": 64.89,
+   "dur": 4.95,
+   "text": "Kami nggak percaya dia pergi begitu aja. Jadi kami minta tolong seorang detektif.",
+   "emo": "serius"
+  },
+  {
+   "id": "T1",
+   "spk": "detektif",
+   "file": "audio/detektif.mp3",
+   "src": [
+    0.0,
+    3.51
+   ],
+   "dst": 70.64,
+   "dur": 3.51,
+   "text": "Saya mulai dari tempat terakhir dia terlihat. Kamarnya.",
+   "emo": "serius"
+  },
+  {
+   "id": "T2",
+   "spk": "detektif",
+   "file": "audio/detektif.mp3",
+   "src": [
+    3.96,
+    11.82
+   ],
+   "dst": 74.75,
+   "dur": 7.86,
+   "text": "Pintu dikunci dari dalam. Jendela juga. Tapi lihat ini... bekas lilin, melingkar di lantai. Dan abu kemenyan di sudut.",
+   "emo": "serius"
+  },
+  {
+   "id": "T3",
+   "spk": "detektif",
+   "file": "audio/detektif.mp3",
+   "src": [
+    12.25,
+    13.95
+   ],
+   "dst": 83.41,
+   "dur": 1.7,
+   "text": "Berikutnya, tempat kerjanya.",
+   "emo": "mikir"
+  },
+  {
+   "id": "RN1",
+   "spk": "rina",
+   "file": "audio/rina.mp3",
+   "src": [
+    0.2,
+    9.47
+   ],
+   "dst": 85.91,
+   "dur": 9.27,
+   "text": "Melati seneng banget waktu itu. Katanya ada yang ngasih sepatu merah, cantik banget. Tapi dia nggak tahu dari siapa.",
+   "emo": "sedih"
+  },
+  {
+   "id": "T4",
+   "spk": "detektif",
+   "file": "audio/detektif.mp3",
+   "src": [
+    14.3,
+    18.87
+   ],
+   "dst": 95.68,
+   "dur": 4.57,
+   "text": "Sepatu yang ditemukan di sungai... bukan sepatu kerjanya. Itu sepatu hadiah itu.",
+   "emo": "kaget"
+  },
+  {
+   "id": "W2",
+   "spk": "budarmi",
+   "file": "audio/budarmi.mp3",
+   "src": [
+    8.25,
+    13.26
+   ],
+   "dst": 101.45,
+   "dur": 5.01,
+   "text": "Katanya dia disuruh beliin sama seseorang, Pak. Tapi dia nggak bilang siapa.",
+   "emo": "cemas"
+  },
+  {
+   "id": "T5",
+   "spk": "detektif",
+   "file": "audio/detektif.mp3",
+   "src": [
+    19.23,
+    24.43
+   ],
+   "dst": 107.66,
+   "dur": 5.2,
+   "text": "Sepatu ini disusun rapi, berdampingan. Orang yang hanyut nggak melepas sepatunya serapi ini.",
+   "emo": "serius"
+  },
+  {
+   "id": "T6",
+   "spk": "detektif",
+   "file": "audio/detektif.mp3",
+   "src": [
+    24.82,
+    28.6
+   ],
+   "dst": 113.26,
+   "dur": 3.78,
+   "text": "Sisa kemenyan dan bunga tujuh rupa. Ini bukan hilang biasa.",
+   "emo": "serius"
+  },
+  {
+   "id": "T7",
+   "spk": "detektif",
+   "file": "audio/detektif.mp3",
+   "src": [
+    28.91,
+    33.13
+   ],
+   "dst": 117.64,
+   "dur": 4.22,
+   "text": "Kemenyan nggak dijual di warung kampung. Cuma ada satu lapak... di pasar.",
+   "emo": "mikir"
+  },
+  {
+   "id": "S1",
+   "spk": "sarip",
+   "file": "audio/sarip.mp3",
+   "src": [
+    0.0,
+    7.69
+   ],
+   "dst": 123.46,
+   "dur": 7.69,
+   "text": "Yang beli kemenyan minggu itu orang kampung situ, Pak. Pakai sarung, mukanya ditutup. Jalannya... ke arah hutan bambu.",
+   "emo": "takut"
+  },
+  {
+   "id": "R10",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    50.67,
+    54.33
+   ],
+   "dst": 135.75,
+   "dur": 3.66,
+   "text": "Detektif itu nemuin sesuatu yang nggak pernah kami duga.",
+   "emo": "serius"
+  },
+  {
+   "id": "R11",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    54.78,
+    57.65
+   ],
+   "dst": 139.81,
+   "dur": 2.87,
+   "text": "Melati... diduga jadi tumbal pesugihan.",
+   "emo": "serius"
+  },
+  {
+   "id": "N2",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    7.17,
+    9.78
+   ],
+   "dst": 143.08,
+   "dur": 2.61,
+   "text": "Tumbal...? Maksudnya... dikorbankan?",
+   "emo": "takut"
+  },
+  {
+   "id": "D1",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    0.2,
+    2.9
+   ],
+   "dst": 145.99,
+   "dur": 2.7,
+   "text": "Pak... tumbal itu buat apa?",
+   "emo": "takut"
+  },
+  {
+   "id": "R12",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    58.09,
+    62.84
+   ],
+   "dst": 149.09,
+   "dur": 4.75,
+   "text": "Orang yang pengin kaya lewat jalan gelap. Gantinya... nyawa orang lain.",
+   "emo": "serius"
+  },
+  {
+   "id": "A1",
+   "spk": "adel",
+   "file": "audio/adel.mp3",
+   "src": [
+    0.0,
+    2.73
+   ],
+   "dst": 154.34,
+   "dur": 2.73,
+   "text": "Terus, Pak... dukunnya ketemu?",
+   "emo": "takut"
+  },
+  {
+   "id": "R13",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    63.32,
+    66.08
+   ],
+   "dst": 157.47,
+   "dur": 2.76,
+   "text": "Ketemu. Di gubuk, di ujung hutan bambu.",
+   "emo": "serius"
+  },
+  {
+   "id": "M1",
+   "spk": "mbahkarto",
+   "file": "audio/mbahkarto.mp3",
+   "src": [
+    0.0,
+    4.85
+   ],
+   "dst": 162.63,
+   "dur": 4.85,
+   "text": "Saya cuma perantara... Yang minta, bukan saya.",
+   "emo": "seram"
+  },
+  {
+   "id": "M2",
+   "spk": "mbahkarto",
+   "file": "audio/mbahkarto.mp3",
+   "src": [
+    5.47,
+    11.52
+   ],
+   "dst": 167.98,
+   "dur": 6.05,
+   "text": "Orangnya... selalu dekat dengan korbannya. Tiap tujuh tahun... dia butuh lagi.",
+   "emo": "seram"
+  },
+  {
+   "id": "R14",
+   "spk": "pakrt",
+   "file": "audio/pakrt.mp3",
+   "src": [
+    66.46,
+    72.43
+   ],
+   "dst": 174.83,
+   "dur": 5.97,
+   "text": "Dukunnya ketemu. Tapi orang yang minta pesugihan itu... sampai sekarang belum ketahuan.",
+   "emo": "serius"
+  },
+  {
+   "id": "N3",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    10.27,
+    13.38
+   ],
+   "dst": 186.4,
+   "dur": 3.11,
+   "text": "Tiap tujuh tahun... berarti... tahun ini.",
+   "emo": "takut"
+  },
+  {
+   "id": "N4",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    13.88,
+    15.18
+   ],
+   "dst": 190.31,
+   "dur": 1.3,
+   "text": "Dekat dengan korbannya...?",
+   "emo": "beku"
+  },
+  {
+   "id": "K1",
+   "spk": "kunti",
+   "file": "audio/kunti.mp3",
+   "src": [
+    4.98,
+    5.58
+   ],
+   "dst": 193.01,
+   "dur": 0.6,
+   "text": "",
+   "emo": ""
+  }
+ ],
+ "shots": [
+  {
+   "n": 1,
+   "start": 0,
+   "end": 3.2,
+   "set": "posronda",
+   "cam": "s1",
+   "act": "s1"
+  },
+  {
+   "n": 2,
+   "start": 3.2,
+   "end": 7.43,
+   "set": "posronda",
+   "cam": "s2",
+   "act": "s2"
+  },
+  {
+   "n": 3,
+   "start": 7.43,
+   "end": 12.82,
+   "set": "fb_pagi",
+   "cam": "s3",
+   "act": "s3"
+  },
+  {
+   "n": 4,
+   "start": 12.82,
+   "end": 15.52,
+   "set": "fb_sore",
+   "cam": "s4",
+   "act": "s4"
+  },
+  {
+   "n": 5,
+   "start": 15.52,
+   "end": 18.23,
+   "set": "pabrik",
+   "cam": "s5",
+   "act": "s5"
+  },
+  {
+   "n": 6,
+   "start": 18.23,
+   "end": 22.07,
+   "set": "fb_pagi",
+   "cam": "s6",
+   "act": "s6"
+  },
+  {
+   "n": 7,
+   "start": 22.07,
+   "end": 24.67,
+   "set": "posronda",
+   "cam": "s7",
+   "act": "s7"
+  },
+  {
+   "n": 8,
+   "start": 24.67,
+   "end": 32.65,
+   "set": "posronda",
+   "cam": "s8",
+   "act": "s8"
+  },
+  {
+   "n": 9,
+   "start": 32.65,
+   "end": 40.49,
+   "set": "fb_malam",
+   "cam": "s9",
+   "act": "s9"
+  },
+  {
+   "n": 10,
+   "start": 40.49,
+   "end": 44.15,
+   "set": "fb_malam",
+   "cam": "s10",
+   "act": "s10"
+  },
+  {
+   "n": 11,
+   "start": 44.15,
+   "end": 45.65,
+   "set": "fb_k4",
+   "cam": "s11",
+   "act": "s11"
+  },
+  {
+   "n": 12,
+   "start": 45.65,
+   "end": 51.23,
+   "set": "fb_k4",
+   "cam": "s12",
+   "act": "s12"
+  },
+  {
+   "n": 13,
+   "start": 51.23,
+   "end": 57.86,
+   "set": "fb_sawah",
+   "cam": "s13",
+   "act": "s13"
+  },
+  {
+   "n": 14,
+   "start": 57.86,
+   "end": 61.06,
+   "set": "fb_sungai_malam",
+   "cam": "s14",
+   "act": "s14"
+  },
+  {
+   "n": 15,
+   "start": 61.06,
+   "end": 64.69,
+   "set": "fb_sungai_malam",
+   "cam": "s15",
+   "act": "s15"
+  },
+  {
+   "n": 16,
+   "start": 64.69,
+   "end": 74.55,
+   "set": "fb_siang",
+   "cam": "s16",
+   "act": "s16"
+  },
+  {
+   "n": 17,
+   "start": 74.55,
+   "end": 77.75,
+   "set": "k4_siang",
+   "cam": "s17",
+   "act": "s17"
+  },
+  {
+   "n": 18,
+   "start": 77.75,
+   "end": 80.35,
+   "set": "k4_siang",
+   "cam": "s18",
+   "act": "s18"
+  },
+  {
+   "n": 19,
+   "start": 80.35,
+   "end": 83.01,
+   "set": "k4_siang",
+   "cam": "s19",
+   "act": "s19"
+  },
+  {
+   "n": 20,
+   "start": 83.01,
+   "end": 85.81,
+   "set": "pabrik",
+   "cam": "s20",
+   "act": "s20"
+  },
+  {
+   "n": 21,
+   "start": 85.81,
+   "end": 90.91,
+   "set": "pabrik",
+   "cam": "s21",
+   "act": "s21"
+  },
+  {
+   "n": 22,
+   "start": 90.91,
+   "end": 95.58,
+   "set": "pabrik",
+   "cam": "s22",
+   "act": "s22"
+  },
+  {
+   "n": 23,
+   "start": 95.58,
+   "end": 100.85,
+   "set": "pabrik",
+   "cam": "s23",
+   "act": "s23"
+  },
+  {
+   "n": 24,
+   "start": 100.85,
+   "end": 103.05,
+   "set": "warung",
+   "cam": "s24",
+   "act": "s24"
+  },
+  {
+   "n": 25,
+   "start": 103.05,
+   "end": 107.06,
+   "set": "warung",
+   "cam": "s25",
+   "act": "s25"
+  },
+  {
+   "n": 26,
+   "start": 107.06,
+   "end": 110.06,
+   "set": "sungai_siang",
+   "cam": "s26",
+   "act": "s26"
+  },
+  {
+   "n": 27,
+   "start": 110.06,
+   "end": 113.16,
+   "set": "sungai_siang",
+   "cam": "s27",
+   "act": "s27"
+  },
+  {
+   "n": 28,
+   "start": 113.16,
+   "end": 117.34,
+   "set": "sungai_siang",
+   "cam": "s28",
+   "act": "s28"
+  },
+  {
+   "n": 29,
+   "start": 117.34,
+   "end": 123.26,
+   "set": "pasar",
+   "cam": "s29",
+   "act": "s29"
+  },
+  {
+   "n": 30,
+   "start": 123.26,
+   "end": 128.26,
+   "set": "pasar",
+   "cam": "s30",
+   "act": "s30"
+  },
+  {
+   "n": 31,
+   "start": 128.26,
+   "end": 131.45,
+   "set": "pasar",
+   "cam": "s31",
+   "act": "s31"
+  },
+  {
+   "n": 32,
+   "start": 131.45,
+   "end": 135.45,
+   "set": "papan",
+   "cam": "s32",
+   "act": "s32"
+  },
+  {
+   "n": 33,
+   "start": 135.45,
+   "end": 142.98,
+   "set": "posronda",
+   "cam": "s33",
+   "act": "s33"
+  },
+  {
+   "n": 34,
+   "start": 142.98,
+   "end": 145.89,
+   "set": "posronda",
+   "cam": "s34",
+   "act": "s34"
+  },
+  {
+   "n": 35,
+   "start": 145.89,
+   "end": 148.99,
+   "set": "posronda",
+   "cam": "s35",
+   "act": "s35"
+  },
+  {
+   "n": 36,
+   "start": 148.99,
+   "end": 154.24,
+   "set": "posronda",
+   "cam": "s36",
+   "act": "s36"
+  },
+  {
+   "n": 37,
+   "start": 154.24,
+   "end": 157.37,
+   "set": "posronda",
+   "cam": "s37",
+   "act": "s37"
+  },
+  {
+   "n": 38,
+   "start": 157.37,
+   "end": 161.43,
+   "set": "gubuk",
+   "cam": "s38",
+   "act": "s38"
+  },
+  {
+   "n": 39,
+   "start": 161.43,
+   "end": 167.88,
+   "set": "gubuk",
+   "cam": "s39",
+   "act": "s39"
+  },
+  {
+   "n": 40,
+   "start": 167.88,
+   "end": 174.63,
+   "set": "gubuk",
+   "cam": "s40",
+   "act": "s40"
+  },
+  {
+   "n": 41,
+   "start": 174.63,
+   "end": 181.4,
+   "set": "posronda",
+   "cam": "s41",
+   "act": "s41"
+  },
+  {
+   "n": 42,
+   "start": 181.4,
+   "end": 186.2,
+   "set": "posronda",
+   "cam": "s42",
+   "act": "s42"
+  },
+  {
+   "n": 43,
+   "start": 186.2,
+   "end": 190.11,
+   "set": "posronda",
+   "cam": "s43b",
+   "act": "s43b"
+  },
+  {
+   "n": 44,
+   "start": 190.11,
+   "end": 192.41,
+   "set": "posronda",
+   "cam": "s43",
+   "act": "s43"
+  },
+  {
+   "n": 45,
+   "start": 192.41,
+   "end": 195.2,
+   "set": "posronda",
+   "cam": "s44",
+   "act": "s44"
+  }
+ ],
+ "sfx": [
+  [
+   0.2,
+   "kentongan",
+   -24,
+   4.0
+  ],
+  [
+   15.52,
+   "pabrik",
+   -22,
+   2.710000000000001
+  ],
+  [
+   40.89,
+   "ketuk",
+   0,
+   null
+  ],
+  [
+   44.15,
+   "banting",
+   -4,
+   null
+  ],
+  [
+   51.23,
+   "angin",
+   -24,
+   13.46
+  ],
+  [
+   57.86,
+   "sungai",
+   -20,
+   6.829999999999998
+  ],
+  [
+   75.14999999999999,
+   "k:switch_002",
+   -10,
+   null
+  ],
+  [
+   80.35,
+   "hum",
+   -24,
+   2.5
+  ],
+  [
+   83.01,
+   "pabrik",
+   -28,
+   17.83999999999999
+  ],
+  [
+   90.91,
+   "k:click_001",
+   -10,
+   null
+  ],
+  [
+   95.67999999999999,
+   "hit",
+   -12,
+   null
+  ],
+  [
+   107.06,
+   "sungai",
+   -24,
+   10.280000000000001
+  ],
+  [
+   117.34,
+   "pasar_synth",
+   -28,
+   14.109999999999985
+  ],
+  [
+   131.75,
+   "halaman",
+   -12,
+   null
+  ],
+  [
+   157.37,
+   "daun",
+   -14,
+   4.060000000000002
+  ],
+  [
+   158.17000000000002,
+   "burunghantu",
+   -18,
+   null
+  ],
+  [
+   181.4,
+   "jantung",
+   -14,
+   4.799999999999983
+  ],
+  [
+   192.71,
+   "k:glitch_002",
+   -12,
+   null
+  ]
+ ],
+ "partA_end": 74.55
+}
