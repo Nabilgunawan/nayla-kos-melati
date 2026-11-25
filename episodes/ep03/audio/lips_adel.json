@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "soundFile": "/home/claude/ep03/audio/adel16.wav",
+    "duration": 6.84
+  },
+  "mouthCues": [
+    { "start": 0.00, "end": 0.08, "value": "X" },
+    { "start": 0.08, "end": 0.29, "value": "F" },
+    { "start": 0.29, "end": 0.50, "value": "E" },
+    { "start": 0.50, "end": 0.64, "value": "F" },
+    { "start": 0.64, "end": 0.71, "value": "B" },
+    { "start": 0.71, "end": 0.79, "value": "A" },
+    { "start": 0.79, "end": 0.94, "value": "C" },
+    { "start": 0.94, "end": 1.05, "value": "A" },
+    { "start": 1.05, "end": 1.16, "value": "E" },
+    { "start": 1.16, "end": 1.37, "value": "B" },
+    { "start": 1.37, "end": 1.44, "value": "G" },
+    { "start": 1.44, "end": 1.51, "value": "B" },
+    { "start": 1.51, "end": 1.65, "value": "C" },
+    { "start": 1.65, "end": 2.63, "value": "B" },
+    { "start": 2.63, "end": 2.82, "value": "C" },
+    { "start": 2.82, "end": 2.87, "value": "E" },
+    { "start": 2.87, "end": 3.19, "value": "F" },
+    { "start": 3.19, "end": 3.33, "value": "B" },
+    { "start": 3.33, "end": 3.62, "value": "X" },
+    { "start": 3.62, "end": 3.84, "value": "B" },
+    { "start": 3.84, "end": 3.99, "value": "A" },
+    { "start": 3.99, "end": 4.18, "value": "B" },
+    { "start": 4.18, "end": 4.25, "value": "C" },
+    { "start": 4.25, "end": 4.32, "value": "E" },
+    { "start": 4.32, "end": 4.39, "value": "D" },
+    { "start": 4.39, "end": 4.50, "value": "A" },
+    { "start": 4.50, "end": 5.18, "value": "B" },
+    { "start": 5.18, "end": 5.53, "value": "C" },
+    { "start": 5.53, "end": 5.88, "value": "B" },
+    { "start": 5.88, "end": 6.02, "value": "H" },
+    { "start": 6.02, "end": 6.16, "value": "C" },
+    { "start": 6.16, "end": 6.30, "value": "B" },
+    { "start": 6.30, "end": 6.72, "value": "C" },
+    { "start": 6.72, "end": 6.84, "value": "X" }
+  ]
+}
