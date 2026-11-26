@@ -13,3 +13,6 @@
 - Flashbacks are desaturated in encode (ADJUSTMENT strips), not in render.
 - ElevenLabs: Eleven v4, English tags in [brackets]; the user's files are named loosely (e.g. `Nayla_eps_3__2_.mp3`) — map by speaker.
 - Never put Pixabay/Freesound raw files or the user's trailer music in the public repo.
+- GitHub sync: run `gh_sync.py` in the FOREGROUND with `timeout 270` and simply re-run until it prints `Selesai` (it skips files already uploaded). Background jobs can be killed between tool calls.
+- Never use `pkill -f <pattern>` or awk/grep kill loops whose pattern also matches your own command line — it kills the tool shell. Kill by explicit PID.
+- The user's GitHub token must never be written into the skill, memory, or any repo file; ask for it per session.
