@@ -10,15 +10,15 @@ the user renders on their own laptop with `render.py` + `encode.py`. Read `refer
 sets, coordinates and story so far; read `references/gotchas.md` before running anything heavy.
 
 ## 0. Restore the workspace (every new chat)
-The sandbox starts empty. Assets live in a **public GitHub repo** (`<user>/nayla-kos-melati`; ask the user for the
+The sandbox starts empty. Assets live in a **public GitHub repo** (`Nabilgunawan/nayla-kos-melati`; ask the user for the
 username if it is not in memory). Episode `.blend` zips are attached to the repo's **Releases**.
 ```bash
 pip install uv --break-system-packages -q
 uv venv -p 3.11 /tmp/bv -q && uv pip install -p /tmp/bv bpy==5.0.1 pillow numpy scipy -q    # Blender 5.0 as a module
 uv venv -p 3.13 /tmp/b53 -q && uv pip install -p /tmp/b53 bpy -q                            # optional: user's Blender 5.3 for checks
 curl -sL -o /tmp/rh.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-Linux.zip && unzip -qo /tmp/rh.zip -d /tmp
-curl -sL -o /tmp/repo.zip https://codeload.github.com/<user>/nayla-kos-melati/zip/refs/heads/main && unzip -qo /tmp/repo.zip -d /home/claude
-curl -s https://api.github.com/repos/<user>/nayla-kos-melati/releases | grep browser_download_url   # then curl -L each zip you need
+curl -sL -o /tmp/repo.zip https://codeload.github.com/Nabilgunawan/nayla-kos-melati/zip/refs/heads/main && unzip -qo /tmp/repo.zip -d /home/claude
+curl -s https://api.github.com/repos/Nabilgunawan/nayla-kos-melati/releases | grep browser_download_url   # then curl -L each zip you need
 ```
 Scripts hard-code `/home/claude/epNN/...` and `/home/claude/sfxlib/cc0/`: recreate that layout
 (e.g. copy `pipeline/*` + `episodes/epNN/*` into `/home/claude/epNN/`, `assets/tex` into `epNN/tex`,
@@ -26,11 +26,11 @@ Scripts hard-code `/home/claude/epNN/...` and `/home/claude/sfxlib/cc0/`: recrea
 (`ep04.blend` has animation; rebuild sets from `sets4.py` if needed, which chains ep02→ep03 bases).
 
 ## 0b. GitHub sync rules (always follow)
-Two repos: **public** `<user>/nayla-kos-melati` (code, own assets, CC0, voices, skill) and **private**
-`<user>/nayla-kos-melati-private` (raw third-party SFX/music from Pixabay/Freesound — their licence forbids public
+Two repos: **public** `Nabilgunawan/nayla-kos-melati` (code, own assets, CC0, voices, skill) and **private**
+`Nabilgunawan/nayla-kos-melati-private` (raw third-party SFX/music from Pixabay/Freesound — their licence forbids public
 redistribution, so NEVER upload them to the public repo). Reading the public repo needs no token; any upload needs a
 fine-grained token (Contents: read & write, both repos) that the user pastes **per session** — never save it to memory,
-never echo it. Upload with `scripts/gh_sync.py --repo USER/REPO --token $GH_TOKEN --src <local> --dst <repo path>`.
+never echo it. Upload with `scripts/gh_sync.py --repo Nabilgunawan/<repo> --token $GH_TOKEN --src <local> --dst <repo path>`.
 - When the user sends new assets (voices → `episodes/epNN/audio/`, own textures → `assets/tex/`, Pixabay/Freesound SFX
   or music → private repo `sfx/`), offer to sync them in the same turn if a token is available.
 - After finishing an episode, sync `episodes/epNN/` (scripts, timeline.json, script txts, voices, lips) to the public repo.
@@ -38,7 +38,7 @@ never echo it. Upload with `scripts/gh_sync.py --repo USER/REPO --token $GH_TOKE
 - **Whenever this skill changes** (new character, set, rule, gotcha, story recap): update the files under
   `skills/nayla-kos-melati/` in the public repo AND give the user a fresh `.skill` to reinstall. Keep the story recap
   in `references/world.md` current after every episode.
-- Private repo download: `curl -sL -H "Authorization: Bearer $GH_TOKEN" https://api.github.com/repos/USER/nayla-kos-melati-private/zipball -o /tmp/priv.zip`.
+- Private repo download: `curl -sL -H "Authorization: Bearer $GH_TOKEN" https://api.github.com/repos/Nabilgunawan/nayla-kos-melati-private/zipball -o /tmp/priv.zip`.
 
 ## 1. Plan the episode (Claude Doc)
 One doc per episode with sections: Konsep (logline, twist/peta misteri), Karakter, Struktur (per detik), Naskah VO
