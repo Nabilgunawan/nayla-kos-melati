@@ -1,7 +1,7 @@
 # World reference
 
 ## Characters (toy-figure body from char.py; NOT a LEGO minifigure shape). Female rigs get the softer body from femme.py:
-waist, round bust (BUST 0.22, user choice), tapered limbs, cheek blush; Adel & Bu Darmi wear a khimar-style hijab; Nayla has a pink flower hair clip (left side).
+waist, round bust (BUST 0.14, user choice), tapered limbs, cheek blush; Adel & Bu Darmi wear a khimar-style hijab; Nayla has a pink flower hair clip (left side).
 | Rig | Who | Look |
 | --- | --- | --- |
 | Nayla_rig | Nayla, 20, HI student, kamar 3 | ash-brown double braids, black hoodie, gold necklace; face material `face` |
