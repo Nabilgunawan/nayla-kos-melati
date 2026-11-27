@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<style>
+@font-face{font-family:"DejaVuSub";src:url(__FONT__) format("truetype");font-weight:700}
+:root{--bg:#f3efe6;--panel:#fffdf8;--ink:#23211c;--mute:#6f6a5f;--line:#d9d2c2;--accent:#2f8a4e;--accent-ink:#fff;--bar:#e6e0d2;--warn:#b3541e;
+  --mono:ui-monospace,"Cascadia Mono","Consolas","SFMono-Regular",monospace;--sans:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#121512;--panel:#1b1f1b;--ink:#e9efe6;--mute:#93a08f;--line:#2e362d;--accent:#5fd38a;--accent-ink:#0d150f;--bar:#262d25;--warn:#f0a065;color-scheme:dark}}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans)}
+main{display:grid;grid-template-columns:minmax(260px,380px) 1fr;gap:28px;max-width:1100px;margin:0 auto;padding:28px 20px}
+@media (max-width:760px){main{grid-template-columns:1fr}}
+h1{font:600 13px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+h2{font-size:24px;line-height:1.15;margin:0 0 18px;font-weight:650}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}
+label{display:block;font:600 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:14px 0 6px}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{flex:1;border:0;background:transparent;color:var(--ink);padding:8px 6px;font:14px var(--sans);cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}.seg button[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);font-weight:600}
+.hint{font-size:13px;color:var(--mute);margin:6px 0 0}
+#go{margin-top:20px;width:100%;padding:12px;border:0;border-radius:8px;background:var(--accent);color:var(--accent-ink);font:600 16px var(--sans);cursor:pointer}
+#go:disabled{opacity:.5;cursor:wait}
+.bar{height:8px;background:var(--bar);border-radius:4px;overflow:hidden;margin:16px 0 8px}.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .15s}
+dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:14px 0 0;font-size:14px}dt{color:var(--mute)}dd{margin:0;font-family:var(--mono);font-size:13px;word-break:break-word}
+.stage{display:flex;flex-direction:column;align-items:center;gap:12px}
+.frame{height:min(78vh,720px);aspect-ratio:9/16;background:#000;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.frame canvas,.frame video{width:100%;height:100%;display:block;object-fit:contain}
+#msg{font-size:14px;min-height:1.5em}#msg.err{color:var(--warn)}
+.dl{display:none;gap:10px;flex-wrap:wrap;justify-content:center}.dl a{padding:9px 14px;border:1px solid var(--accent);border-radius:8px;color:var(--accent);text-decoration:none;font-weight:600}
+</style></head>
+<body><main>
+<section>
+  <h1>Kos Melati · render</h1>
+  <h2>__HEADING__</h2>
+  <div class="panel">
+    <label>Frame per detik</label>
+    <div class="seg" data-k="fps"><button data-v="24" aria-pressed="true">24</button><button data-v="30">30</button></div>
+    
+    <label>Resolusi</label>
+    <div class="seg" data-k="res"><button data-v="1080" aria-pressed="true">1080×1920</button><button data-v="540">540×960</button></div>
+    <button id="go" disabled>Memuat aset…</button>
+    <div class="bar"><i id="prog"></i></div>
+    <div id="msg"></div>
+    <dl>
+      <dt>GPU</dt><dd id="gpu">–</dd>
+      <dt>Video</dt><dd id="enc">–</dd>
+      <dt>Audio</dt><dd id="aenc">–</dd>
+      <dt>Frame</dt><dd id="st_f">–</dd>
+      <dt>Rata-rata</dt><dd id="st_ms">–</dd>
+      <dt>Total</dt><dd id="st_t">–</dd>
+      <dt>Estimasi episode 190 dtk</dt><dd id="st_ep">–</dd>
+    </dl>
+  </div>
+</section>
+<section class="stage"><div class="frame" id="frame"></div><div class="dl" id="dl"></div></section>
+</main>
+<script src="data/manifest.js"></script>
+<script type="importmap">{"imports":{"three":"__THREE__","bgu":"__BGU__","fflate":"__FFLATE__","gltf":"__GLTF__","exr":"__EXR__","mp4muxer":"__MUXER__"}}</script>
