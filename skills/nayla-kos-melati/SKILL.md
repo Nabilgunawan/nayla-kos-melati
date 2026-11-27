@@ -80,8 +80,8 @@ Blender stays for building, animating and **baking light**; frames are drawn by 
    One bake per set+light preset; reuse it for every shot in that combination.
 3. `dncomp.py -- OUT` (denoise + DWAA EXR + albedo JPG), `segprobe.py -- OUT x y z` (512x256 light probe at the characters + world-only sky).
 4. `mkseg.py timeline.json F0 F1 OUT mix.wav` — subtitles (encode.py style), cuts, flashback ranges, end card, FLAC audio slice.
-5. `buildseg.py OUT slug "Judul" fonts/DejaVuSans-Bold.ttf fx [exposure]` → one self-contained `render_<slug>.html` (~30 MB per
-   exterior segment). Test in the sandbox with Playwright + SwiftShader (`--use-angle=swiftshader`): `window.__snap(t,540)` returns a PNG.
+5. Single segment test: `buildseg.py OUT slug "Judul" font fx [exposure]` → one self-contained HTML. **Whole episode:** `episode/buildep.py`
+   → folder `render_epNN/` (HTML + `data/*.js`, lazy-loaded per segment; see gotchas "Episode render"). Several segments may share one bake (`env` key). Test in the sandbox with Playwright + SwiftShader (`--use-angle=swiftshader`): `window.__snap(t,540)` returns a PNG.
 Look: AgX + "Punchy"-like look (pow 1.15, sat 1.15), exposure 1.55 at night (1.2 day); light probe IBL 0.6 on characters; moon/sun is the
 only real-time shadow; dynamic lights (flicker, senter) also light baked surfaces via a shader term; contact-shadow blob per rig;
 automatic idle layer (breathing, hip sway, head drift, braid swing, relaxed arms); cheek blush per rig from `K.blush`.
