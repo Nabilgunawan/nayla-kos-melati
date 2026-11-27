@@ -6,7 +6,7 @@ from mathutils import Vector
 FEMALE=["Nayla","Adel","Ibu","Melati","MelatiK","Darmi","Rina"]
 HIJAB=["Adel","Darmi"]
 import os
-BUST=float(os.environ.get('FEMME_BUST','0.30'))   # seberapa maju dada (unit Blender); 0 = rata
+BUST=float(os.environ.get('FEMME_BUST','0.22'))   # seberapa maju dada (unit Blender); 0 = rata
 BLUSH={'Nayla':0.38,'Adel':0.30,'Ibu':0.22,'Melati':0.30,'MelatiK':0.30,'Darmi':0.22,'Rina':0.28}   # kekuatan rona pipi
 
 def part(rig,key):
@@ -55,16 +55,21 @@ def swap(o,bm,keep_mods=()):
     for md in list(o.modifiers):
         if md.type not in keep_mods: o.modifiers.remove(md)
 def torso_f(o,bust):
-    bm=superq(72,48,0.42); W,D,H=0.47,0.28,0.51
+    bm=superq(112,80,0.42); W,D,H=0.47,0.28,0.51     # resolusi tinggi agar lengkung dada mulus
     for v in bm.verts:
         x,y,z=v.co; h=(z+1)/2                                          # 0 bawah .. 1 atas
         wsc=0.86+0.10*h-0.10*math.exp(-((h-0.28)/0.16)**2)              # pinggang ramping, bahu sedikit lebih lebar
         wsc*=1-0.10*max(0,h-0.82)/0.18                                   # bahu membulat
         dsc=0.95-0.08*math.exp(-((h-0.28)/0.18)**2)
         X=x*W*wsc; Y=y*D*dsc; Z=z*H
-        if y<0:                                                          # depan = -Y
-            g=math.exp(-((abs(X)-0.19)/(0.15+0.15*bust))**2); f=math.exp(-((h-0.66)/(0.13+0.12*bust))**2)   # makin besar makin bulat, tidak lancip
-            Y-=bust*f*g*min(1,-y*1.6)
+        if y<0 and bust>0:                                               # depan = -Y: dua kubah bulat
+            d=0.0; ds=[]
+            for cx in (-0.18,0.18):
+                rx=0.20+0.10*bust; rz=(0.19+0.08*bust)*(1.35 if h>0.63 else 1.0)   # lereng atas lebih landai, bawah lebih penuh
+                r=math.sqrt(((X-cx)/rx)**2+((h-0.63)/rz)**2)
+                ds.append(math.cos(min(1.0,r)*math.pi/2)**1.25)                 # profil kubah: bulat, tepi menyatu halus
+            d=max(ds)+0.30*min(ds)                                               # dua sisi menyatu lembut di tengah
+            Y-=bust*min(1.0,d)*min(1,-y*1.6)
         if y>0: Y+=0.02*math.exp(-((h-0.15)/0.2)**2)*y                  # lekuk punggung bawah halus
         v.co=(X,Y,Z)
     swap(o,bm)
