@@ -1,0 +1,725 @@
+{
+ "total": 123.4,
+ "clips": [
+  {
+   "id": "N1",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    0.0,
+    4.04
+   ],
+   "dst": 0.8,
+   "dur": 4.04,
+   "text": "Sore itu kos lagi sepi. Sampai Dimas teriak dari kamar satu.",
+   "emo": "senang"
+  },
+  {
+   "id": "D1",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    0.0,
+    1.81
+   ],
+   "dst": 7.64,
+   "dur": 1.81,
+   "text": "NAYLAAA! Sini cepetan!",
+   "emo": "heboh"
+  },
+  {
+   "id": "N2",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    4.37,
+    7.21
+   ],
+   "dst": 10.65,
+   "dur": 2.84,
+   "text": "Apaan sih, Dim? Teriak-teriak kayak ada maling.",
+   "emo": "kesal"
+  },
+  {
+   "id": "D2",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    2.09,
+    4.34
+   ],
+   "dst": 14.29,
+   "dur": 2.25,
+   "text": "GTA 6 udah rilis, Nay! Lihat nih!",
+   "emo": "heboh"
+  },
+  {
+   "id": "N3",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    7.45,
+    10.92
+   ],
+   "dst": 18.74,
+   "dur": 3.47,
+   "text": "Hah? Serius? GTA 6 resmi rilis di PS5?",
+   "emo": "kaget"
+  },
+  {
+   "id": "N4",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    11.18,
+    13.38
+   ],
+   "dst": 22.51,
+   "dur": 2.2,
+   "text": "Ya ampun, beneran udah keluar!",
+   "emo": "senang"
+  },
+  {
+   "id": "D3",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    4.78,
+    8.72
+   ],
+   "dst": 26.51,
+   "dur": 3.94,
+   "text": "PS gue ada... tapi duit gue cuma cukup buat setengahnya.",
+   "emo": "malu"
+  },
+  {
+   "id": "N5",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    13.71,
+    16.66
+   ],
+   "dst": 30.85,
+   "dur": 2.95,
+   "text": "Lo kan punya PS5... gimana kalau kita patungan?",
+   "emo": "mikir"
+  },
+  {
+   "id": "D4",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    8.93,
+    10.0
+   ],
+   "dst": 34.1,
+   "dur": 1.07,
+   "text": "Deal! Patungan!",
+   "emo": "senang"
+  },
+  {
+   "id": "N6",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    16.86,
+    19.72
+   ],
+   "dst": 35.37,
+   "dur": 2.86,
+   "text": "Deal! Tapi gue yang main duluan.",
+   "emo": "tertawa"
+  },
+  {
+   "id": "D5",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    10.22,
+    13.12
+   ],
+   "dst": 42.43,
+   "dur": 2.9,
+   "text": "Ayo dong... 99 persen dari tadi...",
+   "emo": "kesal"
+  },
+  {
+   "id": "N7",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    19.99,
+    23.29
+   ],
+   "dst": 46.93,
+   "dur": 3.3,
+   "text": "Dan sore itu... pelan-pelan berubah jadi malam.",
+   "emo": "senang"
+  },
+  {
+   "id": "D6",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    13.4,
+    15.23
+   ],
+   "dst": 53.63,
+   "dur": 1.83,
+   "text": "Kejar, kejar! Belok kiri, Nay!",
+   "emo": "heboh"
+  },
+  {
+   "id": "N8",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    23.63,
+    25.82
+   ],
+   "dst": 57.06,
+   "dur": 2.19,
+   "text": "Dim, grafiknya kayak film beneran!",
+   "emo": "kagum"
+  },
+  {
+   "id": "N9",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    26.11,
+    29.36
+   ],
+   "dst": 67.65,
+   "dur": 3.25,
+   "text": "Eh, Dim. Tipe cewek lo yang kayak Lucia atau Mandy?",
+   "emo": "jahil"
+  },
+  {
+   "id": "D7",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    15.65,
+    18.58
+   ],
+   "dst": 71.3,
+   "dur": 2.93,
+   "text": "Lucia lah. Dia setia sama Jason dari awal.",
+   "emo": "malu"
+  },
+  {
+   "id": "N10",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    29.58,
+    32.9
+   ],
+   "dst": 74.63,
+   "dur": 3.32,
+   "text": "Ahh, masa? Bukannya cowok rata-rata tim Mandy?",
+   "emo": "jahil"
+  },
+  {
+   "id": "D8",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    18.86,
+    21.82
+   ],
+   "dst": 78.25,
+   "dur": 2.96,
+   "text": "Serius! Cowok yang bener tuh nyarinya yang setia!",
+   "emo": "tertawa"
+  },
+  {
+   "id": "D9",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    21.88,
+    23.47
+   ],
+   "dst": 81.21,
+   "dur": 1.59,
+   "text": "Hahaha!",
+   "emo": "tertawa"
+  },
+  {
+   "id": "N11",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    33.0,
+    33.97
+   ],
+   "dst": 81.4,
+   "dur": 0.97,
+   "text": "",
+   "emo": "tertawa"
+  },
+  {
+   "id": "N12",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    34.3,
+    37.8
+   ],
+   "dst": 86.37,
+   "dur": 3.5,
+   "text": "Udah lewat tengah malam. Gue balik ke kamar ya.",
+   "emo": "ngantuk"
+  },
+  {
+   "id": "D10",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    23.76,
+    26.48
+   ],
+   "dst": 90.17,
+   "dur": 2.72,
+   "text": "Oke, besok lanjut ya. Jangan main duluan!",
+   "emo": "ngantuk"
+  },
+  {
+   "id": "N13",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    38.1,
+    41.03
+   ],
+   "dst": 98.89,
+   "dur": 2.93,
+   "text": "Besoknya, kami berangkat kuliah seperti biasa.",
+   "emo": "tenang"
+  },
+  {
+   "id": "D11",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    26.83,
+    28.67
+   ],
+   "dst": 103.62,
+   "dur": 1.84,
+   "text": "Pintu udah dikunci. Aman.",
+   "emo": "yakin"
+  },
+  {
+   "id": "N14",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    41.39,
+    43.24
+   ],
+   "dst": 109.86,
+   "dur": 1.85,
+   "text": "Dan waktu kami pulang...",
+   "emo": "cemas"
+  },
+  {
+   "id": "D12",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    29.0,
+    31.14
+   ],
+   "dst": 114.31,
+   "dur": 2.14,
+   "text": "Nggak mungkin... pintunya masih kekunci...",
+   "emo": "kaget"
+  },
+  {
+   "id": "N15",
+   "spk": "nayla",
+   "file": "audio/nayla.mp3",
+   "src": [
+    43.5,
+    45.36
+   ],
+   "dst": 117.25,
+   "dur": 1.86,
+   "text": "Dim... PS5 lo mana?",
+   "emo": "bingung"
+  },
+  {
+   "id": "D13",
+   "spk": "dimas",
+   "file": "audio/dimas.mp3",
+   "src": [
+    31.65,
+    32.75
+   ],
+   "dst": 119.71,
+   "dur": 1.1,
+   "text": "PS GUE MANA?!",
+   "emo": "panik"
+  }
+ ],
+ "shots": [
+  {
+   "n": 1,
+   "start": 0,
+   "end": 4.94,
+   "set": "luar_sore",
+   "cam": "s1",
+   "act": "s1"
+  },
+  {
+   "n": 2,
+   "start": 4.94,
+   "end": 7.54,
+   "set": "luar_sore",
+   "cam": "s2",
+   "act": "s2"
+  },
+  {
+   "n": 3,
+   "start": 7.54,
+   "end": 10.35,
+   "set": "luar_sore",
+   "cam": "s3",
+   "act": "s3"
+  },
+  {
+   "n": 4,
+   "start": 10.35,
+   "end": 13.99,
+   "set": "kamar_sore",
+   "cam": "s4",
+   "act": "s4"
+  },
+  {
+   "n": 5,
+   "start": 13.99,
+   "end": 17.74,
+   "set": "kamar_sore",
+   "cam": "s5",
+   "act": "s5"
+  },
+  {
+   "n": 6,
+   "start": 17.74,
+   "end": 22.41,
+   "set": "kamar_sore",
+   "cam": "s6",
+   "act": "s6"
+  },
+  {
+   "n": 7,
+   "start": 22.41,
+   "end": 26.11,
+   "set": "kamar_sore",
+   "cam": "s7",
+   "act": "s7"
+  },
+  {
+   "n": 8,
+   "start": 26.11,
+   "end": 37.63,
+   "set": "teras3_sore",
+   "cam": "s8",
+   "act": "s8"
+  },
+  {
+   "n": 9,
+   "start": 37.63,
+   "end": 38.63,
+   "set": "teras3_sore",
+   "cam": "s9",
+   "act": "s9"
+  },
+  {
+   "n": 10,
+   "start": 38.63,
+   "end": 41.23,
+   "set": "hp",
+   "cam": "s10",
+   "act": "s10"
+  },
+  {
+   "n": 11,
+   "start": 41.23,
+   "end": 46.73,
+   "set": "k1_sore",
+   "cam": "s11",
+   "act": "s11"
+  },
+  {
+   "n": 12,
+   "start": 46.73,
+   "end": 50.63,
+   "set": "luar_senja",
+   "cam": "s12",
+   "act": "s12"
+  },
+  {
+   "n": 13,
+   "start": 50.63,
+   "end": 56.86,
+   "set": "k1_malam",
+   "cam": "s13",
+   "act": "s13"
+  },
+  {
+   "n": 14,
+   "start": 56.86,
+   "end": 59.75,
+   "set": "k1_malam",
+   "cam": "s14",
+   "act": "s14"
+  },
+  {
+   "n": 15,
+   "start": 59.75,
+   "end": 63.65,
+   "set": "k1_malam",
+   "cam": "s15",
+   "act": "s15"
+  },
+  {
+   "n": 16,
+   "start": 63.65,
+   "end": 67.05,
+   "set": "k1_malam",
+   "cam": "s16",
+   "act": "s16"
+  },
+  {
+   "n": 17,
+   "start": 67.05,
+   "end": 71.1,
+   "set": "k1_malam",
+   "cam": "s17",
+   "act": "s17"
+  },
+  {
+   "n": 18,
+   "start": 71.1,
+   "end": 81.11,
+   "set": "k1_malam",
+   "cam": "s18",
+   "act": "s18"
+  },
+  {
+   "n": 19,
+   "start": 81.11,
+   "end": 83.4,
+   "set": "k1_malam",
+   "cam": "s19",
+   "act": "s19"
+  },
+  {
+   "n": 20,
+   "start": 83.4,
+   "end": 93.29,
+   "set": "k1_malam",
+   "cam": "s20",
+   "act": "s20"
+  },
+  {
+   "n": 21,
+   "start": 93.29,
+   "end": 97.29,
+   "set": "luar_malam",
+   "cam": "s21",
+   "act": "s21"
+  },
+  {
+   "n": 22,
+   "start": 97.29,
+   "end": 109.26,
+   "set": "luar_pagi",
+   "cam": "s22",
+   "act": "s22"
+  },
+  {
+   "n": 23,
+   "start": 109.26,
+   "end": 116.45,
+   "set": "k1_sore2",
+   "cam": "s23",
+   "act": "s23"
+  },
+  {
+   "n": 24,
+   "start": 116.45,
+   "end": 123.4,
+   "set": "k1_sore2",
+   "cam": "s24",
+   "act": "s24"
+  }
+ ],
+ "sfx": [
+  [
+   0.0,
+   "burung_sore",
+   -26,
+   10.35
+  ],
+  [
+   5.140000000000001,
+   "notif",
+   -8,
+   null
+  ],
+  [
+   14.09,
+   "langkah_lari",
+   -14,
+   null
+  ],
+  [
+   18.34,
+   "tap",
+   -14,
+   null
+  ],
+  [
+   38.13,
+   "tos",
+   -8,
+   null
+  ],
+  [
+   38.830000000000005,
+   "ding",
+   -10,
+   null
+  ],
+  [
+   41.23,
+   "jam_cepat",
+   -20,
+   5.5
+  ],
+  [
+   46.73,
+   "jangkrik",
+   -30,
+   4.900000000000006
+  ],
+  [
+   67.25,
+   "pause",
+   -12,
+   null
+  ],
+  [
+   83.4,
+   "jam_detik",
+   -22,
+   3.0
+  ],
+  [
+   93.29,
+   "jangkrik",
+   -28,
+   4.0
+  ],
+  [
+   97.29,
+   "ayam",
+   -20,
+   null
+  ],
+  [
+   97.89,
+   "kunci",
+   -8,
+   null
+  ],
+  [
+   110.06,
+   "gagang",
+   -8,
+   null
+  ],
+  [
+   116.75,
+   "sting",
+   -6,
+   null
+  ]
+ ],
+ "tv": [
+  [
+   41.23,
+   50.63,
+   "unduh",
+   0
+  ],
+  [
+   50.63,
+   59.75,
+   "kejar",
+   0.0
+  ],
+  [
+   59.75,
+   63.65,
+   "lucia",
+   0.5
+  ],
+  [
+   63.65,
+   67.05,
+   "mandy",
+   0.0
+  ],
+  [
+   67.05,
+   83.4,
+   "pause",
+   0
+  ],
+  [
+   83.4,
+   93.29,
+   "pause",
+   0
+  ]
+ ],
+ "phone": [
+  [
+   0,
+   4.94,
+   "dimas",
+   "home"
+  ],
+  [
+   4.94,
+   10.35,
+   "dimas",
+   "notif"
+  ],
+  [
+   13.99,
+   17.74,
+   "dimas",
+   "berita"
+  ],
+  [
+   17.74,
+   22.41,
+   "nayla",
+   "berita"
+  ],
+  [
+   38.63,
+   41.23,
+   "dimas",
+   "beli"
+  ]
+ ]
+}
