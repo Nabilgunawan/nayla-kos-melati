@@ -27,3 +27,14 @@
 - Blender world/probe equirect == Three.js equirect with no rotation when the pano camera rotation is (90°,0,−90°).
 - Chromium in the sandbox has no AAC encoder → Opus fallback; Chrome on Windows uses AAC + hardware H.264.
 - Exposure: Three.js reads ~15 % darker than Cycles at night → exposure 1.55 (day 1.2).
+
+## Episode render (learned on Ep 5, Nov 2026)
+- Package = folder `render_epNN/` with `render_epNN.html` + `data/manifest.js`, `data/media.js`, one `data/env_<key>.js` per baked environment and one `data/seg_<id>.js` per segment (plain `<script>` files work from file://; fetch of local files does not). Built by `pipeline/web/episode/buildep.py`; player code = `ph_head.html` + `ph_tone.js` + `ph_body.js`.
+- The player loads an environment/segment only when the render reaches it, disposes the previous one, and prefetches the next segment's scripts in the background (a 226 MB package fits a laptop and even the 3 GB sandbox).
+- **Never seek a <video> per frame** (50–200 ms per frame). TV/monitor footage is pre-extracted as JPEG frames at 30 fps (`scale=-2:360`, q 5) for only the time ranges used, decoded with createImageBitmap (~2.5 ms/frame).
+- glTF exporter does NOT export the armature OBJECT's own motion (only bone tracks) → segprep stores each rig's world transform per frame in `meta.rigpos` and the player applies it to the `<rig>_pos` node. Without this, characters stay where they were at the segment's first frame.
+- Phone/screen inserts look better as a 2D overlay (device mock-up drawn on the composite canvas over a cheap downscaled blur of the scene) than a 3D camera over the shoulder, which always clips into the hair.
+- Canvas textures applied to glTF materials need `flipY=false`.
+- Sandbox: background processes are killed when a reply ends → keep the chain resumable (`run_epNN.sh` skips finished outputs) and poll with `sleep` inside the turn. Never run a Playwright test while a bake runs (OOM kills the bake). 16 spp + OIDN denoise is enough: ~13 min per exterior environment, ~4 min per room.
+- Exposure per environment lives in the manifest (`exposure`): rooms 1.2, dusk 1.4, TV-lit room 1.5, night exterior 1.55.
+- Floor sitting (no knee bones): root z = floor − 0.88, legs −88°, spine +6°; holding a controller = `ep5lib.hold()` (searches the arm angle until both hands reach the grips, parents the pad to `hand.R`).
