@@ -1,12 +1,12 @@
 ---
-name: nayla-kos-melati
-description: Production pipeline for the "Nayla — Kos Melati" 3D toy-figure animation series (Blender 5.x, EEVEE, 12 fps stop-motion, 1080x1920 vertical) — Nayla, Adel, Dimas, Ibu Kos (Bu Sari), Pak RT, Pak Ronda, Melati, kuntilanak, Detektif Bima, Mbah Karto and other NPCs at Kos Melati. Use this skill whenever the user mentions Nayla, Kos Melati, kamar 4, Melati, Pak RT, an episode number ("episode 5", "lanjut episode berikutnya"), ElevenLabs voice files for these characters, rendering/encoding an episode, render.py/encode.py errors, new characters or sets for this series, captions or profile assets for this TikTok/Instagram account — even if the skill is not named.
+name: "storyboard"
+description: Production pipeline for the "Nayla — Kos Melati" 3D toy-figure animation series (Blender 5.x build/animate/bake, Three.js browser render, 12 fps keys → 24 fps Halus, 1080x1920 vertical) — Nayla, Adel, Dimas, Ibu Kos (Bu Sari), Pak RT, Pak Ronda, Melati, kuntilanak, Detektif Bima, Mbah Karto and other NPCs at Kos Melati. Use this skill whenever the user mentions Nayla, Kos Melati, kamar 4, Melati, Pak RT, an episode number ("episode 5", "lanjut episode berikutnya"), ElevenLabs voice files for these characters, rendering/encoding an episode (Three.js render page, WebCodecs MP4, light baking), render.py/encode.py errors, character looks (femme.py, hijab, blush), new characters or sets for this series, captions or profile assets for this TikTok/Instagram account — even if the skill is not named.
 ---
 
 # Nayla — Kos Melati: production pipeline
 
-Everything (characters, sets, animation, audio mix, subtitles) is built with Python in Blender inside the sandbox;
-the user renders on their own laptop with `render.py` + `encode.py`. Read `references/world.md` for characters,
+Characters, sets, animation and light baking are built with Python in Blender inside the sandbox; the user renders on their own
+laptop in Chrome with a self-contained Three.js HTML page (section 4) that writes the MP4 directly. Read `references/world.md` for characters,
 sets, coordinates and story so far; read `references/gotchas.md` before running anything heavy.
 
 ## 0. Restore the workspace (every new chat)
@@ -59,21 +59,35 @@ the user adds viral sounds in CapCut.
 ## 3. Build & animate
 - `setsN.py`: open previous `epXX_sets.blend`, add new chars (`charsN.py` → `make_char(name,cfg,origin)`), new sets at
   free X offsets, props, lights (**all non-sun lights `use_shadow=False`**). Save `epNN_sets.blend`.
+- **Female characters: always run `pipeline/femme.py` after building/adding them** (`blender -b epNN_sets.blend -P femme.py -- [names] out.blend`):
+  softer rounded torso with waist, modest bust (`BUST`, now 0.10), tapered limbs, arms closer to the body, khimar-style hijab
+  (Adel, Bu Darmi: cap on `head` bone + drape on `spine` bone), cheek blush (`BLUSH` per character), flower hair clip on Nayla.
+  It edits meshes in place (names, bones, materials, actions kept) and is idempotent for blush/clip. Female list: Nayla, Adel, Ibu, Melati, MelatiK, Darmi, Rina.
 - `animN.py`: per-frame keyframes at 12 fps for every rig (location, Z rotation, bone eulers), face atlas tiles
   (eyes/mouth Mapping Location), camera + `CAM_TGT`, light presets per set, props; set all fcurves CONSTANT; save `epNN.blend`.
+  Bone axes: bones point along their local Y, so **turning the head = local Y rotation**, nodding = local X, local Z = sideways tilt.
 - Preview with Cycles 270x480, 10–12 samples via `prevA.py -- f1,f2,... 270 12`; compose contact sheets; fix and rebake.
 
-## 4. Mix & encode
-- `mixN.py`: voices + ambience (crickets only outdoors at night, quiet) + user SFX + Kenney CC0 + horror-trailer music
-  bed (user's file; silence right before jump scares) → duck under voice → loudnorm to **−14 LUFS**, TP ≈ −1.5.
-- `encode.py` (Blender VSE): image sequence (each 12 fps frame twice → 24 fps), `audio/mix.wav`, bold subtitles with
-  speaker labels for non-Nayla speakers, flashback ADJUSTMENT strips (saturation 0.2–0.35), black "BERSAMBUNG...?" end card.
-  Test encode with dummy frames before packaging.
+## 4. Render with Three.js (default since Ep 5) — `pipeline/web/`
+The user renders in Chrome/Edge on the laptop GPU (AMD Radeon iGPU, D3D11): ~18 ms/frame, a 190 s episode in ~1.5 min at 24 fps.
+Blender stays for building, animating and **baking light**; frames are drawn by Three.js r170 and encoded to MP4 in the browser
+(WebCodecs H.264 + AAC, mp4-muxer 5.2.2). Default output: **24 fps, style "Halus"** (12 fps keys interpolated; never across shot cuts),
+1080x1920. Per segment (a run of shots, usually per set):
+1. `segprep.py -- epNN.blend F0 F1 OUT fx fy` — samples every frame: camera, lights (static vs dynamic), emissive materials, face tiles;
+   exports moving things (rigs + props that move) to `dyn.glb` (baked, slide-to-zero); writes `meta.json` and a frozen `frozen.blend`.
+2. `segbake.py -- OUT fx fy 2048 32` — joins static meshes in groups A (near), B (far), G (huge ground, planar UV), bakes
+   DIFFUSE irradiance (no colour) to `lm_X.exr` + albedo (`COLOR`, 4096) to `al_X.png`; exports `env.glb` (UV0 + LM). ~25 min for the kos exterior.
+   One bake per set+light preset; reuse it for every shot in that combination.
+3. `dncomp.py -- OUT` (denoise + DWAA EXR + albedo JPG), `segprobe.py -- OUT x y z` (512x256 light probe at the characters + world-only sky).
+4. `mkseg.py timeline.json F0 F1 OUT mix.wav` — subtitles (encode.py style), cuts, flashback ranges, end card, FLAC audio slice.
+5. `buildseg.py OUT slug "Judul" fonts/DejaVuSans-Bold.ttf fx [exposure]` → one self-contained `render_<slug>.html` (~30 MB per
+   exterior segment). Test in the sandbox with Playwright + SwiftShader (`--use-angle=swiftshader`): `window.__snap(t,540)` returns a PNG.
+Look: AgX + "Punchy"-like look (pow 1.15, sat 1.15), exposure 1.55 at night (1.2 day); light probe IBL 0.6 on characters; moon/sun is the
+only real-time shadow; dynamic lights (flicker, senter) also light baked surfaces via a shader term; contact-shadow blob per rig;
+automatic idle layer (breathing, hip sway, head drift, braid swing, relaxed arms); cheek blush per rig from `K.blush`.
+Verify against 2–3 Cycles reference frames (540x960, 32 spp) before handing over.
 
 ## 5. Package & hand off
-Pack images into the blend (`image.pack()`), zip: `epNN.blend`, `render.py`, `encode.py`, `timeline.json`,
-`audio/mix.wav`, `fonts/`, `source/`, `README.txt`. Deliver preview PNG sheet + preview mp3 + zip. User commands (PowerShell, Blender at D:\blender.exe):
-```
-cd "$HOME\Downloads\Nayla_EpsN\Nayla_EpsN"; $B = "D:\blender.exe"; & $B -b epNN.blend -P render.py -- gpu 7
-& $B -b epNN.blend -P encode.py
-```
+Deliver the HTML render page(s) + a sandbox-rendered 540p check MP4 + comparison sheet. The user opens the HTML in Chrome, picks
+24 fps / Halus / 1080x1920, presses **Mulai render**, downloads the MP4 and the `_statistik.txt`, then adds viral sounds in CapCut.
+Legacy path (EEVEE `render.py -- gpu 7` + `encode.py`) still works for old episodes but is no longer the default.
