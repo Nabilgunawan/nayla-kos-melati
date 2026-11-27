@@ -6,7 +6,7 @@ from mathutils import Vector
 FEMALE=["Nayla","Adel","Ibu","Melati","MelatiK","Darmi","Rina"]
 HIJAB=["Adel","Darmi"]
 import os
-BUST=float(os.environ.get('FEMME_BUST','0.14'))   # seberapa maju dada (unit Blender); 0 = rata
+BUST=float(os.environ.get('FEMME_BUST','0.11'))   # seberapa maju dada (unit Blender); 0 = rata
 BLUSH={'Nayla':0.38,'Adel':0.30,'Ibu':0.22,'Melati':0.30,'MelatiK':0.30,'Darmi':0.22,'Rina':0.28}   # kekuatan rona pipi
 
 def part(rig,key):
