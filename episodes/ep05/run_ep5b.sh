@@ -2,6 +2,7 @@
 # Ep5 revisi: sets -> anim -> segprep 13 segmen -> bake ulang 2 env kamar Dimas -> mix. Bisa dilanjutkan.
 cd /tmp/w/ep5; PY=/tmp/bv/bin/python; WEB=/home/claude/nayla-kos-melati-main/pipeline/web
 [ -f v2.sets ] || { $PY sets5.py > sets5.log 2>&1 && touch v2.sets; }
+[ -f v2.props ] || { $PY props5.py > props5.log 2>&1 && touch v2.props; }
 [ -f v2.anim ] || { $PY anim5.py > anim5.log 2>&1 && touch v2.anim; }
 export DYN_FORCE=KONSOL_,STIK_meja,k1_door,k1_doorknob,k_door,k_doorknob DYN_MATS=tv_layar
 python3 -c "
@@ -10,7 +11,7 @@ for s in json.load(open('segments.json')): print(s['id'],s['F0'],s['F1'],s['focu
 while read id f0 f1 fx fy env; do
   [ -f segv2_$id/dyn.glb ] || $PY $WEB/segprep.py -- ep05.blend $f0 $f1 segv2_$id $fx $fy > segv2_$id.prep.log 2>&1
 done < seglist.txt
-for env in E_k1sore E_k1malam; do
+for env in E_kamar E_k1sore E_k1malam; do
   id=$(grep " $env\$" seglist.txt | head -1 | cut -d' ' -f1); fx=$(grep " $env\$" seglist.txt | head -1 | cut -d' ' -f4); fy=$(grep " $env\$" seglist.txt | head -1 | cut -d' ' -f5)
   d=segv2_$id
   [ -f $d/env.glb ] || $PY $WEB/segbake.py -- /tmp/w/ep5/$d $fx $fy 2048 16 > $d.bake.log 2>&1
