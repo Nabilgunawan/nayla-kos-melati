@@ -26,6 +26,9 @@ pv=bpy.data.objects.new('KDOOR_piv',None); sc.collection.objects.link(pv); pv.lo
 bpy.context.view_layer.update()
 for n in ('k_door','k_doorknob'):
     o=O[n]; mw=o.matrix_world.copy(); o.parent=pv; o.matrix_parent_inverse=pv.matrix_world.inverted(); o.matrix_world=mw
+# rice cooker + lemari kecil pindah ke dinding kanan bagian belakang (tidak menghalangi pintu)
+for o in O:
+    if o.name.startswith(('k1_cabinet','k1_rc_')) and o.parent is None: o.location.y+=3.2
 # latar di luar pintu kamar 1 (supaya tidak kosong saat pintu dibuka)
 bpy.ops.mesh.primitive_plane_add(size=1); bg=bpy.context.object; bg.name='k1_luar'; bg.scale=(1,10,6); bg.location=(X0+7.5,-2,3); bg.rotation_euler=(0,D(90),0)
 mb=Mt.new('k1_luar_m'); mb.use_nodes=True; b=mb.node_tree.nodes['Principled BSDF']; b.inputs['Base Color'].default_value=(0.55,0.47,0.36,1); b.inputs['Roughness'].default_value=0.9; bg.data.materials.append(mb)
@@ -138,13 +141,13 @@ for f in range(1,NF+1):
         look(V3(-1.8,-3.8,2.9),(2.2,1.4,2.0),30)
     elif cm=='s5':
         O['KDOOR_piv'].rotation_euler=(0,0,D(-75))
-        place(NAY,(1.6,-0.6,0),-110); place(DIM,(3.7,-1.6,0),95); phone('Dimas',True)
+        place(NAY,(1.8,-1.3,0),90); place(DIM,(3.7,-1.6,0),95); phone('Dimas',True)
         DIM.pose.bones['arm.R'].rotation_euler=(D(-85),0,D(-5)); expr['Dimas']='heboh'; expr['Nayla']='kaget'
-        look(V3(0.1,-0.1,2.9),(3.7,-1.6,2.4),28)
+        look(V3(-0.5,1.4,3.0),(3.7,-1.7,2.4),28)
     elif cm=='s6':
         place(NAY,(1.8,-0.8,0),-60); phone('Nayla',True); hold_phone(NAY); place(DIM,(3.3,-1.4,0),100); expr['Nayla']='kaget' if tl<3.2 else 'senang'
-        bpy.context.view_layer.update(); scr=O['phone_screen'].matrix_world; c=scr.translation; nrm=(scr.to_3x3()@Vector((0,-1,0))).normalized()
-        look(c+nrm*0.9+Vector((0,0,0.05)),c,50)
+        bpy.context.view_layer.update(); c=O['phone_screen'].matrix_world.translation.copy(); hd=[x for x in NAY.children_recursive if x.name=='head'][0].matrix_world.translation.copy(); fw=(c-hd); fw.z=0; fw.normalize(); sd=fw.cross(Vector((0,0,1)))
+        look(hd-fw*0.9+Vector((0,0,0.7))+sd*0.75,c,35)
     elif cm=='s7':
         j=abs(math.sin(tl*2*math.pi*1.4))*0.35
         place(NAY,(1.9,-0.9,0),-30,j); place(DIM,(3.0,-1.2,0),-10,abs(math.sin(tl*2*math.pi*1.4+1.2))*0.35)
@@ -155,7 +158,7 @@ for f in range(1,NF+1):
     elif cm in ('s8','s9','s10'):
         place(NAY,(K3-0.6,-1.4,TZ),60); place(DIM,(K3+0.7,-1.6,TZ),-65)
         if cm=='s8':
-            look(V3(K3+0.05,-6.8,2.7),(K3+0.05,-1.5,TZ+1.9),30)
+            look(V3(K3+1.6,-6.4,2.6),(K3+0.05,-1.5,TZ+1.9),30)
             if speaking('dimas',t) and speaking('dimas',t)['id']=='D3':
                 DIM.pose.bones['arm.R'].rotation_euler=(D(-160),0,D(25)); expr['Dimas']='malu'
             if speaking('nayla',t) and speaking('nayla',t)['id']=='N5':
@@ -164,11 +167,11 @@ for f in range(1,NF+1):
         elif cm=='s9':
             k=smooth(tl/0.5)
             NAY.pose.bones['arm.R'].rotation_euler=(D(-150*k),0,D(-20)); DIM.pose.bones['arm.L'].rotation_euler=(D(-150*k),0,D(20))
-            expr={'Nayla':'tertawa','Dimas':'tertawa'}; look(V3(K3+0.05,-3.4,3.3),(K3+0.05,-1.5,TZ+3.1),35)
+            expr={'Nayla':'tertawa','Dimas':'tertawa'}; look(V3(K3+0.3,-4.8,2.9),(K3+0.05,-1.5,TZ+2.5),30)
         else:
             phone('Dimas',True); hold_phone(DIM); expr={'Nayla':'senang','Dimas':'senang'}
-            bpy.context.view_layer.update(); scr=O['phone_screen_dimas'].matrix_world; c=scr.translation; nrm=(scr.to_3x3()@Vector((0,-1,0))).normalized()
-            look(c+nrm*0.9,c,50)
+            bpy.context.view_layer.update(); c=O['phone_screen_dimas'].matrix_world.translation.copy(); hd=[x for x in DIM.children_recursive if x.name=='Dimas_head'][0].matrix_world.translation.copy(); fw=(c-hd); fw.z=0; fw.normalize(); sd=fw.cross(Vector((0,0,1)))
+            look(hd-fw*0.9+Vector((0,0,0.7))-sd*0.75,c,35)
     elif cm in ('s11','s13','s14','s15','s16','s17','s18','s19','s20'):
         if cm=='s11':
             for n in ('STIK_meja1','STIK_meja2'): O[n].scale=(0.001,0.001,0.001)
@@ -189,28 +192,28 @@ for f in range(1,NF+1):
             for r in (NAY,DIM): r.pose.bones['spine'].rotation_euler=(D(14),D(6*math.sin(t*5)),0)
             expr={'Nayla':'kagum','Dimas':'heboh'}; look(V3(lerp(X0+3.0,X0+2.2,u),-2.4,3.3),(X0-3.5,0.7,1.6),20)
         elif cm=='s14':
-            expr={'Nayla':'kagum','Dimas':'senang'}; look(V3(X0-3.7,0.65,1.55),(X0-1.9,0.65,1.45),32)
+            expr={'Nayla':'kagum','Dimas':'senang'}; look(V3(X0-4.0,0.65,1.55),(X0-1.9,0.65,1.5),20)
         elif cm in ('s15','s16'):
             expr={'Nayla':'kagum','Dimas':'senang'}; look(V3(X0-0.4,0.75,2.05),(X0-4.4,0.8,1.95),30)
         elif cm=='s17':
             NAY.pose.bones['head'].rotation_euler=(0,D(-30),0); expr={'Nayla':'jahil','Dimas':'tenang'}
-            look(V3(X0-3.6,-1.2,1.6),(X0-1.9,-0.2,1.55),40)
+            look(V3(X0-4.0,-1.9,1.9),(X0-1.9,-0.2,1.5),28)
         elif cm=='s18':
             NAY.pose.bones['head'].rotation_euler=(0,D(-25),0); DIM.pose.bones['head'].rotation_euler=(0,D(25),0)
             expr={'Nayla':'jahil','Dimas':'malu' if t<C['D8']['dst'] else 'tertawa'}
-            if t<C['N10']['dst']-0.2: look(V3(X0-3.7,2.5,1.6),(X0-1.9,1.5,1.5),40)
-            else: look(V3(X0-4.1,0.65,1.8),(X0-1.9,0.65,1.35),30)
+            if t<C['N10']['dst']-0.2: look(V3(X0-4.0,2.9,1.9),(X0-1.9,1.5,1.5),28)
+            else: look(V3(X0-4.0,0.65,2.0),(X0-1.9,0.65,1.4),22)
         elif cm=='s19':
             k=abs(math.sin(tl*2*math.pi*1.2)); NAY.pose.bones['arm.L'].rotation_euler=(D(-60),0,D(ARM['Nayla']-40*k))
             for r in (NAY,DIM): r.pose.bones['spine'].rotation_euler=(D(-10+8*k),0,0)
-            expr={'Nayla':'tertawa','Dimas':'tertawa'}; look(V3(X0-4.1,0.65,1.8),(X0-1.9,0.65,1.35),30)
+            expr={'Nayla':'tertawa','Dimas':'tertawa'}; look(V3(X0-4.0,0.65,2.0),(X0-1.9,0.65,1.4),22)
         elif cm=='s20':
             jam=O['JAM_jarum_m_piv']; jam.rotation_euler=(0,D(-(tl/2.2)*40),0) ; O['JAM_jarum_j_piv'].rotation_euler=(0,D(-2),0)
             expr={'Nayla':'ngantuk','Dimas':'ngantuk'}
             if tl<2.2: look(V3(X0+2.6,3.1,4.4),(X0+2.6,4.48,4.4),40)
             else: look(V3(X0+0.6,-2.8,2.5),(X0-1.6,0.6,1.6),24)
     elif cm=='s12':
-        look(V3(97.5,-13,4.2),(99,0,2.6),24)
+        look(V3(97.5,-9.6,3.0),(99,0,3.2),24)
     elif cm=='s21':
         x=lerp(KC+1.2,K3-0.7,smooth(u)); dz=walk(NAY,t) if u<0.98 else 0
         place(NAY,(x,-1.5,TZ),90,dz); place(DIM,(KC-0.5,-0.8,TZ),20)
@@ -238,10 +241,10 @@ for f in range(1,NF+1):
             O['K1DOOR_piv'].rotation_euler=(0,0,D(ang))
             place(DIM,(X0+5.4,-1.7,0),90); place(NAY,(X0+6.0,-0.9,0),90)
             if t>=tOpen: place(DIM,(X0+lerp(5.4,3.6,smooth((t-tOpen)/1.2)),-1.7,0),90,walk(DIM,t)*(t<tOpen+1.2)); place(NAY,(X0+lerp(6.0,4.2,smooth((t-tOpen-0.3)/1.2)),-0.9,0),90)
-            expr={'Nayla':'cemas','Dimas':'kaget'}; look(V3(X0-0.5,0.4,2.4),(X0+4.4,-1.6,2.1),26)
+            expr={'Nayla':'cemas','Dimas':'kaget'}; look(V3(X0-0.8,1.2,2.5),(X0+4.48,-1.6,2.1),28)
         else:
             O['K1DOOR_piv'].rotation_euler=(0,0,D(-80))
-            place(DIM,(X0+2.6,-1.6,0),90); place(NAY,(X0+3.2,-0.5,0),95)
+            place(DIM,(X0+2.6,-1.6,0),-90); place(NAY,(X0+3.2,-0.5,0),-80)
             expr={'Nayla':'bingung','Dimas':'panik' if t>=C['D13']['dst']-0.2 else 'kaget'}
             if t>=C['D13']['dst']-0.2:
                 for sd,sg in (('L',1),('R',-1)): DIM.pose.bones[f'arm.{sd}'].rotation_euler=(D(-150),0,D(sg*30))
