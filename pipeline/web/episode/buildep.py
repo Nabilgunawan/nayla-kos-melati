@@ -44,7 +44,7 @@ if not os.path.exists(f'{OUT}/data/media.js') or '--force' in sys.argv:
         'font':du(rd('/tmp/ep3/Nayla_Eps3/fonts/DejaVuSans-Bold.ttf'),'font/ttf'),'font2':du(rd('/tmp/w/Oswald.ttf'),'font/ttf')})
 subprocess.run(['python3',f'{WEB}/mkseg.py',f'{EP}/timeline.json','1',str(NF),f'{EP}'],check=True)
 seg=json.load(open(f'{EP}/seg.json')); SH={s['cam']:s for s in TL['shots']}; S6=SH['s6']; S10=SH['s10']
-EXPO={'E_sore':1.4,'E_kamar':1.4,'E_k1sore':1.45,'E_senja':1.6,'E_k1malam':1.75,'E_malam':1.85,'E_pagi':1.35}
+EXPO={'E_sore':1.4,'E_kamar':1.4,'E_k1sore':1.8,'E_senja':1.6,'E_k1malam':2.7,'E_malam':1.85,'E_pagi':1.35}
 def short_subs():
     out=[]
     for c in TL['clips']:
