@@ -48,3 +48,7 @@
 - Captions: 1–3 words, CAPS, Oswald 700 with a coloured speaker pill (Nayla pink, Dimas blue); narration in yellow without pill.
 - Rooms must be closed (front wall) and tidy; avoid clutter props.
 - Bust default 0.11 (user choice).
+- Speaking gestures (anim `gesture()`): arms alternate per ~1.2 s beat (−22…−36° forward, 10–16° out), smooth blend between beats, both arms on long lines, small head nod per beat, spine +2.5°; listeners nod lightly. Only when arms AND legs are at rest (never while walking, sitting with a pad, or holding/showing a phone).
+- Rooms get tidy set dressing via `props5.py` (fairy lights, shelves with books/plants, frames, plush; Dimas: LED strip behind TV, figure shelf, guitar, plant, bin). Any room change = rebake that room only.
+- TV-lit night room needs exposure ~2.7; Dimas's room afternoon 1.8.
+- NEVER `pkill -f <script>` in the sandbox: the pattern matches the tool's own shell and kills the call. Kill by PID.
