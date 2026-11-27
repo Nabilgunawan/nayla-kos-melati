@@ -5,7 +5,8 @@ import bpy, bmesh, math, sys
 from mathutils import Vector
 FEMALE=["Nayla","Adel","Ibu","Melati","MelatiK","Darmi","Rina"]
 HIJAB=["Adel","Darmi"]
-BUST=0.10       # seberapa maju dada (unit Blender); 0 = rata
+import os
+BUST=float(os.environ.get('FEMME_BUST','0.30'))   # seberapa maju dada (unit Blender); 0 = rata
 BLUSH={'Nayla':0.38,'Adel':0.30,'Ibu':0.22,'Melati':0.30,'MelatiK':0.30,'Darmi':0.22,'Rina':0.28}   # kekuatan rona pipi
 
 def part(rig,key):
@@ -62,7 +63,7 @@ def torso_f(o,bust):
         dsc=0.95-0.08*math.exp(-((h-0.28)/0.18)**2)
         X=x*W*wsc; Y=y*D*dsc; Z=z*H
         if y<0:                                                          # depan = -Y
-            g=math.exp(-((abs(X)-0.19)/0.15)**2); f=math.exp(-((h-0.66)/0.13)**2)
+            g=math.exp(-((abs(X)-0.19)/(0.15+0.15*bust))**2); f=math.exp(-((h-0.66)/(0.13+0.12*bust))**2)   # makin besar makin bulat, tidak lancip
             Y-=bust*f*g*min(1,-y*1.6)
         if y>0: Y+=0.02*math.exp(-((h-0.15)/0.2)**2)*y                  # lekuk punggung bawah halus
         v.co=(X,Y,Z)
@@ -121,7 +122,7 @@ def apply_body(rig,bust=BUST):
                 if ok:
                     hit=tl@loc; ymin=min(v.y for v in bb); ymax=max(v.y for v in bb)
                     dy=(hit.y-0.004-ymax) if front else (hit.y+0.004-ymin)
-                    if abs(dy)<0.2: mw=c.matrix_world.copy(); mw.translation.y+=dy; c.matrix_world=mw
+                    if abs(dy)<0.45: mw=c.matrix_world.copy(); mw.translation.y+=dy; c.matrix_world=mw
 def hijab(rig,color):
     """khimar: penutup kepala + kain jatuh menutupi bahu & dada dengan lipatan lembut"""
     pre=rig.name[:-4]; head=part(rig,'head')
@@ -156,7 +157,7 @@ def hijab(rig,color):
             sh=min(1,v/0.32); sm=sh*sh*(3-2*sh)
             rx=0.30+(0.70-0.30)*sm+0.04*max(0,v-0.32)
             ry=0.27+(0.36-0.27)*sm+0.02*max(0,v-0.32)
-            ry+=0.09*max(0,c_)*min(1,max(0,(v-0.2)/0.35))                   # ruang untuk dada
+            ry+=(0.09*BUST/0.10)*max(0,c_)*min(1,max(0,(v-0.2)/0.35))                   # ruang untuk dada
             fold=(0.006+0.045*max(0,v-0.25)**1.2)*math.sin(15*th+2.1*math.sin(2*th))
             p=Vector((rx*s_*(1+fold),-ry*c_*(1+fold),z-top_z))
             p.z+=0.10*(1-sm)*0                                              
