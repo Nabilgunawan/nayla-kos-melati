@@ -85,16 +85,16 @@ cyl('KONSOL_kabel',0.015,0.5,kc+Vector((-0.2,0,0.25)),mat('kabel','#111111',0.6)
 # stik di meja (2) : badan + dua pegangan
 def stik(name,loc,col,yaw=0):
     m=mat(f'stik_{col}',{'putih':'#ECECEF','hitam':'#1C1C20'}[col],0.35,coat=0.3)
-    b=box(name,(0.34,0.16,0.07),loc,m,bev=0.04); b.rotation_euler=(0,0,D(yaw))
+    b=box(name,(0.40,0.17,0.07),loc,m,bev=0.04); b.rotation_euler=(0,0,D(yaw))
     for s in (-1,1):
-        g=sph(name+f'_grip{s}',0.07,Vector((s*0.13,0.07,-0.01)),m,sc=(1,1.6,0.8)); g.parent=b
+        g=sph(name+f'_grip{s}',0.07,Vector((s*0.16,0.07,-0.01)),m,sc=(1,1.6,0.8)); g.parent=b
     for s in (-1,1):
         k=cyl(name+f'_stik{s}',0.03,0.03,Vector((s*0.06,-0.02,0.045)),mat('stik_karet','#2A2A30',0.7)); k.parent=b
     return b
+stik('STIK_nayla',Vector((450-3.0,-3.0,0.05)),'putih',0); stik('STIK_dimas',Vector((450-3.0,-2.5,0.05)),'hitam',0)   # dipegang saat main (ep5lib.hold)
 stik('STIK_meja1',Vector((WX+0.55,-0.3,0.94)),'putih',80); stik('STIK_meja2',Vector((WX+0.6,0.1,0.94)),'hitam',95)
 # beanbag, poster, camilan, jam
-for i,(y,c) in enumerate(((-0.1,'#C0392B'),(1.7,'#2C6E8F'))):
-    b=sph(f'k1_beanbag{i}',0.75,(X0-1.3,y,0.42),mat(f'k1_bb{i}',c,0.85),sc=(1.0,1.0,0.55))
+# (tanpa beanbag: Nayla dan Dimas duduk langsung di lantai, di atas karpet)
 for i,(p,y) in enumerate((('poster_neon',-1.6),('poster_speed',1.2))):
     plane(f'k1_poster{i}',1.2,1.68,(X0+y,4.36,3.6),imgmat(f'k1_{p}',f'/tmp/w/ep5/tex/{p}.png'),rot=(D(90),0,D(180)))
 box('k1_keripik',(0.4,0.12,0.5),(X0-2.3,0.75,0.27),mat('keripik','#F39C12',0.4,coat=0.5),rot=(D(70),0,D(20)))
