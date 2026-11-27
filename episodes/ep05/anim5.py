@@ -227,7 +227,7 @@ for f in range(1,NF+1):
             look(V3(KC+0.5,-8.5,3.0),(KC+0.5,-1.0,2.1),28)
         elif t<tW:
             place(DIM,(KC-0.5,-0.9,TZ),180); DIM.pose.bones['arm.R'].rotation_euler=(D(-85+6*math.sin(tl*14)),0,0); place(NAY,(KC+1.6,-1.5,TZ),-40)
-            expr={'Nayla':'tenang','Dimas':'yakin'}; look(V3(KC-0.1,-1.25,2.2),(KC+0.0,-0.15,1.85),50)
+            expr={'Nayla':'tenang','Dimas':'yakin'}; look(V3(KC+1.5,-1.1,2.3),(KC-0.05,-0.2,1.9),40)
         else:
             w=(t-tW)/(s['end']-tW); y=lerp(-1.4,-7.5,w)
             place(DIM,(KC+0.2,y,TZ if y>-2.6 else 0),0,walk(DIM,t)); place(NAY,(KC+1.3,y-0.2,TZ if y>-2.8 else 0),0,walk(NAY,t+0.3))
