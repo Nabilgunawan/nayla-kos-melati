@@ -78,6 +78,28 @@ def show_phone(rig):        # menyodorkan ponsel: lengan lurus ke depan, layar m
     pb=rig.pose.bones; pb['arm.R'].rotation_euler=(D(-82),0,D(-6)); pb['hand.R'].rotation_euler=(D(10),D(180),0)
 def lerp(a,b,u): return a+(b-a)*max(0,min(1,u))
 def smooth(u): u=max(0,min(1,u)); return u*u*(3-2*u)
+# ---- gestur bicara (tenang): tangan bergantian saat kalimat, anggukan kecil di tiap ketukan; pendengar sesekali mengangguk
+def gesture(who,rig,t):
+    pb=rig.pose.bones
+    free=all(abs(pb[a].rotation_euler.x)<D(12) for a in ('arm.L','arm.R')) and all(abs(pb[l].rotation_euler.x)<D(2) for l in ('leg.L','leg.R'))
+    c=speaking(who.lower(),t)
+    if c:
+        tc=t-c['dst']; B=1.2; k=int(tc/B); ph=(tc%B)/B
+        env=smooth(min(1,tc/0.35))*smooth(min(1,(c['dur']-tc)/0.35))
+        pb['head'].rotation_euler.x+=D(4)*math.exp(-((ph-0.18)/0.13)**2)*env
+        pb['spine'].rotation_euler.x+=D(2.5)*env
+        if free and c['dur']>0.9:
+            def tgt(i): return (-22-14*abs(math.sin(i*1.9)), 10+6*abs(math.cos(i*1.3)))
+            (x0,z0),(x1,z1)=tgt(k),tgt(k+1); w=smooth(max(0,(ph-0.75)/0.25))
+            x=lerp(x0,x1,w); z=lerp(z0,z1,w); side='R' if k%2==0 else 'L'
+            if c['dur']>2.2 and k%3==2: side='both'
+            for sd in (('L','R') if side=='both' else (side,)):
+                sg=1 if sd=='L' else -1
+                pb[f'arm.{sd}'].rotation_euler=(D(x)*env,0,D(sg*z)*env); pb[f'hand.{sd}'].rotation_euler=(D(-15)*env,0,0)
+    else:
+        other=[x for x in TL['clips'] if x['dst']<=t<x['dst']+x['dur']]
+        if other:
+            tc=t-other[0]['dst']; pb['head'].rotation_euler.x+=D(3)*math.exp(-((tc%2.4-0.4)/0.18)**2)
 # ---- cahaya per set
 W=sc.world.node_tree.nodes; sun=O['SUN']
 LALL=[o for o in O if o.type=='LIGHT' and o.name!='SUN']
@@ -256,6 +278,8 @@ for f in range(1,NF+1):
                 for sd,sg in (('L',1),('R',-1)): DIM.pose.bones[f'arm.{sd}'].rotation_euler=(D(-150),0,D(sg*30))
             if tl<3.2: look(V3(lerp(X0-1.2,X0-2.8,smooth(tl/3.2)),2.1,1.9),(X0-4.2,2.1,1.1),35)
             else: look(V3(lerp(X0-3.2,X0-3.9,smooth((tl-3.2)/3.0)),lerp(1.0,0.5,smooth((tl-3.2)/3.0)),2.6),(X0+2.8,-1.0,2.2),24)
+    for who,r in RIGS.items():
+        if r.location.y>-150: gesture(who,r,t)
     # ---- wajah: emosi + mulut bicara + kedip
     for who,r in RIGS.items():
         e=EMO[expr[who]]; eye,mo=e
