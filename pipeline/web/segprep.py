@@ -90,10 +90,30 @@ for r,m in face_mats.items():
     for nm in ('eyes','mouth'):
         im=m.node_tree.nodes['TX_'+nm].image; p=f'{OUT}/{r}_{nm}.png'
         if not os.path.exists(p): im2=im.copy(); im2.scale(2048,2048); im2.filepath_raw=p; im2.file_format='PNG'; im2.save()
+# ---------- transform objek rig dipindah ke Empty induk (eksporter glTF hanya membawa animasi tulang armature)
+for rn in dyn_rigs:
+    rig=O[rn]; mats=[]
+    for f in FR: sc.frame_set(f); mats.append(rig.matrix_world.copy())
+    ad=rig.animation_data; act=ad.action if ad else None
+    if act:
+        try:
+            for fc in [fc for fc in act.fcurves if fc.data_path in ('location','rotation_euler','rotation_quaternion','scale')]: act.fcurves.remove(fc)
+        except Exception:
+            for layer in act.layers:
+                for strip in layer.strips:
+                    for cb in strip.channelbags:
+                        for fc in [fc for fc in cb.fcurves if fc.data_path in ('location','rotation_euler','rotation_quaternion','scale')]: cb.fcurves.remove(fc)
+    em=bpy.data.objects.new(rn+'_pos',None); sc.collection.objects.link(em); rig.parent=em; rig.matrix_parent_inverse.identity()
+    rig.location=(0,0,0); rig.rotation_euler=(0,0,0); rig.scale=(1,1,1)
+    for f,m in zip(FR,mats):
+        em.matrix_world=m; em.keyframe_insert('location',frame=f); em.keyframe_insert('rotation_euler',frame=f); em.keyframe_insert('scale',frame=f)
+    q=[m.to_quaternion() for m in mats]
+    meta.setdefault('rigpos',{})[rn]=[[round(m.translation.x,4),round(m.translation.z,4),round(-m.translation.y,4),round(a.x,5),round(a.z,5),round(-a.y,5),round(a.w,5)] for m,a in zip(mats,q)]
+json.dump(meta,open(f'{OUT}/meta.json','w'))
 # ---------- glTF benda dinamis (animasi dipanggang per frame, mulai dari 0)
 sc.frame_start=F0; sc.frame_end=F1; sc.frame_set(F0)
 bpy.ops.object.select_all(action='DESELECT')
-for n in list(dyn_objs)+dyn_rigs:
+for n in list(dyn_objs)+dyn_rigs+[r+'_pos' for r in dyn_rigs]:
     o=O[n]; o.hide_set(False); o.select_set(True)
 bpy.ops.export_scene.gltf(filepath=f'{OUT}/dyn.glb',export_format='GLB',use_selection=True,export_apply=True,export_animations=True,
     export_animation_mode='SCENE',export_bake_animation=True,export_force_sampling=True,export_frame_range=True,export_anim_slide_to_zero=True,
