@@ -1,5 +1,5 @@
 {
- "total": 123.4,
+ "total": 124.4,
  "clips": [
   {
    "id": "N1",
@@ -165,7 +165,7 @@
     13.4,
     15.23
    ],
-   "dst": 53.63,
+   "dst": 54.63,
    "dur": 1.83,
    "text": "Kejar, kejar! Belok kiri, Nay!",
    "emo": "heboh"
@@ -178,7 +178,7 @@
     23.63,
     25.82
    ],
-   "dst": 57.06,
+   "dst": 58.06,
    "dur": 2.19,
    "text": "Dim, grafiknya kayak film beneran!",
    "emo": "kagum"
@@ -191,7 +191,7 @@
     26.11,
     29.36
    ],
-   "dst": 67.65,
+   "dst": 68.65,
    "dur": 3.25,
    "text": "Eh, Dim. Tipe cewek lo yang kayak Lucia atau Mandy?",
    "emo": "jahil"
@@ -204,7 +204,7 @@
     15.65,
     18.58
    ],
-   "dst": 71.3,
+   "dst": 72.3,
    "dur": 2.93,
    "text": "Lucia lah. Dia setia sama Jason dari awal.",
    "emo": "malu"
@@ -217,7 +217,7 @@
     29.58,
     32.9
    ],
-   "dst": 74.63,
+   "dst": 75.63,
    "dur": 3.32,
    "text": "Ahh, masa? Bukannya cowok rata-rata tim Mandy?",
    "emo": "jahil"
@@ -230,7 +230,7 @@
     18.86,
     21.82
    ],
-   "dst": 78.25,
+   "dst": 79.25,
    "dur": 2.96,
    "text": "Serius! Cowok yang bener tuh nyarinya yang setia!",
    "emo": "tertawa"
@@ -243,7 +243,7 @@
     21.88,
     23.47
    ],
-   "dst": 81.21,
+   "dst": 82.21,
    "dur": 1.59,
    "text": "Hahaha!",
    "emo": "tertawa"
@@ -256,7 +256,7 @@
     33.0,
     33.97
    ],
-   "dst": 81.4,
+   "dst": 82.4,
    "dur": 0.97,
    "text": "",
    "emo": "tertawa"
@@ -269,7 +269,7 @@
     34.3,
     37.8
    ],
-   "dst": 86.37,
+   "dst": 87.37,
    "dur": 3.5,
    "text": "Udah lewat tengah malam. Gue balik ke kamar ya.",
    "emo": "ngantuk"
@@ -282,7 +282,7 @@
     23.76,
     26.48
    ],
-   "dst": 90.17,
+   "dst": 91.17,
    "dur": 2.72,
    "text": "Oke, besok lanjut ya. Jangan main duluan!",
    "emo": "ngantuk"
@@ -295,7 +295,7 @@
     38.1,
     41.03
    ],
-   "dst": 98.89,
+   "dst": 99.89,
    "dur": 2.93,
    "text": "Besoknya, kami berangkat kuliah seperti biasa.",
    "emo": "tenang"
@@ -308,7 +308,7 @@
     26.83,
     28.67
    ],
-   "dst": 103.62,
+   "dst": 104.62,
    "dur": 1.84,
    "text": "Pintu udah dikunci. Aman.",
    "emo": "yakin"
@@ -321,7 +321,7 @@
     41.39,
     43.24
    ],
-   "dst": 109.86,
+   "dst": 110.86,
    "dur": 1.85,
    "text": "Dan waktu kami pulang...",
    "emo": "cemas"
@@ -334,7 +334,7 @@
     29.0,
     31.14
    ],
-   "dst": 114.31,
+   "dst": 115.31,
    "dur": 2.14,
    "text": "Nggak mungkin... pintunya masih kekunci...",
    "emo": "kaget"
@@ -347,7 +347,7 @@
     43.5,
     45.36
    ],
-   "dst": 117.25,
+   "dst": 118.25,
    "dur": 1.86,
    "text": "Dim... PS5 lo mana?",
    "emo": "bingung"
@@ -360,7 +360,7 @@
     31.65,
     32.75
    ],
-   "dst": 119.71,
+   "dst": 120.71,
    "dur": 1.1,
    "text": "PS GUE MANA?!",
    "emo": "panik"
@@ -371,9 +371,9 @@
    "n": 1,
    "start": 0,
    "end": 4.94,
-   "set": "luar_sore",
-   "cam": "s1",
-   "act": "s1"
+   "set": "kamar_sore",
+   "cam": "m1",
+   "act": "m1"
   },
   {
    "n": 2,
@@ -458,103 +458,127 @@
   {
    "n": 12,
    "start": 46.73,
-   "end": 50.63,
+   "end": 50.33,
+   "set": "kamar_sore",
+   "cam": "m7",
+   "act": "m7"
+  },
+  {
+   "n": 13,
+   "start": 50.33,
+   "end": 51.63,
    "set": "luar_senja",
    "cam": "s12",
    "act": "s12"
   },
   {
-   "n": 13,
-   "start": 50.63,
-   "end": 56.86,
+   "n": 14,
+   "start": 51.63,
+   "end": 57.86,
    "set": "k1_malam",
    "cam": "s13",
    "act": "s13"
   },
   {
-   "n": 14,
-   "start": 56.86,
-   "end": 59.75,
+   "n": 15,
+   "start": 57.86,
+   "end": 60.75,
    "set": "k1_malam",
    "cam": "s14",
    "act": "s14"
   },
   {
-   "n": 15,
-   "start": 59.75,
-   "end": 63.65,
+   "n": 16,
+   "start": 60.75,
+   "end": 64.65,
    "set": "k1_malam",
    "cam": "s15",
    "act": "s15"
   },
   {
-   "n": 16,
-   "start": 63.65,
-   "end": 67.05,
+   "n": 17,
+   "start": 64.65,
+   "end": 68.05,
    "set": "k1_malam",
    "cam": "s16",
    "act": "s16"
   },
   {
-   "n": 17,
-   "start": 67.05,
-   "end": 71.1,
+   "n": 18,
+   "start": 68.05,
+   "end": 72.1,
    "set": "k1_malam",
    "cam": "s17",
    "act": "s17"
   },
   {
-   "n": 18,
-   "start": 71.1,
-   "end": 81.11,
+   "n": 19,
+   "start": 72.1,
+   "end": 82.11,
    "set": "k1_malam",
    "cam": "s18",
    "act": "s18"
   },
   {
-   "n": 19,
-   "start": 81.11,
-   "end": 83.4,
+   "n": 20,
+   "start": 82.11,
+   "end": 84.4,
    "set": "k1_malam",
    "cam": "s19",
    "act": "s19"
   },
   {
-   "n": 20,
-   "start": 83.4,
-   "end": 93.29,
+   "n": 21,
+   "start": 84.4,
+   "end": 94.29,
    "set": "k1_malam",
    "cam": "s20",
    "act": "s20"
   },
   {
-   "n": 21,
-   "start": 93.29,
-   "end": 97.29,
+   "n": 22,
+   "start": 94.29,
+   "end": 99.69,
    "set": "luar_malam",
    "cam": "s21",
    "act": "s21"
   },
   {
-   "n": 22,
-   "start": 97.29,
-   "end": 109.26,
+   "n": 23,
+   "start": 99.69,
+   "end": 103.02,
+   "set": "kamar_sore",
+   "cam": "m13",
+   "act": "m13"
+  },
+  {
+   "n": 24,
+   "start": 103.02,
+   "end": 110.66,
    "set": "luar_pagi",
    "cam": "s22",
    "act": "s22"
   },
   {
-   "n": 23,
-   "start": 109.26,
-   "end": 116.45,
+   "n": 25,
+   "start": 110.66,
+   "end": 112.91,
+   "set": "kamar_sore",
+   "cam": "m14",
+   "act": "m14"
+  },
+  {
+   "n": 26,
+   "start": 112.91,
+   "end": 117.45,
    "set": "k1_sore2",
    "cam": "s23",
    "act": "s23"
   },
   {
-   "n": 24,
-   "start": 116.45,
-   "end": 123.4,
+   "n": 27,
+   "start": 117.45,
+   "end": 124.4,
    "set": "k1_sore2",
    "cam": "s24",
    "act": "s24"
@@ -562,10 +586,10 @@
  ],
  "sfx": [
   [
-   0.0,
+   4.94,
    "burung_sore",
    -26,
-   10.35
+   5.409999999999999
   ],
   [
    5.140000000000001,
@@ -601,52 +625,52 @@
    41.23,
    "jam_cepat",
    -20,
-   5.5
+   9.100000000000001
   ],
   [
-   46.73,
+   50.33,
    "jangkrik",
    -30,
-   4.900000000000006
+   2.3000000000000043
   ],
   [
-   67.25,
+   68.25,
    "pause",
    -12,
    null
   ],
   [
-   83.4,
+   84.4,
    "jam_detik",
    -22,
    3.0
   ],
   [
-   93.29,
+   94.29,
    "jangkrik",
    -28,
-   4.0
+   8.72999999999999
   ],
   [
-   97.29,
+   103.02,
    "ayam",
    -20,
    null
   ],
   [
-   97.89,
+   103.61999999999999,
    "kunci",
    -8,
    null
   ],
   [
-   110.06,
+   113.71,
    "gagang",
    -8,
    null
   ],
   [
-   116.75,
+   117.75,
    "sting",
    -6,
    null
@@ -655,48 +679,42 @@
  "tv": [
   [
    41.23,
-   50.63,
+   50.33,
    "unduh",
    0
   ],
   [
-   50.63,
-   59.75,
+   51.63,
+   60.75,
    "kejar",
    0.0
   ],
   [
-   59.75,
-   63.65,
+   60.75,
+   64.65,
    "lucia",
    0.5
   ],
   [
-   63.65,
-   67.05,
+   64.65,
+   68.05,
    "mandy",
    0.0
   ],
   [
-   67.05,
-   83.4,
+   68.05,
+   84.4,
    "pause",
    0
   ],
   [
-   83.4,
-   93.29,
+   84.4,
+   94.29,
    "pause",
    0
   ]
  ],
  "phone": [
-  [
-   0,
-   4.94,
-   "dimas",
-   "home"
-  ],
   [
    4.94,
    10.35,
@@ -705,14 +723,8 @@
   ],
   [
    13.99,
-   17.74,
-   "dimas",
-   "berita"
-  ],
-  [
-   17.74,
    22.41,
-   "nayla",
+   "dimas",
    "berita"
   ],
   [
