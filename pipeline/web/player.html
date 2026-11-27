@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<style>
+@font-face{font-family:"DejaVuSub";src:url(__FONT__) format("truetype");font-weight:700}
+:root{--bg:#f3efe6;--panel:#fffdf8;--ink:#23211c;--mute:#6f6a5f;--line:#d9d2c2;--accent:#2f8a4e;--accent-ink:#fff;--bar:#e6e0d2;--warn:#b3541e;
+  --mono:ui-monospace,"Cascadia Mono","Consolas","SFMono-Regular",monospace;--sans:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#121512;--panel:#1b1f1b;--ink:#e9efe6;--mute:#93a08f;--line:#2e362d;--accent:#5fd38a;--accent-ink:#0d150f;--bar:#262d25;--warn:#f0a065;color-scheme:dark}}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans)}
+main{display:grid;grid-template-columns:minmax(260px,380px) 1fr;gap:28px;max-width:1100px;margin:0 auto;padding:28px 20px}
+@media (max-width:760px){main{grid-template-columns:1fr}}
+h1{font:600 13px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+h2{font-size:24px;line-height:1.15;margin:0 0 18px;font-weight:650}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}
+label{display:block;font:600 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:14px 0 6px}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{flex:1;border:0;background:transparent;color:var(--ink);padding:8px 6px;font:14px var(--sans);cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}.seg button[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);font-weight:600}
+.hint{font-size:13px;color:var(--mute);margin:6px 0 0}
+#go{margin-top:20px;width:100%;padding:12px;border:0;border-radius:8px;background:var(--accent);color:var(--accent-ink);font:600 16px var(--sans);cursor:pointer}
+#go:disabled{opacity:.5;cursor:wait}
+.bar{height:8px;background:var(--bar);border-radius:4px;overflow:hidden;margin:16px 0 8px}.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .15s}
+dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:14px 0 0;font-size:14px}dt{color:var(--mute)}dd{margin:0;font-family:var(--mono);font-size:13px;word-break:break-word}
+.stage{display:flex;flex-direction:column;align-items:center;gap:12px}
+.frame{height:min(78vh,720px);aspect-ratio:9/16;background:#000;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.frame canvas,.frame video{width:100%;height:100%;display:block;object-fit:contain}
+#msg{font-size:14px;min-height:1.5em}#msg.err{color:var(--warn)}
+.dl{display:none;gap:10px;flex-wrap:wrap;justify-content:center}.dl a{padding:9px 14px;border:1px solid var(--accent);border-radius:8px;color:var(--accent);text-decoration:none;font-weight:600}
+</style></head>
+<body><main>
+<section>
+  <h1>Kos Melati · render</h1>
+  <h2>__HEADING__</h2>
+  <div class="panel">
+    <label>Frame per detik</label>
+    <div class="seg" data-k="fps"><button data-v="24" aria-pressed="true">24</button><button data-v="30">30</button></div>
+    <label>Gaya gerak</label>
+    <div class="seg" data-k="style"><button data-v="smooth" aria-pressed="true">Halus</button><button data-v="stop">Stop-motion</button></div>
+    <label>Resolusi</label>
+    <div class="seg" data-k="res"><button data-v="1080" aria-pressed="true">1080×1920</button><button data-v="540">540×960</button></div>
+    <button id="go" disabled>Memuat aset…</button>
+    <div class="bar"><i id="prog"></i></div>
+    <div id="msg"></div>
+    <dl>
+      <dt>GPU</dt><dd id="gpu">–</dd>
+      <dt>Video</dt><dd id="enc">–</dd>
+      <dt>Audio</dt><dd id="aenc">–</dd>
+      <dt>Frame</dt><dd id="st_f">–</dd>
+      <dt>Rata-rata</dt><dd id="st_ms">–</dd>
+      <dt>Total</dt><dd id="st_t">–</dd>
+      <dt>Estimasi episode 190 dtk</dt><dd id="st_ep">–</dd>
+    </dl>
+  </div>
+</section>
+<section class="stage"><div class="frame" id="frame"></div><div class="dl" id="dl"></div></section>
+</main>
+<script id="pkg" type="application/json">__PKG__</script>
+<script type="importmap">{"imports":{"three":"__THREE__","bgu":"__BGU__","fflate":"__FFLATE__","gltf":"__GLTF__","exr":"__EXR__","mp4muxer":"__MUXER__"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'gltf';
+import {EXRLoader} from 'exr';
+import {Muxer, ArrayBufferTarget} from 'mp4muxer';
+const K=JSON.parse(document.getElementById('pkg').textContent), M=K.meta, $=id=>document.getElementById(id);
+const opt={fps:24,style:'smooth',res:1080};
+document.querySelectorAll('.seg').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));const k=g.dataset.k;opt[k]=k==='style'?b.dataset.v:+b.dataset.v;}));
+const say=(t,err)=>{$('msg').textContent=t;$('msg').className=err?'err':''};
+if(!('VideoEncoder' in window)) say('Browser ini tidak mendukung WebCodecs. Pakai Chrome atau Edge versi terbaru.',true);
+const L=K.look;
+// ---------- AgX + look "Punchy"
+THREE.ShaderChunk.tonemapping_pars_fragment=THREE.ShaderChunk.tonemapping_pars_fragment.replace('vec3 CustomToneMapping( vec3 color ) { return color; }',`vec3 CustomToneMapping( vec3 color ) {
+ const mat3 I = mat3( vec3( 0.856627153315983, 0.137318972929847, 0.11189821299995 ), vec3( 0.0951212405381588, 0.761241990602591, 0.0767994186031903 ), vec3( 0.0482516061458583, 0.101439036467562, 0.811302368396859 ) );
+ const mat3 O = mat3( vec3( 1.1271005818144368, - 0.1413297634984383, - 0.14132976349843826 ), vec3( - 0.11060664309660323, 1.157823702216272, - 0.11060664309660294 ), vec3( - 0.016493938717834573, - 0.016493938717834257, 1.2519364065950405 ) );
+ color *= toneMappingExposure; color = LINEAR_SRGB_TO_LINEAR_REC2020 * color; color = I * color;
+ color = clamp( ( log2( max( color, 1e-10 ) ) + 12.47393 ) / 16.499999, 0.0, 1.0 ); color = agxDefaultContrastApprox( color );
+ float l = dot( color, vec3( 0.2126, 0.7152, 0.0722 ) ); color = pow( max( color, 0.0 ), vec3( ${L.pow.toFixed(3)} ) ); color = l + ${L.sat.toFixed(3)} * ( color - l );
+ color = O * color; color = pow( max( vec3( 0.0 ), color ), vec3( 2.2 ) ); return clamp( LINEAR_REC2020_TO_LINEAR_SRGB * color, 0.0, 1.0 ); }`);
+// ---------- renderer + kanvas komposit (subtitle, flashback, kartu akhir)
+const r=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true,powerPreference:'high-performance'});
+r.setPixelRatio(1); r.toneMapping=THREE.CustomToneMapping; r.toneMappingExposure=L.exposure; r.shadowMap.enabled=true; r.shadowMap.type=THREE.PCFSoftShadowMap;
+const out=document.createElement('canvas'), octx=out.getContext('2d'); $('frame').appendChild(out);
+const gl=r.getContext(), dbg=gl.getExtension('WEBGL_debug_renderer_info'); $('gpu').textContent=dbg?gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER);
+// ---------- aset
+const gltf=new GLTFLoader(), exr=new EXRLoader(), tl=new THREE.TextureLoader();
+const env=await gltf.loadAsync(K.env), dyn=await gltf.loadAsync(K.dyn);
+const LM={}, AL={};
+for(const g in K.lm){ const t=await exr.loadAsync(K.lm[g]); t.channel=1; t.repeat.set(1,-1); t.offset.set(0,1); t.colorSpace=THREE.LinearSRGBColorSpace;
+  t.generateMipmaps=true; t.minFilter=THREE.LinearMipmapLinearFilter; t.wrapS=t.wrapT=THREE.ClampToEdgeWrapping; t.needsUpdate=true; LM[g]=t; }
+for(const g in K.al){ const t=await tl.loadAsync(K.al[g]); t.flipY=false; t.channel=1; t.colorSpace=THREE.SRGBColorSpace; t.wrapS=t.wrapT=THREE.ClampToEdgeWrapping; t.anisotropy=4; AL[g]=t; }
+const probe=await exr.loadAsync(K.probe), sky=await exr.loadAsync(K.sky);
+const scene=new THREE.Scene();
+sky.mapping=THREE.EquirectangularReflectionMapping; scene.background=sky; scene.backgroundIntensity=1;
+probe.mapping=THREE.EquirectangularReflectionMapping; const envMap=new THREE.PMREMGenerator(r).fromEquirectangular(probe).texture;
+// ---------- lampu dinamis untuk lingkungan hasil bake (tanpa bayangan, sama seperti di Blender)
+const DYN=Object.entries(M.lights).filter(([n,l])=>!l.static&&l.type!=='SUN');
+const DU={dPos:{value:DYN.map(()=>new THREE.Vector3())},dCol:{value:DYN.map(()=>new THREE.Vector3())},dDir:{value:DYN.map(()=>new THREE.Vector3(0,-1,0))},dCone:{value:DYN.map(()=>new THREE.Vector2(-2,-1))}};
+const ND=Math.max(1,DYN.length); if(!DYN.length){DU.dPos.value=[new THREE.Vector3()];DU.dCol.value=[new THREE.Vector3()];DU.dDir.value=[new THREE.Vector3()];DU.dCone.value=[new THREE.Vector2(-2,-1)];}
+function withDynLights(m){ m.onBeforeCompile=sh=>{ Object.assign(sh.uniforms,DU);
+  sh.vertexShader='varying vec3 vWP; varying vec3 vWN;\n'+sh.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvWP=(modelMatrix*vec4(transformed,1.0)).xyz; vWN=normalize(mat3(modelMatrix)*normal);');
+  sh.fragmentShader=`varying vec3 vWP; varying vec3 vWN; uniform vec3 dPos[${ND}]; uniform vec3 dCol[${ND}]; uniform vec3 dDir[${ND}]; uniform vec2 dCone[${ND}];\n`+sh.fragmentShader.replace('// modulation',`
+   vec3 Nw=normalize(vWN); if(!gl_FrontFacing) Nw=-Nw;
+   for(int i=0;i<${ND};i++){ vec3 Lv=dPos[i]-vWP; float d2=max(dot(Lv,Lv),1e-3); vec3 Ld=Lv*inversesqrt(d2);
+     float sp=dCone[i].x<-1.5?1.0:smoothstep(dCone[i].x,dCone[i].y,dot(-Ld,dDir[i]));
+     reflectedLight.indirectDiffuse+=dCol[i]*max(dot(Nw,Ld),0.0)/d2*sp*RECIPROCAL_PI; }
+   // modulation`); }; m.customProgramCacheKey=()=>'dyn'+ND; return m; }
+// ---------- lingkungan statis: warna (tekstur asli atau albedo hasil bake) x lightmap
+const emisMat={};
+env.scene.traverse(o=>{ if(!o.isMesh) return; o.castShadow=true; o.receiveShadow=false;
+  const g=(o.name.match(/ENV_([A-Z])/)||(o.parent&&o.parent.name.match(/ENV_([A-Z])/))||[])[1];
+  const conv=m=>{ const e=M.emissive[m.name];
+    if(e){ const v=e.frames[0], mm=new THREE.MeshBasicMaterial({color:new THREE.Color(v[0]*v[3],v[1]*v[3],v[2]*v[3])}); if(!e.static)(emisMat[m.name]??=[]).push(mm); return mm; }
+    const proc=K.procedural.includes(m.name)&&AL[g];
+    return withDynLights(new THREE.MeshBasicMaterial({color:proc?0xffffff:m.color,map:proc?AL[g]:m.map,lightMap:LM[g]||null})); };
+  o.material=Array.isArray(o.material)?o.material.map(conv):conv(o.material); });
+scene.add(env.scene);
+// ---------- lampu real-time untuk karakter & benda bergerak
+const LT={};
+for(const [n,l] of Object.entries(M.lights)){ const f=l.frames[0]; let o;
+  if(l.type==='SUN'){ o=new THREE.DirectionalLight(); o.castShadow=true; o.shadow.mapSize.set(2048,2048); Object.assign(o.shadow.camera,{left:-12,right:12,top:12,bottom:-12,near:1,far:80}); o.shadow.bias=-0.0004; o.shadow.normalBias=0.02; o.shadow.radius=3; scene.add(o.target); }
+  else if(l.type==='SPOT'){ o=new THREE.SpotLight(); o.angle=l.size/2; o.penumbra=l.blend; o.decay=2; scene.add(o.target); }
+  else { o=new THREE.PointLight(); o.decay=2; }
+  scene.add(o); LT[n]={o,l}; }
+const FOCUS=new THREE.Vector3(...K.focus);
+function applyLights(k){ // k = indeks frame 12 fps
+  let di=0;
+  for(const [n,{o,l}] of Object.entries(LT)){ const f=l.frames[l.static?0:Math.min(k,l.frames.length-1)], E=f[0], col=new THREE.Color(f[1],f[2],f[3]);
+    const p=new THREE.Vector3(f[4],f[5],f[6]), d=new THREE.Vector3(f[7],f[8],f[9]);
+    if(l.type==='SUN'){ o.color.copy(col); o.intensity=E; o.target.position.copy(FOCUS); o.position.copy(FOCUS).addScaledVector(d,-30); continue; }
+    const I=E/(4*Math.PI); o.color.copy(col); o.intensity=I; o.position.copy(p); if(o.target) o.target.position.copy(p).add(d);
+    if(!l.static&&l.type!=='SUN'){ DU.dPos.value[di].copy(p); DU.dCol.value[di].set(col.r*I,col.g*I,col.b*I); DU.dDir.value[di].copy(d).normalize();
+      DU.dCone.value[di].set(l.type==='SPOT'?Math.cos(l.size/2):-2, l.type==='SPOT'?Math.cos(l.size/2*(1-l.blend)):-1); di++; } }
+  for(const [n,ms] of Object.entries(emisMat)){ const e=M.emissive[n], v=e.frames[Math.min(k,e.frames.length-1)]; for(const mm of ms) mm.color.setRGB(v[0]*v[3],v[1]*v[3],v[2]*v[3]); }
+}
+// ---------- karakter: PBR + light probe + atlas wajah
+const tile=i=>new THREE.Vector2((i%4)*0.25,(3-Math.floor(i/4))*0.25);
+const FACE={};
+for(const rig in M.faces){ const ey=await tl.loadAsync(K.eyes[rig]), mo=await tl.loadAsync(K.mouth[rig]); ey.colorSpace=mo.colorSpace=THREE.SRGBColorSpace;
+  FACE[rig]={ey,mo,u:{eyeOff:{value:tile(0)},mouthOff:{value:tile(0)}},blush:(K.blush||{})[rig]||0}; }
+const faceOf={}; for(const rig in M.face_names) faceOf[M.face_names[rig]]=rig;
+dyn.scene.traverse(o=>{ if(!o.isMesh) return; o.castShadow=o.receiveShadow=true;
+  const fix=m=>{ m=m.clone(); m.envMap=envMap; m.envMapIntensity=L.env; const rig=faceOf[m.name];
+    if(rig){ const F=FACE[rig]; m.color.setRGB(...M.skin[rig]); m.map=null; const msk=M.mask[rig];
+      m.onBeforeCompile=sh=>{ Object.assign(sh.uniforms,{eyeTex:{value:F.ey},mouthTex:{value:F.mo}},F.u);
+        sh.vertexShader='varying vec3 vLoc;\n'+sh.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvLoc=position;');
+        sh.fragmentShader='varying vec3 vLoc; uniform sampler2D eyeTex,mouthTex; uniform vec2 eyeOff,mouthOff;\n'+sh.fragmentShader.replace('#include <map_fragment>',`
+          vec2 fuv=vec2(vLoc.x+0.5,vLoc.y+0.5); vec2 inb=step(vec2(0.0),fuv)*step(fuv,vec2(1.0)); float ib=inb.x*inb.y*((-vLoc.z<${msk.toFixed(4)})?1.0:0.0);
+          vec4 ec=texture2D(eyeTex,fuv*0.25+eyeOff); diffuseColor.rgb=mix(diffuseColor.rgb,ec.rgb,ec.a*ib);
+          vec4 mc=texture2D(mouthTex,fuv*0.25+mouthOff); diffuseColor.rgb=mix(diffuseColor.rgb,mc.rgb,mc.a*ib);
+          float bd=pow((abs(vLoc.x)-0.23)/0.085,2.0)+pow((vLoc.y+0.09)/0.05,2.0); float bl=pow(max(0.0,1.0-bd),1.5)*${F.blush.toFixed(3)}*((-vLoc.z<${msk.toFixed(4)})?1.0:0.0);
+          diffuseColor.rgb=mix(diffuseColor.rgb,vec3(1.0,0.0844,0.1195),bl);`); };
+      m.customProgramCacheKey=()=>'face_'+rig; }
+    return m; };
+  o.material=Array.isArray(o.material)?o.material.map(fix):fix(o.material); });
+scene.add(dyn.scene);
+// bayangan kontak per karakter
+const cv=document.createElement('canvas'); cv.width=cv.height=128; const cx=cv.getContext('2d'), gr=cx.createRadialGradient(64,64,0,64,64,64);
+gr.addColorStop(0,'rgba(0,0,0,0.55)'); gr.addColorStop(0.5,'rgba(0,0,0,0.3)'); gr.addColorStop(1,'rgba(0,0,0,0)'); cx.fillStyle=gr; cx.fillRect(0,0,128,128);
+const blobTex=new THREE.CanvasTexture(cv), BLOB={};
+for(const rig of K.rigs){ const b=new THREE.Mesh(new THREE.PlaneGeometry(1.5,1.1),new THREE.MeshBasicMaterial({map:blobTex,transparent:true,depthWrite:false,toneMapped:false}));
+  b.rotation.x=-Math.PI/2; b.renderOrder=2; scene.add(b); BLOB[rig]={b,node:dyn.scene.getObjectByName(rig)}; }
+// ---------- kamera & animasi
+const cam=new THREE.PerspectiveCamera(40,9/16,0.1,500);
+const mixer=new THREE.AnimationMixer(dyn.scene), ACTS=dyn.animations.map(c=>{const a=mixer.clipAction(c); a.play(); return {c,a,step:c.tracks.map(t=>t.getInterpolation())};});
+const NF=M.cam.length, CUT=new Set(K.cuts);
+// ---------- gerak halus otomatis (napas, goyang badan, kepala, kepang, lengan rileks)
+const tracked=new Set(); for(const A of ACTS) for(const t of A.c.tracks) tracked.add(t.name.split('.')[0]);
+const IDLE=[]; const hash=s=>{let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;return (h%1000)/1000*6.283;};
+for(const rig of K.rigs){ const root=dyn.scene.getObjectByName(rig); if(!root) continue; const B={};
+  root.traverse(o=>{ if(!o.isBone&&o.type!=='Object3D'&&o.type!=='Bone') return; const base=o.name.replace(/_\d+$/,''); for(const k of ['hips','spine','head','armL','armR','braidL','braidR']) if(base===k&&!B[k]) B[k]=o; });
+  for(const k in B) B[k].userData.base=B[k].quaternion.clone();
+  IDLE.push({rig,root,B,ph:hash(rig)}); }
+const _q=new THREE.Quaternion(), _pq=new THREE.Quaternion(), _ax=new THREE.Vector3();
+function rot(bone,axisWorld,ang){ if(!bone||!ang) return; bone.parent.getWorldQuaternion(_pq); _ax.copy(axisWorld).applyQuaternion(_pq.invert()).normalize();
+  bone.quaternion.premultiply(_q.setFromAxisAngle(_ax,ang)); bone.updateMatrixWorld(true); }
+function idle(t){ const D=Math.PI/180;
+  for(const I of IDLE){ const {B,root,ph}=I;
+    for(const k in B) if(!tracked.has(B[k].name)) B[k].quaternion.copy(B[k].userData.base);
+    root.updateMatrixWorld(true); const rq=new THREE.Quaternion(); root.getWorldQuaternion(rq);
+    const up=new THREE.Vector3(0,1,0), fwd=new THREE.Vector3(0,0,1).applyQuaternion(rq), side=new THREE.Vector3(1,0,0).applyQuaternion(rq);
+    const br=Math.sin(2*Math.PI*t/3.6+ph);
+    rot(B.hips,up,1.2*D*Math.sin(2*Math.PI*t/5.3+ph));
+    rot(B.spine,side,0.9*D*br); rot(B.spine,fwd,0.8*D*Math.sin(2*Math.PI*t/6.1+ph*1.3));
+    rot(B.head,up,2.2*D*Math.sin(2*Math.PI*t/4.3+ph*0.7)); rot(B.head,side,1.3*D*Math.sin(2*Math.PI*t/3.1+ph*1.9)); rot(B.head,fwd,1.0*D*Math.sin(2*Math.PI*t/5.7+ph));
+    rot(B.armL,fwd,(3+1.5*br)*D); rot(B.armR,fwd,-(3+1.5*br)*D);
+    rot(B.braidL,side,3*D*Math.sin(2*Math.PI*t/2.7+ph)); rot(B.braidR,side,3*D*Math.sin(2*Math.PI*t/2.9+ph+1));
+  } }                 // CUT: indeks frame pertama setiap shot baru
+function setStyle(s){ for(const A of ACTS){ A.c.tracks.forEach((t,i)=>t.setInterpolation(s==='smooth'?THREE.InterpolateLinear:A.step[i])); A.a.stop(); A.a.play(); } }
+const lerp=(a,b,u)=>a+(b-a)*u;
+function pose(t,style){ // t = detik sejak awal segmen
+  let k=Math.min(NF-1,Math.floor(t*12+1e-6)), u=style==='smooth'?t*12-k:0;
+  if(k+1>=NF||CUT.has(k+1)) u=0;                            // jangan menginterpolasi melewati potongan shot
+  for(const A of ACTS) A.a.time=Math.min((k+u)/12,A.c.duration); mixer.update(0);
+  const a=M.cam[k], b=M.cam[Math.min(NF-1,k+1)], c=a.map((x,i)=>lerp(x,b[i],u));
+  cam.position.set(c[0],c[1],c[2]); cam.up.set(c[6],c[7],c[8]).normalize(); cam.lookAt(c[3],c[4],c[5]); cam.fov=c[9]; cam.updateProjectionMatrix();
+  idle(style==='smooth'?t:Math.floor(t*12+1e-6)/12);
+  applyLights(k);
+  for(const rig in FACE){ const fc=M.faces[rig][k]; FACE[rig].u.eyeOff.value.copy(tile(fc[0])); FACE[rig].u.mouthOff.value.copy(tile(fc[1])); }
+  dyn.scene.updateMatrixWorld(true); const v=new THREE.Vector3();
+  for(const rig in BLOB){ const B=BLOB[rig]; if(!B.node) continue; B.node.getWorldPosition(v); B.b.position.set(v.x,v.y+0.035,v.z-0.02); B.b.visible=v.z>-150; }
+  return k;
+}
+// ---------- komposit 2D
+await document.fonts.load('700 68px DejaVuSub');
+function wrap(ctx,txt,maxW){ const w=txt.split(' '), lines=[]; let cur='';
+  for(const x of w){ const t=cur?cur+' '+x:x; if(ctx.measureText(t).width>maxW&&cur){lines.push(cur);cur=x;} else cur=t; } if(cur) lines.push(cur); return lines; }
+function text(ctx,W,H,txt,yFromBottom,size){ const s=W/1080; ctx.font=`700 ${size*s}px DejaVuSub`; ctx.textAlign='center'; ctx.textBaseline='middle';
+  const lines=wrap(ctx,txt,W*0.86), lh=size*s*1.2, y0=H*(1-yFromBottom)-(lines.length-1)*lh/2;
+  ctx.lineJoin='round'; ctx.lineWidth=size*s*0.2; ctx.strokeStyle='#000'; ctx.fillStyle='#fff';
+  lines.forEach((ln,i)=>{ctx.strokeText(ln,W/2,y0+i*lh);ctx.fillText(ln,W/2,y0+i*lh);}); }
+function composite(t){ const W=out.width,H=out.height;
+  const fb=K.flash.some(([a,b])=>t>=a&&t<b); octx.filter=fb?'saturate(0.2) brightness(0.92)':'none'; octx.drawImage(r.domElement,0,0,W,H); octx.filter='none';
+  for(const s of K.subs) if(t>=s.t0&&t<s.t1) text(octx,W,H,s.text,0.30,68);
+  if(K.end&&t>=K.end.t0){ octx.fillStyle='#000'; octx.fillRect(0,0,W,H); text(octx,W,H,K.end.text,0.5,96); } }
+function setRes(w){ const h=Math.round(w*16/9/2)*2; r.setSize(w,h,false); out.width=w; out.height=h; cam.aspect=w/h; return [w,h]; }
+setRes(540); setStyle('smooth'); pose(K.preview,'smooth'); r.render(scene,cam); composite(K.preview);
+// ---------- audio
+let audioBuf=null;
+if(K.audio){ const ab=await (await fetch(K.audio)).arrayBuffer(); audioBuf=await new OfflineAudioContext(2,48000,48000).decodeAudioData(ab); }
+$('go').disabled=false; $('go').textContent='Mulai render'; say('Aset siap. Biarkan tab ini tetap terbuka dan terlihat selama render.');
+async function pickVideo(w,h,fps){ const bitrate=Math.round(w*h*fps*0.25);
+  for(const hw of ['prefer-hardware','no-preference']) for(const [codec,kind] of [['avc1.640028','avc'],['avc1.4d0028','avc'],['avc1.640033','avc'],['vp09.00.40.08','vp9']]){
+    const cfg={codec,width:w,height:h,bitrate,framerate:fps,hardwareAcceleration:hw,latencyMode:'quality'}; if(kind==='avc') cfg.avc={format:'avc'};
+    try{ if((await VideoEncoder.isConfigSupported(cfg)).supported) return {cfg,kind,hw}; }catch(e){} }
+  throw new Error('Tidak ada codec video yang didukung.'); }
+async function pickAudio(sr,ch){ for(const [codec,kind] of [['mp4a.40.2','aac'],['opus','opus']]){ const cfg={codec,sampleRate:sr,numberOfChannels:ch,bitrate:192000};
+    try{ if((await AudioEncoder.isConfigSupported(cfg)).supported) return {cfg,kind}; }catch(e){} } return null; }
+const fmt=s=>s<60?`${s.toFixed(1)} dtk`:s<3600?`${Math.floor(s/60)} mnt ${Math.round(s%60)} dtk`:`${Math.floor(s/3600)} jam ${Math.round(s%3600/60)} mnt`;
+$('go').onclick=async()=>{
+  $('go').disabled=true; $('dl').style.display='none'; const old=$('frame').querySelector('video'); if(old){old.remove(); out.style.display='';}
+  try{
+    const {fps,style,res}=opt, [w,h]=setRes(res), DUR=K.duration, N=Math.round(DUR*fps); setStyle(style);
+    const V=await pickVideo(w,h,fps), A=audioBuf?await pickAudio(audioBuf.sampleRate,audioBuf.numberOfChannels):null;
+    $('enc').textContent=`${V.cfg.codec} · ${V.hw==='prefer-hardware'?'hardware':'otomatis'} · ${(V.cfg.bitrate/1e6).toFixed(1)} Mbps`;
+    $('aenc').textContent=A?`${A.cfg.codec} · 192 kbps`:'tidak ada';
+    const muxer=new Muxer({target:new ArrayBufferTarget(),video:{codec:V.kind,width:w,height:h,frameRate:fps},
+      audio:A?{codec:A.kind,numberOfChannels:audioBuf.numberOfChannels,sampleRate:audioBuf.sampleRate}:undefined,fastStart:'in-memory',firstTimestampBehavior:'offset'});
+    let err=null; const enc=new VideoEncoder({output:(c,m)=>muxer.addVideoChunk(c,m),error:e=>err=e}); enc.configure(V.cfg);
+    const t0=performance.now(); let tR=0;
+    for(let i=0;i<N;i++){ if(err) throw err; const t=i/fps, a=performance.now();
+      pose(t,style); r.render(scene,cam); composite(t); tR+=performance.now()-a;
+      const vf=new VideoFrame(out,{timestamp:Math.round(i*1e6/fps),duration:Math.round(1e6/fps)}); enc.encode(vf,{keyFrame:i%(fps*2)===0}); vf.close();
+      while(enc.encodeQueueSize>4) await new Promise(q=>setTimeout(q,1));
+      if(i%4===0||i===N-1){ $('prog').style.width=`${(i+1)/N*100}%`; $('st_f').textContent=`${i+1} / ${N}`; await new Promise(q=>setTimeout(q,0)); } }
+    await enc.flush(); enc.close();
+    if(A){ let aerr=null; const ae=new AudioEncoder({output:(c,m)=>muxer.addAudioChunk(c,m),error:e=>aerr=e}); ae.configure(A.cfg);
+      const sr=audioBuf.sampleRate, ch=audioBuf.numberOfChannels, len=Math.min(audioBuf.length,Math.round(DUR*sr)), B=1024;
+      for(let s=0;s<len;s+=B){ const n=Math.min(B,len-s), d=new Float32Array(n*ch); for(let c=0;c<ch;c++) d.set(audioBuf.getChannelData(c).subarray(s,s+n),c*n);
+        const ad=new AudioData({format:'f32-planar',sampleRate:sr,numberOfFrames:n,numberOfChannels:ch,timestamp:Math.round(s/sr*1e6),data:d}); ae.encode(ad); ad.close();
+        if(aerr) throw aerr; if(ae.encodeQueueSize>16) await new Promise(q=>setTimeout(q,0)); }
+      await ae.flush(); ae.close(); }
+    muxer.finalize();
+    const total=(performance.now()-t0)/1000, per=total/N;
+    $('st_ms').textContent=`${(per*1000).toFixed(0)} ms/frame (gambar ${(tR/N).toFixed(0)} ms)`; $('st_t').textContent=`${fmt(total)} untuk ${N} frame`; $('st_ep').textContent=`${fmt(per*190*fps)} (${190*fps} frame)`;
+    const blob=new Blob([muxer.target.buffer],{type:'video/mp4'}), url=URL.createObjectURL(blob), name=`${K.slug}_${fps}fps_${style}_${h}p.mp4`;
+    const v=document.createElement('video'); v.src=url; v.controls=v.loop=true; v.playsInline=true; out.style.display='none'; $('frame').appendChild(v);
+    const stats=`GPU: ${$('gpu').textContent}\nVideo: ${$('enc').textContent}\nAudio: ${$('aenc').textContent}\nResolusi: ${w}x${h}, ${fps} fps, gaya ${style}\nFrame: ${N}\nRata-rata: ${$('st_ms').textContent}\nTotal: ${$('st_t').textContent}\nEstimasi episode 190 dtk: ${$('st_ep').textContent}\nUkuran MP4: ${(blob.size/1e6).toFixed(2)} MB\n`;
+    $('dl').innerHTML=`<a href="${url}" download="${name}">Unduh MP4 (${(blob.size/1e6).toFixed(1)} MB)</a><a href="${URL.createObjectURL(new Blob([stats],{type:'text/plain'}))}" download="${name.replace('.mp4','_statistik.txt')}">Unduh statistik</a>`;
+    $('dl').style.display='flex'; say('Selesai. Putar videonya di samping, lalu unduh MP4 dan statistiknya.');
+    window.__result={size:blob.size,total,per,codec:V.cfg.codec,audio:A&&A.cfg.codec};
+  }catch(e){ console.error(e); say('Gagal: '+(e.message||e),true); window.__result={error:String(e)}; }
+  $('go').disabled=false; $('go').textContent='Render lagi';
+};
+window.__snap=(t,w)=>{ setRes(w||540); setStyle('smooth'); pose(t,'smooth'); r.render(scene,cam); composite(t); return out.toDataURL('image/png'); };
+window.__ready=true;
+</script></body></html>
