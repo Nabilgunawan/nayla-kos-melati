@@ -69,6 +69,10 @@ for n in ('k1_bedframe','k1_mattress','k1_blanket','k1_pillow'):     # kasur pin
     o=O.get(n)
     if o: o.location.x=X0+(X0-o.location.x)*0+3.25 if False else X0+abs(o.location.x-X0)
 bl=O.get('k1_blanket');  bl and (bl.data.materials.clear(), bl.data.materials.append(mat('k1_selimut','#2E3B55',0.8)))
+# ---- 3b. kamar 1 dibuat tertutup & rapi: dinding depan, tanpa kipas angin / rice cooker / lemari kecil
+for o in [o for o in O if o.name.startswith(('k1_fan','K1FAN','k1_blade','k1_cabinet','k1_rc_'))]: bpy.data.objects.remove(o,do_unlink=True)
+box('k1_wall_f',(9.5,0.25,6.3),(X0,-3.68,3.0),wall,bev=0.0)
+box('k1_lis_f',(9.5,0.06,0.25),(X0,-3.53,0.12),mat('k1_lis','#FFFFFF',0.5),bev=0.0)
 # ---- 4. set gaming di dinding kiri, menghadap +X
 WX=X0-4.65
 cab=box('k1_tv_meja',(0.75,3.4,0.9),(WX+0.45,0.8,0.45),mat('k1_kayu_gelap','#3A2A22',0.55),bev=0.04)
