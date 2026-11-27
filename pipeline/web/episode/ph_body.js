@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'gltf';
 import {EXRLoader} from 'exr';
 import {Muxer, ArrayBufferTarget} from 'mp4muxer';
+import {EffectComposer} from 'pp/EffectComposer'; import {RenderPass} from 'pp/RenderPass'; import {BokehPass} from 'pp/BokehPass';
+import {UnrealBloomPass} from 'pp/UnrealBloomPass'; import {OutputPass} from 'pp/OutputPass';
 const K=window.EP, $=id=>document.getElementById(id), L=K.look;
 const opt={fps:24,style:'smooth',res:1080};
 document.querySelectorAll('.seg').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
@@ -18,17 +20,23 @@ const out=document.createElement('canvas'), octx=out.getContext('2d'); $('frame'
 const gl=r.getContext(), dbg=gl.getExtension('WEBGL_debug_renderer_info'); $('gpu').textContent=dbg?gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER);
 const gltf=new GLTFLoader(), exr=new EXRLoader(), tl=new THREE.TextureLoader(), pm=new THREE.PMREMGenerator(r);
 const scene=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(40,9/16,0.1,500);
+// pasca-proses ala film pendek: kedalaman ruang (latar blur lembut) + bloom halus
+const comp=new EffectComposer(r); comp.addPass(new RenderPass(scene,cam));
+const bokeh=new BokehPass(scene,cam,{focus:3,aperture:0.0012,maxblur:0.006}); comp.addPass(bokeh);
+const bloom=new UnrealBloomPass(new THREE.Vector2(540,960),0.28,0.6,0.9); comp.addPass(bloom); comp.addPass(new OutputPass());
+let focusDist=3; const draw3d=()=>{ bokeh.uniforms.focus.value=focusDist; comp.render(); };
 const tile=i=>new THREE.Vector2((i%4)*0.25,(3-Math.floor(i/4))*0.25);
 const lerp=(a,b,u)=>a+(b-a)*u, D=Math.PI/180;
 // ---------- media: footage, audio, font
 await load('data/media.js'); const MED=window.MEDIA;
 const font=new FontFace('DejaVuSub',`url(${MED.font})`,{weight:'700'}); await font.load(); document.fonts.add(font);
+const font2=new FontFace('OswaldSub',`url(${MED.font2})`,{weight:'200 700'}); await font2.load(); document.fonts.add(font2);
 // footage TV = deretan JPEG (30 fps) yang di-decode langsung; tidak ada seek video per frame
 const FR={}; for(const k in MED.frames){ FR[k]=await Promise.all(MED.frames[k].map(u=>fetch(u).then(r=>r.blob()))); }
 async function frameBitmap(k,t){ const arr=FR[k]; const i=Math.max(0,Math.min(arr.length-1,Math.round(t*30))); return createImageBitmap(arr[i]); }
 // ---------- layar TV & ponsel (kanvas)
 const tvC=document.createElement('canvas'); tvC.width=1024; tvC.height=576; const tvX=tvC.getContext('2d'); const tvTex=new THREE.CanvasTexture(tvC); tvTex.colorSpace=THREE.SRGBColorSpace; tvTex.flipY=false;
-const PH={}; for(const w of ['nayla','dimas']){ const c=document.createElement('canvas'); c.width=360; c.height=640; const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; PH[w]={c,x:c.getContext('2d'),t,last:''}; }
+const PH={}; for(const w of ['nayla','dimas']){ const c=document.createElement('canvas'); c.width=360; c.height=640; const t=new THREE.CanvasTexture(c); t.colorSpace=THREE.SRGBColorSpace; t.flipY=false; PH[w]={c,x:c.getContext('2d'),t,last:''}; }
 let lucPause=document.createElement('canvas'); lucPause.width=1024; lucPause.height=576; { const bm=await createImageBitmap(await (await fetch(MED.pause)).blob()); lucPause.getContext('2d').drawImage(bm,0,0,1024,576); bm.close(); }
 async function drawTV(t){
   const e=K.tv.find(([a,b])=>t>=a&&t<b); const x=tvX, W=1024, H=576;
@@ -141,9 +149,7 @@ function idle(S,t){
   for(const I of S.IDLE){ const {B,root,ph}=I; for(const k in B) if(!S.tracked.has(B[k].name)) B[k].quaternion.copy(B[k].userData.base);
     root.updateMatrixWorld(true); const rq=new THREE.Quaternion(); root.getWorldQuaternion(rq);
     const up=new THREE.Vector3(0,1,0), fwd=new THREE.Vector3(0,0,1).applyQuaternion(rq), side=new THREE.Vector3(1,0,0).applyQuaternion(rq), br=Math.sin(2*Math.PI*t/3.6+ph);
-    rot(B.hips,up,1.2*D*Math.sin(2*Math.PI*t/5.3+ph)); rot(B.spine,side,0.9*D*br); rot(B.spine,fwd,0.8*D*Math.sin(2*Math.PI*t/6.1+ph*1.3));
-    rot(B.head,up,2.2*D*Math.sin(2*Math.PI*t/4.3+ph*0.7)); rot(B.head,side,1.3*D*Math.sin(2*Math.PI*t/3.1+ph*1.9)); rot(B.head,fwd,1.0*D*Math.sin(2*Math.PI*t/5.7+ph));
-    rot(B.braidL,side,3*D*Math.sin(2*Math.PI*t/2.7+ph)); rot(B.braidR,side,3*D*Math.sin(2*Math.PI*t/2.9+ph+1)); } }
+    rot(B.spine,side,0.35*D*Math.sin(2*Math.PI*t/4.2+ph)); rot(B.braidL,side,1.2*D*Math.sin(2*Math.PI*t/3.4+ph)); rot(B.braidR,side,1.2*D*Math.sin(2*Math.PI*t/3.6+ph+1));} }
 const CUT=new Set(K.cuts); let active=null;
 function dispose(obj){ obj.traverse(o=>{ if(o.geometry) o.geometry.dispose(); const ms=o.material?(Array.isArray(o.material)?o.material:[o.material]):[];
   for(const m of ms){ for(const k of ['map','lightMap','envMap']) if(m[k]&&m[k]!==tvTex&&!Object.values(PH).some(p=>p.t===m[k])&&m[k]!==blobTex) m[k].dispose(); m.dispose(); } }); obj.parent&&obj.parent.remove(obj); }
@@ -162,10 +168,13 @@ async function pose(t){ // t = detik global
   const g=Math.min(K.nf-1,Math.floor(t*12+1e-6)); const sg=K.segments.find(s=>g>=s.F0-1&&g<=s.F1-1)||K.segments[K.segments.length-1]; await activate(sg); const S=active;
   const NF=S.M.cam.length, k=Math.max(0,Math.min(NF-1,g-(S.F0-1))); let u=t*12-g; if(k+1>=NF||CUT.has(g+1)) u=0;
   for(const A of S.ACTS) A.a.time=Math.min((k+u)/12,A.c.duration); S.mixer.update(0);
+  for(const n in (S.M.objscale||{})){ const v=S.M.objscale[n], sc=v[Math.min(v.length-1,k)], o=S.dyn.getObjectByName(n.replace(/\./g,''))||S.dyn.getObjectByName(n);
+    if(o){ const p=o.parent; let ps=1; if(p){ p.updateMatrixWorld(true); ps=new THREE.Vector3().setFromMatrixScale(p.matrixWorld).x||1; } const s=sc/ps; o.scale.setScalar(s); } }
   for(const rig in (S.M.rigpos||{})){ const P=S.M.rigpos[rig], a=P[k], b=P[Math.min(P.length-1,k+1)], n=S.dyn.getObjectByName(rig+'_pos')||S.dyn.getObjectByName(rig); if(!n) continue;
     n.position.set(lerp(a[0],b[0],u),lerp(a[1],b[1],u),lerp(a[2],b[2],u)); n.quaternion.set(a[3],a[4],a[5],a[6]).slerp(new THREE.Quaternion(b[3],b[4],b[5],b[6]),u); }
   const a=S.M.cam[k], b=S.M.cam[Math.min(NF-1,k+1)], c=a.map((x,i)=>lerp(x,b[i],u));
   cam.position.set(c[0],c[1],c[2]); cam.up.set(c[6],c[7],c[8]).normalize(); cam.lookAt(c[3],c[4],c[5]); cam.fov=c[9]; cam.updateProjectionMatrix();
+  focusDist=Math.hypot(c[3]-c[0],c[4]-c[1],c[5]-c[2]);
   idle(S,t);
   const DU=ENV[S.env].DU; let di=0;
   for(const {o,l} of S.LT){ const f=l.frames[l.static?0:Math.min(k,l.frames.length-1)], E=f[0], col=new THREE.Color(f[1],f[2],f[3]); const p=new THREE.Vector3(f[4],f[5],f[6]), d=new THREE.Vector3(f[7],f[8],f[9]);
@@ -184,6 +193,12 @@ function text(ctx,W,H,txt,yb,size){ const s=W/1080; ctx.font=`700 ${size*s}px De
   const lines=wrap(ctx,txt,W*0.86), lh=size*s*1.2, y0=H*(1-yb)-(lines.length-1)*lh/2; ctx.lineJoin='round'; ctx.lineWidth=size*s*0.2; ctx.strokeStyle='#000'; ctx.fillStyle='#fff';
   lines.forEach((ln,i)=>{ctx.strokeText(ln,W/2,y0+i*lh);ctx.fillText(ln,W/2,y0+i*lh);}); }
 const SMALL=document.createElement('canvas');
+const SPK={nayla:['NAYLA','#ff6fa3'],dimas:['DIMAS','#3d8bff']};
+function caption(ctx,W,H,s){ const k=W/1080, y=H*0.70; ctx.textAlign='center'; ctx.textBaseline='middle';
+  if(SPK[s.spk]&&!s.narasi){ const [nm,col]=SPK[s.spk]; ctx.font=`600 ${26*k}px OswaldSub`; const tw=ctx.measureText(nm).width+28*k;
+    ctx.fillStyle=col; ctx.beginPath(); ctx.roundRect(W/2-tw/2,y-74*k,tw,36*k,10*k); ctx.fill(); ctx.fillStyle='#fff'; ctx.fillText(nm,W/2,y-55*k); }
+  ctx.font=`700 ${70*k}px OswaldSub`; ctx.lineJoin='round'; ctx.lineWidth=12*k; ctx.strokeStyle='rgba(0,0,0,.85)';
+  ctx.shadowColor='rgba(0,0,0,.35)'; ctx.shadowBlur=10*k; ctx.strokeText(s.text,W/2,y); ctx.shadowBlur=0; ctx.fillStyle=s.narasi?'#ffe066':'#fff'; ctx.fillText(s.text,W/2,y); }
 function composite(t){ const W=out.width,H=out.height; const ins=K.inserts.find(([a,b])=>t>=a&&t<b);
   if(ins){ const sm=SMALL; sm.width=Math.round(W/12); sm.height=Math.round(H/12); sm.getContext('2d').drawImage(r.domElement,0,0,sm.width,sm.height); octx.imageSmoothingQuality='high'; octx.drawImage(sm,0,0,W,H); octx.fillStyle='rgba(0,0,0,.45)'; octx.fillRect(0,0,W,H);
     const P=PH[ins[2]], pw=W*0.62, ph=pw*16/9, x0=(W-pw)/2, y0=(H-ph)/2-H*0.02, rr=pw*0.11, tilt=(ins[2]==='nayla'?-1:1)*0.035;
@@ -192,10 +207,10 @@ function composite(t){ const W=out.width,H=out.height; const ins=K.inserts.find(
     octx.fillStyle='#000'; octx.beginPath(); octx.roundRect(x0,y0,pw,ph,rr); octx.fill(); octx.save(); octx.beginPath(); octx.roundRect(x0,y0,pw,ph,rr); octx.clip();
     octx.drawImage(P.c,x0,y0,pw,ph); octx.restore(); octx.fillStyle='#000'; octx.beginPath(); octx.roundRect(W/2-pw*0.16,y0+pw*0.03,pw*0.32,pw*0.07,pw*0.035); octx.fill(); octx.restore(); }
   else octx.drawImage(r.domElement,0,0,W,H);
-  for(const s of K.subs) if(t>=s.t0&&t<s.t1) text(octx,W,H,s.text,0.30,68);
+  for(const s of K.subs) if(t>=s.t0&&t<s.t1) caption(octx,W,H,s);
   if(t>=K.end.t0){ octx.fillStyle='#000'; octx.fillRect(0,0,W,H); text(octx,W,H,K.end.text,0.5,96); } }
-function setRes(w){ const h=Math.round(w*16/9/2)*2; r.setSize(w,h,false); out.width=w; out.height=h; cam.aspect=w/h; cam.updateProjectionMatrix(); return [w,h]; }
-setRes(540); await pose(K.preview); r.render(scene,cam); composite(K.preview);
+function setRes(w){ const h=Math.round(w*16/9/2)*2; r.setSize(w,h,false); comp.setSize(w,h); out.width=w; out.height=h; cam.aspect=w/h; cam.updateProjectionMatrix(); return [w,h]; }
+setRes(540); await pose(K.preview); draw3d(); composite(K.preview);
 const ab=await (await fetch(MED.audio)).arrayBuffer(); const audioBuf=await new OfflineAudioContext(2,48000,48000).decodeAudioData(ab);
 $('go').disabled=false; $('go').textContent='Mulai render'; say('Aset siap. Biarkan tab ini tetap terbuka dan terlihat selama render.');
 async function pickVideo(w,h,fps){ const bitrate=Math.round(w*h*fps*0.25);
@@ -215,7 +230,7 @@ $('go').onclick=async()=>{
     const muxer=new Muxer({target:new ArrayBufferTarget(),video:{codec:V.kind,width:w,height:h,frameRate:fps},audio:A?{codec:A.kind,numberOfChannels:audioBuf.numberOfChannels,sampleRate:audioBuf.sampleRate}:undefined,fastStart:'in-memory',firstTimestampBehavior:'offset'});
     let err=null; const enc=new VideoEncoder({output:(c,m)=>muxer.addVideoChunk(c,m),error:e=>err=e}); enc.configure(V.cfg);
     const t0=performance.now(); let tR=0; tLoad=0;
-    for(let i=0;i<N;i++){ if(err) throw err; const t=i/fps, a=performance.now(); await pose(t); r.render(scene,cam); composite(t); tR+=performance.now()-a;
+    for(let i=0;i<N;i++){ if(err) throw err; const t=i/fps, a=performance.now(); await pose(t); draw3d(); composite(t); tR+=performance.now()-a;
       const vf=new VideoFrame(out,{timestamp:Math.round(i*1e6/fps),duration:Math.round(1e6/fps)}); enc.encode(vf,{keyFrame:i%(fps*2)===0}); vf.close();
       while(enc.encodeQueueSize>4) await new Promise(q=>setTimeout(q,1));
       if(i%4===0||i===N-1){ $('prog').style.width=`${(i+1)/N*100}%`; $('st_f').textContent=`${i+1} / ${N}`; await new Promise(q=>setTimeout(q,0)); } }
@@ -236,5 +251,5 @@ $('go').onclick=async()=>{
   $('go').disabled=false; $('go').textContent='Render lagi';
 };
 window.__poseOnly=async t=>{ await pose(t); };
-window.__snap=async(t,w)=>{ setRes(w||540); await pose(t); r.render(scene,cam); composite(t); return out.toDataURL('image/png'); };
+window.__snap=async(t,w)=>{ setRes(w||540); await pose(t); draw3d(); composite(t); return out.toDataURL('image/png'); };
 window.__ready=true;
