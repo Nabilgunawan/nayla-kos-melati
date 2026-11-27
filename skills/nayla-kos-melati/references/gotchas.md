@@ -16,3 +16,14 @@
 - GitHub sync: run `gh_sync.py` in the FOREGROUND with `timeout 270` and simply re-run until it prints `Selesai` (it skips files already uploaded). Background jobs can be killed between tool calls.
 - Never use `pkill -f <pattern>` or awk/grep kill loops whose pattern also matches your own command line — it kills the tool shell. Kill by explicit PID.
 - The user's GitHub token must never be written into the skill, memory, or any repo file; ask for it per session.
+
+## Three.js pipeline (learned Nov 2026)
+- Sandbox has no GPU: Playwright Chromium + SwiftShader works for WebGL2 tests (~1–4 s/frame); Blender module = `bpy==5.0.1` in a uv venv (py3.11).
+  Background jobs: `setsid nohup … &` survives between tool calls only within a session; the container can restart — make bakes resumable (segbake skips groups whose `lm_X.exr` exists).
+- glTF exporter splits object animation into several clips even with `export_animation_mode='SCENE'` → play **all** `gltf.animations`.
+- Procedural textures using Generated/Object coordinates change when objects are joined → segbake stores them as per-vertex attributes `gen`/`objco` before joining.
+- Cycles DIFFUSE bake (no colour) = irradiance; Three.js MeshBasicMaterial lightMap already multiplies by 1/π, matching Cycles. Point/spot lights: three intensity = Blender W / (4π).
+- Lightmap EXR (DataTexture) needs `repeat(1,-1), offset(0,1)`; albedo PNG/JPG needs `flipY=false`; both on `channel=1` (LM UV).
+- Blender world/probe equirect == Three.js equirect with no rotation when the pano camera rotation is (90°,0,−90°).
+- Chromium in the sandbox has no AAC encoder → Opus fallback; Chrome on Windows uses AAC + hardware H.264.
+- Exposure: Three.js reads ~15 % darker than Cycles at night → exposure 1.55 (day 1.2).
