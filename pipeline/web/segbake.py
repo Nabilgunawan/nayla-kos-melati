@@ -15,8 +15,9 @@ def info(o):
     return (c.xy-FOC.xy).length, ar
 groups={'A':[],'B':[],'G':[]}
 PREV={}
-with bpy.data.libraries.load(f'{OUT}/baked_v1.blend') as (src,dst): dst.objects=[n for n in src.objects if n.startswith('ENV_')]
-for ob in dst.objects: PREV[ob.name[4:]]=ob
+if os.path.exists(f'{OUT}/baked_v1.blend'):   # bake ulang albedo saja: salin UV lightmap lama
+    with bpy.data.libraries.load(f'{OUT}/baked_v1.blend') as (src,dst): dst.objects=[n for n in src.objects if n.startswith('ENV_')]
+    for ob in dst.objects: PREV[ob.name[4:]]=ob
 # tekstur prosedural: Generated/Object -> atribut per-vertex agar tidak berubah saat objek digabung
 for m in bpy.data.materials:
     nt=m.node_tree
