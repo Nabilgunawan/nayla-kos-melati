@@ -55,6 +55,10 @@ for r in dyn_rigs: dyn_objs|={c.name for c in O[r].children_recursive if c.type=
 for n in moving:
     o=O[n]
     if dist(o)[0]<R_FAR and not any(n in {c.name for c in O[r].children_recursive} for r in [x.name for x in rigs]): dyn_objs.add(n)
+import os
+for pat in [p for p in os.environ.get('DYN_FORCE','').split(',') if p]:
+    for o in O:
+        if o.type=='MESH' and (o.name==pat or o.name.startswith(pat)) and dist(o)[0]<R_FAR: dyn_objs.add(o.name)
 dyn_objs={n for n in dyn_objs if not O[n].hide_render}
 print('rigs',dyn_rigs,'dyn props',[n for n in dyn_objs if not any(n in {c.name for c in O[r].children_recursive} for r in dyn_rigs)])
 # lampu
@@ -72,7 +76,8 @@ for n,arr in lights.items():
 dyn_lights=[n for n,e in LI.items() if not e['static']]
 print('lights',{n:(e['type'],e['static']) for n,e in LI.items()})
 MATS={n:{'static':const(v),'frames':(v if not const(v) else [v[0]])} for n,v in matv.items() if max(x[3] for x in v)>0}
-dyn_mats=[n for n,e in MATS.items() if not e['static']]
+dyn_mats=[n for n,e in MATS.items() if not e['static']]+[m for m in os.environ.get('DYN_MATS','').split(',') if m and m in MATS]
+for m in dyn_mats: MATS[m]['static']=False
 print('emissive',{n:e['static'] for n,e in MATS.items()})
 meta={'F0':F0,'F1':F1,'fps':sc.render.fps,'cam':cam,'lights':LI,'emissive':MATS,'faces':{r:faces[r] for r in dyn_rigs if r in faces},
       'skin':{r:list(face_mats[r].node_tree.nodes['Mix'].inputs[6].default_value)[:3] for r in dyn_rigs if r in face_mats},
