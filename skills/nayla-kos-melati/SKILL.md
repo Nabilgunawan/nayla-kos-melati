@@ -60,7 +60,7 @@ the user adds viral sounds in CapCut.
 - `setsN.py`: open previous `epXX_sets.blend`, add new chars (`charsN.py` → `make_char(name,cfg,origin)`), new sets at
   free X offsets, props, lights (**all non-sun lights `use_shadow=False`**). Save `epNN_sets.blend`.
 - **Female characters: always run `pipeline/femme.py` after building/adding them** (`blender -b epNN_sets.blend -P femme.py -- [names] out.blend`):
-  softer rounded torso with waist, round bust (`BUST`, default 0.14 — chosen by the user; override with env FEMME_BUST; two near-circular full domes (smoothstep profile), high-res torso, no subsurf), tapered limbs, arms closer to the body, khimar-style hijab
+  softer rounded torso with waist, round bust (`BUST`, default 0.11 — chosen by the user; override with env FEMME_BUST; two near-circular full domes (smoothstep profile), high-res torso, no subsurf), tapered limbs, arms closer to the body, khimar-style hijab
   (Adel, Bu Darmi: cap on `head` bone + drape on `spine` bone), cheek blush (`BLUSH` per character), flower hair clip on Nayla.
   It edits meshes in place (names, bones, materials, actions kept) and is idempotent for blush/clip. Female list: Nayla, Adel, Ibu, Melati, MelatiK, Darmi, Rina.
 - `animN.py`: per-frame keyframes at 12 fps for every rig (location, Z rotation, bone eulers), face atlas tiles
