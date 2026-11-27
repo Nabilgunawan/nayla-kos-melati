@@ -38,3 +38,13 @@
 - Sandbox: background processes are killed when a reply ends → keep the chain resumable (`run_epNN.sh` skips finished outputs) and poll with `sleep` inside the turn. Never run a Playwright test while a bake runs (OOM kills the bake). 16 spp + OIDN denoise is enough: ~13 min per exterior environment, ~4 min per room.
 - Exposure per environment lives in the manifest (`exposure`): rooms 1.2, dusk 1.4, TV-lit room 1.5, night exterior 1.55.
 - Floor sitting (no knee bones): root z = floor − 0.88, legs −88°, spine +6°; holding a controller = `ep5lib.hold()` (searches the arm angle until both hands reach the grips, parents the pad to `hand.R`).
+
+## Quality bar (user feedback on Ep 5, reference: Kacaurus)
+- No automatic idle wobble: only slow breathing (spine 0.35°) and tiny braid sway. Cameras static within a shot.
+- Narration (Nayla's monologue lines) = Nayla to camera in her room, medium close-up (cam (0.8,-2.6,2.78) → (0.8,0.4,2.62), 42 mm).
+- Phones: hold in front of the chest, screen toward the face (arm.R -58°/z -26°, hand.R -50°); showing a phone = arm straight (-82°), hand.R Y 180°. Screen content = 2D insert (device mock-up) for readable, stable screens.
+- Visibility by scale must also go into `meta.objscale` (constant scale tracks are dropped by the glTF exporter); player applies it per frame.
+- Look: DOF (BokehPass, focus = camera→target distance, aperture 0.0012) + soft bloom (0.28), brighter exposure (rooms 1.4–1.45, night 1.75–1.85).
+- Captions: 1–3 words, CAPS, Oswald 700 with a coloured speaker pill (Nayla pink, Dimas blue); narration in yellow without pill.
+- Rooms must be closed (front wall) and tidy; avoid clutter props.
+- Bust default 0.11 (user choice).
