@@ -83,7 +83,6 @@ meta={'F0':F0,'F1':F1,'fps':sc.render.fps,'cam':cam,'lights':LI,'emissive':MATS,
       'skin':{r:list(face_mats[r].node_tree.nodes['Mix'].inputs[6].default_value)[:3] for r in dyn_rigs if r in face_mats},
       'mask':{r:face_mats[r].node_tree.nodes['Math'].inputs[1].default_value for r in dyn_rigs if r in face_mats},
       'face_names':{r:face_mats[r].name for r in dyn_rigs if r in face_mats}}
-json.dump(meta,open(f'{OUT}/meta.json','w'))
 # atlas wajah
 for r,m in face_mats.items():
     if r not in dyn_rigs: continue
@@ -109,6 +108,16 @@ for rn in dyn_rigs:
         em.matrix_world=m; em.keyframe_insert('location',frame=f); em.keyframe_insert('rotation_euler',frame=f); em.keyframe_insert('scale',frame=f)
     q=[m.to_quaternion() for m in mats]
     meta.setdefault('rigpos',{})[rn]=[[round(m.translation.x,4),round(m.translation.z,4),round(-m.translation.y,4),round(a.x,5),round(a.z,5),round(-a.y,5),round(a.w,5)] for m,a in zip(mats,q)]
+json.dump(meta,open(f'{OUT}/meta.json','w'))
+# ---------- skala per frame (dipakai untuk menyembunyikan/menampilkan benda; animasi skala konstan sering dibuang eksporter)
+PFX=tuple(p for p in os.environ.get('OBJSCALE','phone,STIK_,KONSOL_').split(',') if p)
+meta['objscale']={}
+cand=[n for n in dyn_objs if n.startswith(PFX)]
+vals={n:[] for n in cand}
+for f in FR:
+    sc.frame_set(f)
+    for n in cand: vals[n].append(round(O[n].matrix_world.to_scale().x,4))
+for n,v in vals.items(): meta['objscale'][n]=v if len(set(v))>1 else [v[0]]
 json.dump(meta,open(f'{OUT}/meta.json','w'))
 # ---------- glTF benda dinamis (animasi dipanggang per frame, mulai dari 0)
 sc.frame_start=F0; sc.frame_end=F1; sc.frame_set(F0)
