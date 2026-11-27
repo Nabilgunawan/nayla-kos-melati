@@ -72,8 +72,10 @@ def place(rig,loc,yaw,dz=0):
     rig.location=Vector(loc)+Vector((0,0,dz)); rig.rotation_euler=(0,0,D(yaw))
 def phone(who,on):
     o=O['phone'] if who=='Nayla' else O['phone_dimas']; o.scale=(1,1,1) if on else (0.001,0.001,0.001)
-def hold_phone(rig):
-    pb=rig.pose.bones; pb['arm.R'].rotation_euler=(D(-75),0,D(-12)); pb['hand.R'].rotation_euler=(D(-25),0,0); pb['head'].rotation_euler=(D(12),0,0)
+def hold_phone(rig):        # ponsel di depan dada, layar miring ke arah wajah, kepala sedikit menunduk
+    pb=rig.pose.bones; pb['arm.R'].rotation_euler=(D(-58),0,D(-26)); pb['hand.R'].rotation_euler=(D(-50),0,0); pb['head'].rotation_euler=(D(14),0,0)
+def show_phone(rig):        # menyodorkan ponsel: lengan lurus ke depan, layar menghadap lawan bicara
+    pb=rig.pose.bones; pb['arm.R'].rotation_euler=(D(-82),0,D(-6)); pb['hand.R'].rotation_euler=(D(10),D(180),0)
 def lerp(a,b,u): return a+(b-a)*max(0,min(1,u))
 def smooth(u): u=max(0,min(1,u)); return u*u*(3-2*u)
 # ---- cahaya per set
@@ -124,7 +126,11 @@ for f in range(1,NF+1):
     for n in ('STIK_meja1','STIK_meja2'): O[n].scale=(1,1,1)
     O['KDOOR_piv'].rotation_euler=(0,0,0); O['K1DOOR_piv'].rotation_euler=(0,0,0)
     expr={'Nayla':'tenang','Dimas':'tenang'}
-    if cm=='s1':
+    if cm in ('m1','m7','m13','m14'):          # Nayla bercerita langsung ke kamera di kamarnya
+        place(NAY,(0.8,0.4,0),0); c=speaking('nayla',t); expr['Nayla']=c['emo'] if c else 'senang'
+        NAY.pose.bones['arm.L'].rotation_euler=(0,0,D(-4)); NAY.pose.bones['arm.R'].rotation_euler=(0,0,D(4))
+        look(V3(0.8,-2.6,2.78),(0.8,0.4,2.62),42)
+    elif cm=='s1':
         place(DIM,(KC+0.3,-1.3,TZ),-10); phone('Dimas',True); hold_phone(DIM)
         look(V3(lerp(97.5,95.5,smooth(u)),lerp(-10,-8.2,smooth(u)),3.3),(KC+0.3,-1.0,2.2),30)
     elif cm=='s2':
@@ -141,13 +147,13 @@ for f in range(1,NF+1):
         look(V3(-1.8,-3.8,2.9),(2.2,1.4,2.0),30)
     elif cm=='s5':
         O['KDOOR_piv'].rotation_euler=(0,0,D(-75))
-        place(NAY,(1.8,-1.3,0),90); place(DIM,(3.7,-1.6,0),95); phone('Dimas',True)
-        DIM.pose.bones['arm.R'].rotation_euler=(D(-85),0,D(-5)); expr['Dimas']='heboh'; expr['Nayla']='kaget'
+        place(NAY,(1.8,-1.3,0),90); place(DIM,(3.7,-1.6,0),-90); phone('Dimas',True); show_phone(DIM); expr['Dimas']='heboh'; expr['Nayla']='kaget'
         look(V3(-0.5,1.4,3.0),(3.7,-1.7,2.4),28)
     elif cm=='s6':
-        place(NAY,(1.8,-0.8,0),-60); phone('Nayla',True); hold_phone(NAY); place(DIM,(3.3,-1.4,0),100); expr['Nayla']='kaget' if tl<3.2 else 'senang'
-        bpy.context.view_layer.update(); c=O['phone_screen'].matrix_world.translation.copy(); hd=[x for x in NAY.children_recursive if x.name=='head'][0].matrix_world.translation.copy(); fw=(c-hd); fw.z=0; fw.normalize(); sd=fw.cross(Vector((0,0,1)))
-        look(hd-fw*0.9+Vector((0,0,0.7))+sd*0.75,c,35)
+        O['KDOOR_piv'].rotation_euler=(0,0,D(-75))
+        place(NAY,(1.8,-1.3,0),90); place(DIM,(3.1,-1.4,0),-90); phone('Dimas',True); show_phone(DIM); expr={'Nayla':'kaget' if tl<3.2 else 'senang','Dimas':'heboh'}
+        bpy.context.view_layer.update(); c=O['phone_screen_dimas'].matrix_world.translation.copy()
+        look(V3(2.45,-4.8,2.75),(2.45,-1.35,2.35),34)
     elif cm=='s7':
         j=abs(math.sin(tl*2*math.pi*1.4))*0.35
         place(NAY,(1.9,-0.9,0),-30,j); place(DIM,(3.0,-1.2,0),-10,abs(math.sin(tl*2*math.pi*1.4+1.2))*0.35)
