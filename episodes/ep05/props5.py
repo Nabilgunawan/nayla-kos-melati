@@ -26,7 +26,9 @@ shelf('k_rak2',(1.6,4.38,3.0),1.6)
 plant('k_tanaman_lantai',(2.3,3.9,0.0),1.2)
 for i,(x,c) in enumerate(((0.75,'#F4B6C2'),(1.25,'#A0C4FF'),(0.95,'#FDFFB6'))): frame(f'k_foto{i}',(x,4.42,2.0+i*0.55 if i<2 else 3.9),0.38,0.46,c,(D(90),0,0))
 sph('k_boneka',0.32,(-3.6,3.6,1.35),mat('boneka','#C8A27A',0.8),sc=(1,0.9,1)); sph('k_boneka_kepala',0.22,(-3.6,3.55,1.8),mat('boneka','#C8A27A',0.8))
-cyl('k_keranjang',0.32,0.6,(-4.0,-1.8,0.3),mat('keranjang','#D9C29A',0.8))
+cyl('k_keranjang',0.32,0.6,(-4.0,0.3,0.3),mat('keranjang','#D9C29A',0.8))
+for o in O:                                            # lemari kecil + rice cooker kamar Nayla pindah ke pojok depan-kiri (tidak menghalangi pintu)
+    if o.name.startswith(('k_cabinet','k_rc_')) and o.parent is None: o.location.x-=7.6; o.location.y-=1.1
 # ---------- kamar Dimas (X0=450): LED di belakang TV, rak figur, gitar, tempat sampah, tanaman
 WX=X0-4.65
 box('k1_led',(0.05,2.9,0.06),(WX+0.08,0.8,2.85),mat('led_ungu','#9B5DE5',0.3,emis='#9B5DE5',es=8)); box('k1_led2',(0.05,2.9,0.06),(WX+0.08,0.8,1.05),mat('led_ungu','#9B5DE5',0.3,emis='#9B5DE5',es=8))
@@ -37,5 +39,6 @@ shelf('k1_rak_buku',(X0-1.0,4.38,2.8),1.8)
 g=sph('k1_gitar_badan',0.42,(X0+1.7,4.15,0.75),mat('gitar','#B5651D',0.35,coat=0.5),sc=(1,0.35,1.25)); box('k1_gitar_leher',(0.12,0.08,1.2),(X0+1.7,4.15,1.9),mat('gitar_leher','#3A2A22',0.5)); g.rotation_euler=(D(-8),0,0)
 cyl('k1_sampah',0.22,0.5,(X0+4.2,3.6,0.25),mat('sampah','#5C677D',0.6))
 plant('k1_tanaman',(X0-3.9,3.9,0.0),1.1)
-for i,(y,c) in enumerate(((-2.4,'#FF6B6B'),(2.6,'#4D96FF'))): frame(f'k1_foto{i}',(X0+4.58,y,3.4),0.5,0.62,c,(D(90),0,D(90)))
+for i,(y,c) in enumerate(((0.6,'#FF6B6B'),(2.6,'#4D96FF'))):          # bingkai di dinding kanan, menempel rata
+    box(f'k1_foto{i}',(0.04,0.5,0.62),(X0+4.43,y,3.4),mat('bingkai','#3A2A22',0.5)); box(f'k1_foto{i}_isi',(0.05,0.41,0.51),(X0+4.42,y,3.4),mat('foto_'+c,c,0.4))
 bpy.ops.wm.save_as_mainfile(filepath='/tmp/w/ep5/ep05_sets.blend'); print('PROPS OK')
