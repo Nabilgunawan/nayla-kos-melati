@@ -52,3 +52,6 @@
 - Rooms get tidy set dressing via `props5.py` (fairy lights, shelves with books/plants, frames, plush; Dimas: LED strip behind TV, figure shelf, guitar, plant, bin). Any room change = rebake that room only.
 - TV-lit night room needs exposure ~2.7; Dimas's room afternoon 1.8.
 - NEVER `pkill -f <script>` in the sandbox: the pattern matches the tool's own shell and kills the call. Kill by PID.
+- Killing jobs: `ps aux | grep -E "pattern"` also matches the tool's own command line whenever the pattern text appears later in the same command (e.g. when you restart the script in that call) → the call kills itself. Write patches to a .py file and run it, then kill by PID in a separate call.
+- Copying a room: parented objects (doors) get offsets applied twice; always re-derive the door position from its bounding box (min x/y) and cut a real door opening in the wall (wall split into 3 boxes) or an opened door shows a wall.
+- Check every copied room for furniture sitting where characters stand (doorways!) before blocking.
