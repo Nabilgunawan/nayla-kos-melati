@@ -19,8 +19,16 @@ for r in [o for o in O if o.type=='ARMATURE' and o not in (NAY,DIM)]:
     r.location=PARK; r.keyframe_insert('location',frame=1)
 # ---- perbaikan posisi pintu kamar 1 (offset ganda dari sets5)
 bpy.context.view_layer.update()
+bb=[O['k1_door'].matrix_world@Vector(c) for c in O['k1_door'].bound_box]
+dx=454.42-min(v.x for v in bb); dy=-2.5-min(v.y for v in bb)          # pintu tepat di dinding kanan, y -2.5..-0.7 (sama dengan kamar Nayla)
 for n in ('k1_door','k1_doorknob'):
-    o=O[n]; mw=o.matrix_world.copy(); mw.translation.x-=454.42; o.matrix_world=mw
+    o=O[n]; mw=o.matrix_world.copy(); mw.translation.x+=dx; mw.translation.y+=dy; o.matrix_world=mw
+# dinding kanan diberi lubang pintu supaya saat dibuka terlihat luar
+wr=O['k1_wall_r']; wb=[wr.matrix_world@Vector(c) for c in wr.bound_box]; x0,x1=min(v.x for v in wb),max(v.x for v in wb); wm=wr.data.materials[0]; bpy.data.objects.remove(wr,do_unlink=True)
+def wbox(name,y0,y1,z0,z1):
+    bpy.ops.mesh.primitive_cube_add(size=1); o=bpy.context.object; o.name=name; o.scale=(x1-x0,y1-y0,z1-z0); o.location=((x0+x1)/2,(y0+y1)/2,(z0+z1)/2); o.data.materials.append(wm)
+    bpy.ops.object.transform_apply(scale=True)
+wbox('k1_wall_r1',-3.7,-2.5,0,6.0); wbox('k1_wall_r2',-0.7,4.7,0,6.0); wbox('k1_wall_r3',-2.5,-0.7,4.2,6.0)
 # pintu kamar Nayla: pivot engsel
 pv=bpy.data.objects.new('KDOOR_piv',None); sc.collection.objects.link(pv); pv.location=(4.48,-2.5,0)
 bpy.context.view_layer.update()
@@ -258,7 +266,7 @@ for f in range(1,NF+1):
             expr={'Nayla':'tenang','Dimas':'yakin'}; look(V3(KC+1.5,-1.1,2.3),(KC-0.05,-0.2,1.9),40)
         else:
             w=(t-tW)/(s['end']-tW); y=lerp(-1.4,-7.5,w)
-            place(DIM,(KC+0.2,y,TZ if y>-2.6 else 0),0,walk(DIM,t)); place(NAY,(KC+1.3,y-0.2,TZ if y>-2.8 else 0),0,walk(NAY,t+0.3))
+            place(DIM,(KC-0.4,y,TZ if y>-2.6 else 0),0,walk(DIM,t)); place(NAY,(KC+1.6,y-0.2,TZ if y>-2.8 else 0),0,walk(NAY,t+0.3))
             expr={'Nayla':'senang','Dimas':'senang'}; look(V3(KC+0.7,-12,2.6),(KC+0.7,-3,2.0),35)
     elif cm in ('s23','s24'):
         for n in ('KONSOL_inti','KONSOL_panel-1','KONSOL_panel1','KONSOL_kaki','KONSOL_kabel'): O[n].scale=(0.001,0.001,0.001)
@@ -269,7 +277,7 @@ for f in range(1,NF+1):
             O['K1DOOR_piv'].rotation_euler=(0,0,D(ang))
             place(DIM,(X0+5.4,-1.7,0),90); place(NAY,(X0+6.0,-0.9,0),90)
             if t>=tOpen: place(DIM,(X0+lerp(5.4,3.6,smooth((t-tOpen)/1.2)),-1.7,0),90,walk(DIM,t)*(t<tOpen+1.2)); place(NAY,(X0+lerp(6.0,4.2,smooth((t-tOpen-0.3)/1.2)),-0.9,0),90)
-            expr={'Nayla':'cemas','Dimas':'kaget'}; look(V3(X0-0.8,1.2,2.5),(X0+4.48,-1.6,2.1),28)
+            expr={'Nayla':'cemas','Dimas':'kaget'}; look(V3(X0+0.6,-1.6,2.4),(X0+4.48,-1.6,2.1),30)
         else:
             O['K1DOOR_piv'].rotation_euler=(0,0,D(-80))
             place(DIM,(X0+2.6,-1.6,0),-90); place(NAY,(X0+3.2,-0.5,0),-80)
